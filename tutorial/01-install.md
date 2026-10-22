@@ -24,13 +24,13 @@ python --version     # Windows 上可能是 python3 或 py
 如果你在用支持 `SKILL.md` 约定的 Agent（WorkBuddy、Claude Code 等）：
 
 ```bash
-git clone <repo-url> ~/.workbuddy/skills/shiheng-decision
+git clone https://github.com/shuaifeng-889/shiheng-decision.git ~/.workbuddy/skills/shiheng-decision
 ```
 
 Windows PowerShell：
 
 ```powershell
-git clone <repo-url> "$env:USERPROFILE\.workbuddy\skills\shiheng-decision"
+git clone https://github.com/shuaifeng-889/shiheng-decision.git "$env:USERPROFILE\.workbuddy\skills\shiheng-decision"
 ```
 
 装完之后，你在对话里提出一个**含对抗或取舍**的问题，Agent 就会自动加载 `SKILL.md`
@@ -47,7 +47,7 @@ git clone <repo-url> "$env:USERPROFILE\.workbuddy\skills\shiheng-decision"
 只想在终端里跑：
 
 ```bash
-git clone <repo-url> shiheng-decision
+git clone https://github.com/shuaifeng-889/shiheng-decision.git shiheng-decision
 cd shiheng-decision
 python scripts/cli.py decide --interactive
 ```

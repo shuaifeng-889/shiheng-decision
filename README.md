@@ -5,7 +5,7 @@
 不是"孙子兵法读后感"。是一套能跑、能测、能被推翻的决策工具。
 
 ```bash
-git clone <repo-url> ~/.workbuddy/skills/shiheng-decision
+git clone https://github.com/shuaifeng-889/shiheng-decision.git ~/.workbuddy/skills/shiheng-decision
 cd ~/.workbuddy/skills/shiheng-decision
 python scripts/cli.py decide --interactive
 ```
@@ -128,7 +128,7 @@ print(render(eng.decide(sv, payoffs=(A, B), delta=0.55, moral_floor="high")))
 
 ```bash
 # WorkBuddy / Claude Code 等遵循 SKILL.md 约定
-git clone <repo-url> ~/.workbuddy/skills/shiheng-decision
+git clone https://github.com/shuaifeng-889/shiheng-decision.git ~/.workbuddy/skills/shiheng-decision
 ```
 
 Agent 会按五层链逐层推进，用 `scripts/engine.py` 做检索与求解，再负责把结果翻译成人话。
@@ -241,7 +241,7 @@ python tests/test_nash_core.py && python tests/test_discrimination.py && python 
 
 ```
 史衡·五链决策模型（SHIHENG Five-Chain Decision Model）, v1.0.
-https://github.com/<your-name>/shiheng-decision
+https://github.com/shuaifeng-889/shiheng-decision
 ```
 
 ## 许可

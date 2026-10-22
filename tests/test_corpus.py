@@ -18,6 +18,20 @@ import os
 import sys
 from collections import Counter
 
+
+def _force_utf8() -> None:
+    """Windows 无控制台时 stdout 编码是 cp1252，打印中文会抛 UnicodeEncodeError。"""
+    for _name in ("stdout", "stderr"):
+        _stream = getattr(sys, _name, None)
+        try:
+            if _stream is not None and hasattr(_stream, "reconfigure"):
+                _stream.reconfigure(encoding="utf-8", errors="replace")
+        except (ValueError, OSError):
+            pass
+
+
+_force_utf8()
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "..", "data")
 

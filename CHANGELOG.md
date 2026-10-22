@@ -5,6 +5,26 @@
 
 ---
 
+## [1.0.1] — 2026-10-23
+
+修复公开发布后 CI 在 Windows 环境下失败的问题。
+
+### 修复
+
+- **Windows 输出编码**：Windows runner 在没有控制台时 `stdout` 使用 cp1252 编码，
+  打印中文测试结果会抛 `UnicodeEncodeError`，导致「求解内核测试」步骤中断。
+  四个测试脚本与 `engine.py --demo` 现在会把输出流重配为 UTF-8，
+  并以 `errors="replace"` 兜底，不再依赖系统区域设置。
+- **Python 3.8 环境准备**：`setup-python` 在 `ubuntu-24.04` 上取不到 3.8 的预编译包，
+  任务在「Set up Python 3.8」阶段即失败，与代码无关。
+  3.8 改由 `ubuntu-22.04` 单独验证，矩阵其余版本不变。
+
+### 变更
+
+- CI 两个 job 统一注入 `PYTHONUTF8=1` 与 `PYTHONIOENCODING=utf-8`，作为第二道保险。
+
+---
+
 ## [1.0.0] — 2026-10-22
 
 首个公开发布版本。

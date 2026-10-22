@@ -11,12 +11,20 @@ jobs:
   test:
     name: Test on ${{ matrix.os }} / Python ${{ matrix.python }}
     runs-on: ${{ matrix.os }}
+    env:
+      # 强制 UTF-8，避免 Windows runner 在无控制台环境下用 cp1252 打印中文报错
+      PYTHONUTF8: "1"
+      PYTHONIOENCODING: "utf-8"
     strategy:
       fail-fast: false
       matrix:
         os: [ubuntu-latest]
-        python: ["3.8", "3.10", "3.12", "3.13"]
+        # 3.8 已 EOL，setup-python 在 ubuntu-24.04 上取不到预编译包，
+        # 所以单独用 ubuntu-22.04 验证 3.8 兼容性
+        python: ["3.10", "3.12", "3.13"]
         include:
+          - os: ubuntu-22.04
+            python: "3.8"
           - os: windows-latest
             python: "3.12"
           - os: macos-latest
@@ -60,6 +68,9 @@ jobs:
   lint:
     name: 语法与规范检查
     runs-on: ubuntu-latest
+    env:
+      PYTHONUTF8: "1"
+      PYTHONIOENCODING: "utf-8"
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5

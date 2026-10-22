@@ -474,6 +474,16 @@ def run_demo() -> str:
 
 if __name__ == "__main__":
     import sys
+
+    # 仅在直接运行时处理编码，库被 import 时不产生副作用
+    for _name in ("stdout", "stderr"):
+        _stream = getattr(sys, _name, None)
+        try:
+            if _stream is not None and hasattr(_stream, "reconfigure"):
+                _stream.reconfigure(encoding="utf-8", errors="replace")
+        except (ValueError, OSError):
+            pass
+
     if "--demo" in sys.argv:
         print(run_demo())
     else:

@@ -1,5 +1,9 @@
 # 史衡 · 五链决策模型
 
+[![CI](https://github.com/shuaifeng-889/shiheng-decision/actions/workflows/ci.yml/badge.svg)](https://github.com/shuaifeng-889/shiheng-decision/actions/workflows/ci.yml)
+[![Python](https://img.shields.io/badge/python-3.8%20%7C%203.10%20%7C%203.12%20%7C%203.13-blue)](https://github.com/shuaifeng-889/shiheng-decision)
+[![License](https://img.shields.io/badge/license-MIT%20%2B%20CC%20BY--NC--SA%204.0-green)](LICENSE)
+
 **把博弈论当骨架，把正史当案例库，给现实决策一套可证伪的结构化推理。**
 
 不是"孙子兵法读后感"。是一套能跑、能测、能被推翻的决策工具。

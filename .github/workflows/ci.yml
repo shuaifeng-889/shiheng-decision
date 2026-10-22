@@ -1,0 +1,124 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Test on ${{ matrix.os }} / Python ${{ matrix.python }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        python: ["3.8", "3.10", "3.12", "3.13"]
+        include:
+          - os: windows-latest
+            python: "3.12"
+          - os: macos-latest
+            python: "3.12"
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python ${{ matrix.python }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: Show Python version
+        run: python --version
+
+      - name: 数据完整性校验
+        run: python scripts/cli.py validate
+
+      - name: 求解内核测试
+        run: python tests/test_nash_core.py
+
+      - name: 判别力测试
+        run: python tests/test_discrimination.py
+
+      - name: 语料库防退化测试
+        run: python tests/test_corpus.py
+
+      - name: 命令行端到端测试
+        run: python tests/test_cli.py
+
+      - name: 示例可运行性
+        run: |
+          python scripts/cli.py decide -i examples/01-negotiation.json -f brief
+          python scripts/cli.py decide -i examples/01-negotiation.json -m examples/01-negotiation.matrix.json --delta 0.55 -f json
+          python scripts/cli.py decide -i examples/02-career.json -f json
+          python scripts/cli.py decide -i examples/03-team.json -f json
+          python scripts/cli.py cases --search 粮道
+          python scripts/cli.py stratagem --show S19
+
+  lint:
+    name: 语法与规范检查
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: 编译全部 Python 文件
+        run: python -m compileall -q scripts tests
+
+      - name: 检查是否引入了第三方依赖
+        run: |
+          python - <<'PY'
+          import ast, pathlib, sys
+
+          ALLOWED = {
+              "json", "os", "sys", "argparse", "io", "itertools", "typing",
+              "dataclasses", "collections", "subprocess", "tempfile",
+              "math", "fractions", "re", "pathlib", "__future__",
+              # 项目内部模块
+              "engine", "nash_core", "test_corpus",
+          }
+          bad = []
+          for p in list(pathlib.Path("scripts").glob("*.py")) + \
+                   list(pathlib.Path("tests").glob("*.py")):
+              tree = ast.parse(p.read_text(encoding="utf-8"))
+              for node in ast.walk(tree):
+                  names = []
+                  if isinstance(node, ast.Import):
+                      names = [a.name.split(".")[0] for a in node.names]
+                  elif isinstance(node, ast.ImportFrom) and node.module and node.level == 0:
+                      names = [node.module.split(".")[0]]
+                  for n in names:
+                      if n not in ALLOWED:
+                          bad.append("%s: %s" % (p, n))
+          if bad:
+              print("发现非标准库依赖：")
+              for b in bad:
+                  print("  " + b)
+              sys.exit(1)
+          print("仅使用标准库，符合零依赖要求。")
+          PY
+
+      - name: 检查 JSON 格式
+        run: |
+          python - <<'PY'
+          import json, pathlib, sys
+          ok = True
+          for p in pathlib.Path("data").glob("*.json"):
+              try:
+                  json.loads(p.read_text(encoding="utf-8"))
+                  print("OK   %s" % p)
+              except Exception as e:
+                  print("FAIL %s: %s" % (p, e))
+                  ok = False
+          for p in pathlib.Path("examples").glob("*.json"):
+              try:
+                  json.loads(p.read_text(encoding="utf-8"))
+              except Exception as e:
+                  print("FAIL %s: %s" % (p, e))
+                  ok = False
+          sys.exit(0 if ok else 1)
+          PY

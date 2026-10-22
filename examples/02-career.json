@@ -1,0 +1,14 @@
+{
+  "_comment": "示例二：在职跳槽——留下还是接受外部机会。",
+  "power_ratio": "even",
+  "stakes": "high",
+  "reversibility": 0.25,
+  "info_asym": -0.35,
+  "time_pressure": "high",
+  "horizon": "repeated",
+  "actors": 3,
+  "third_party": true,
+  "resource_slack": "medium",
+  "opponent_rationality": "rational",
+  "moral_constraint": "high"
+}

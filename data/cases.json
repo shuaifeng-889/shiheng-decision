@@ -1,0 +1,2205 @@
+{
+  "meta": {
+    "name": "史衡·史决策案例库",
+    "version": "1.0",
+    "tier_legend": {
+      "T1": "正史确载。来源为《史记》《汉书》《后汉书》《三国志》《晋书》《南史》《明史》《左传》《国语》《资治通鉴》等可信史源，可作为决策依据。",
+      "T2": "早期文献记载但源流有瑕：或为晚出文献，或史官本人已存疑，或关键细节仅见于别传注引。可作旁证，不可单独承重。",
+      "T3": "小说敷衍。《三国演义》《薛仁贵征辽事略》等演义系统的虚构情节。仅可作叙事隐喻，禁止作为决策推演的证据。"
+    },
+    "sv_legend": {
+      "power_ratio": "我方相对对手实力：very_weak / weak / even / strong / very_strong",
+      "stakes": "赌注大小：low / medium / high / existential",
+      "reversibility": "决策可逆性 0..1，越接近 0 越不可逆",
+      "info_asym": "信息优势 -1..1，正值表示我方知情多于对方",
+      "time_pressure": "时间压力：low / medium / high",
+      "horizon": "博弈次数：single / repeated",
+      "actors": "参与方数：2 或 3",
+      "third_party": "是否存在可借力的第三方",
+      "resource_slack": "我方资源冗余：low / medium / high",
+      "opponent_rationality": "对手类型：rational / myopic / vindictive",
+      "moral_constraint": "我方可承受的声誉与规则约束：low / medium / high"
+    }
+  },
+  "cases": [
+    {
+      "id": "C001",
+      "title": "桂陵之战·围魏救赵",
+      "era": "战国·魏惠王十八年（前354—前353）",
+      "protagonist": "孙膑、田忌（齐） — 庞涓（魏）",
+      "source": "《史记·孙子吴起列传》；《资治通鉴·周纪三》",
+      "tier": "T1",
+      "archetype": "STACKELBERG",
+      "sv_tags": {
+        "power_ratio": "weak",
+        "stakes": "high",
+        "reversibility": 0.4,
+        "info_asym": 0.3,
+        "time_pressure": "medium",
+        "horizon": "single",
+        "actors": 2,
+        "third_party": true,
+        "resource_slack": "medium",
+        "opponent_rationality": "rational",
+        "moral_constraint": "medium"
+      },
+      "situation": "魏国精锐围邯郸，赵告急于齐。齐若直趋邯郸，须与疲惫前必保全的魏武卒争锋，且赵已残破。",
+      "decision_point": "救赵是否必须赴邯郸？攻击点应选在敌之兵力所在处，还是敌之必救处？",
+      "action": "孙膑主张「批亢捣虚，形格势禁」：不赴邯郸，疾走大梁；魏军必释赵自救，齐军据桂陵邀其归路。",
+      "outcome": "庞涓弃邯郸回援，齐军大破魏军于桂陵，邯郸自解。齐未付出正面会战的代价。",
+      "lesson": "当我方无力正面压制时，去争夺对方无法承受失去的资产（魏都），等于改写对手的反应函数；此后对手的每一步都按我方设定的时间表走。这是 Stackelberg 结构的核心：抢的不是行动快慢，而是定义对方的最优反应。",
+      "counterfactual": "若直趋邯郸：须在坚垒之下与魏武卒会战，胜负难料；纵胜亦自损其半，魏国坐大之势不改。",
+      "failure_if": "对手具备足够纵深与后备，能承受首都被威胁而不回援；或对手在回援路线上仍有完整补给，伏击点不成立。",
+      "stratagem": [
+        "S02"
+      ],
+      "sources": [
+        {
+          "book": "史记",
+          "juan": "孙子吴起列传",
+          "canonical": true,
+          "category": "正史"
+        },
+        {
+          "book": "资治通鉴",
+          "juan": "周纪三",
+          "canonical": false,
+          "category": "编年"
+        }
+      ]
+    },
+    {
+      "id": "C002",
+      "title": "马陵之战·减灶诱敌",
+      "era": "战国·魏惠王二十八年（前341）",
+      "protagonist": "孙膑、田忌（齐） — 庞涓（魏）",
+      "source": "《史记·孙子吴起列传》",
+      "tier": "T1",
+      "archetype": "SIGNALING",
+      "sv_tags": {
+        "power_ratio": "even",
+        "stakes": "high",
+        "reversibility": 0.3,
+        "info_asym": 0.6,
+        "time_pressure": "medium",
+        "horizon": "single",
+        "actors": 2,
+        "third_party": false,
+        "resource_slack": "medium",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "medium"
+      },
+      "situation": "魏攻韩，齐救韩而直趋大梁；庞涓回师追击，齐军需在不便于己的地形上处理追兵。",
+      "decision_point": "如何把追兵引入我方选定的地形与时刻？",
+      "action": "孙膑令军灶由十万减为五万、再减为三万，制造齐军怯战、士卒逃亡的假象；庞涓判断齐军已溃，弃步军率轻锐倍道追进，夜至马陵。",
+      "outcome": "庞涓至马陵，遇齐军万弩齐发，兵败自刭，魏太子申被俘。",
+      "lesson": "信号生效的关键，是让对方靠自己推导出你想要的结论——灶数是庞涓自己数出来的，因而深信不疑。前提是对方早已有「齐人怯」的先验，信号只是坐实它。信号从不创造信念，它只激活已有的信念。",
+      "counterfactual": "若庞涓不为假象所动、按部就班并辎推进，齐军只能撤退，无从设伏。",
+      "failure_if": "对方无轻敌先验，或不以灶数判兵力，或生性谨慎必先侦察。信号成本太低、可被低成本复核，是此计的结构性弱点。",
+      "stratagem": [
+        "S10"
+      ],
+      "sources": [
+        {
+          "book": "史记",
+          "juan": "孙子吴起列传",
+          "canonical": true,
+          "category": "正史"
+        }
+      ]
+    },
+    {
+      "id": "C003",
+      "title": "长勺之战·一鼓作气",
+      "era": "春秋·鲁庄公十年（前684）",
+      "protagonist": "曹刿（鲁） — 齐师",
+      "source": "《左传·庄公十年》",
+      "tier": "T1",
+      "archetype": "STACKELBERG",
+      "sv_tags": {
+        "power_ratio": "very_weak",
+        "stakes": "existential",
+        "reversibility": 0.2,
+        "info_asym": 0.2,
+        "time_pressure": "high",
+        "horizon": "single",
+        "actors": 2,
+        "third_party": false,
+        "resource_slack": "low",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "high"
+      },
+      "situation": "齐强鲁弱，正面会战必不胜；齐师已在长勺列阵挑战。",
+      "decision_point": "强弱悬殊时，接战的唯一可行方式是什么？",
+      "action": "曹刿待齐人三鼓而后令鲁军一鼓出击；既克，视其辙乱、望其旗靡，而后下令追击。",
+      "outcome": "鲁军一战败齐，为战史上以弱胜强的经典。",
+      "lesson": "力量劣势下，胜负不在兵力对比，而在能量投放的时机：先忍到对方势能衰竭，再把全部力量集中在一个点和一次冲击上。曹刿还做了一件常被忽略的事——追击前先看辙乱旗靡，即用证据校验自己的判断，而不是凭胜利惯性行动。",
+      "counterfactual": "若随齐鼓即应战，鲁军以疲惫之众对锐气之师，必溃。",
+      "failure_if": "对方也懂蓄势而不轻易耗尽锐气；或战场条件不允许我方自由选择交战时刻。",
+      "stratagem": [
+        "S04"
+      ],
+      "sources": [
+        {
+          "book": "左传",
+          "juan": "庄公十年",
+          "canonical": false,
+          "category": "经部史书"
+        }
+      ]
+    },
+    {
+      "id": "C004",
+      "title": "宫之奇谏假道·唇亡齿寒",
+      "era": "春秋·鲁僖公五年（前655）",
+      "protagonist": "晋献公 — 虞公、宫之奇（虞）；虢",
+      "source": "《左传·僖公二年》《僖公五年》",
+      "tier": "T1",
+      "archetype": "COALITION",
+      "sv_tags": {
+        "power_ratio": "strong",
+        "stakes": "existential",
+        "reversibility": 0.1,
+        "info_asym": 0.4,
+        "time_pressure": "low",
+        "horizon": "single",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "high",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "low"
+      },
+      "situation": "晋欲伐虢，须假道于虞。虞虢互为犄角。",
+      "decision_point": "虞公：借道给晋，是赚一笔通行费，还是把自己送上断头台？",
+      "action": "虞公信晋而许其道，宫之奇谏「辅车相依，唇亡齿寒」不用；晋灭虢后，师还馆于虞，遂袭虞而灭之。",
+      "outcome": "虞与虢同亡，虞公被执。",
+      "lesson": "三方联盟博弈的原型：虞的价值来自它是虢的屏障。虢亡之后，虞在晋的收益结构里权重骤降为负——它从「需要收买的通道」变成「无需收买的囊中物」。任何以为「我只是通道、只赚服务费」的中介方，都在重演虞公。判断自己未来权重如何随对手处境变化，是中介方最重要的一课。",
+      "counterfactual": "虞若拒道并联虢抗晋，晋越境用兵代价陡增；纵不敌，亦可取得谈判位置而非归零。",
+      "failure_if": "失效点不在施计方而在目标方：只要虞公看懂自己的权重随虢之存亡而变化，此计便不成立。",
+      "stratagem": [
+        "S24"
+      ],
+      "sources": [
+        {
+          "book": "左传",
+          "juan": "僖公二年",
+          "canonical": false,
+          "category": "经部史书"
+        }
+      ]
+    },
+    {
+      "id": "C005",
+      "title": "郑伯克段于鄢·多行不义必自毙",
+      "era": "春秋·鲁隐公元年（前722）",
+      "protagonist": "郑庄公 — 共叔段、武姜",
+      "source": "《左传·隐公元年》",
+      "tier": "T1",
+      "archetype": "STACKELBERG",
+      "sv_tags": {
+        "power_ratio": "strong",
+        "stakes": "existential",
+        "reversibility": 0.3,
+        "info_asym": 0.7,
+        "time_pressure": "low",
+        "horizon": "single",
+        "actors": 2,
+        "third_party": false,
+        "resource_slack": "high",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "medium"
+      },
+      "situation": "共叔段受母宠，请封京地，缮甲兵、具卒乘，将袭郑。庄公知情而隐忍不发。",
+      "decision_point": "何时动手？愈早代价愈小，但愈早则罪名愈重、名分愈轻。",
+      "action": "庄公纵其扩张，待段将袭郑、夫人将启之，且人心已去段，方命子封率师伐京。",
+      "outcome": "京叛大叔段，段出奔共。庄公置母于城颍，后隧而相见。",
+      "lesson": "欲擒故纵的实质是：过早出手要付的政治成本（弑弟之名、违母之嫌）高于纵容期间的损失。庄公换取的不是军事优势而是正当性——等对方把罪名做实再出手。前提是始终握有信息优势与最终出手能力，否则纵容就不是养痈而是资敌。",
+      "counterfactual": "若初封京时即禁之：段尚未成势，军事上最省事，但庄公落下不容母弟之名，可能引发国内贵族反弹。",
+      "failure_if": "纵容过程中失控——对方坐大超出我方反应能力，或第三方介入改变力量对比。这条边界一旦越过，策略立即从养痈翻转为资敌。",
+      "stratagem": [
+        "S16"
+      ],
+      "sources": [
+        {
+          "book": "左传",
+          "juan": "隐公元年",
+          "canonical": false,
+          "category": "经部史书"
+        }
+      ]
+    },
+    {
+      "id": "C006",
+      "title": "秦师袭郑·弦高犒师与还师灭滑",
+      "era": "春秋·鲁僖公三十三年（前627）",
+      "protagonist": "孟明视（秦） — 郑；弦高（郑商人）",
+      "source": "《左传·僖公三十二年、三十三年》",
+      "tier": "T1",
+      "archetype": "SIGNALING",
+      "sv_tags": {
+        "power_ratio": "even",
+        "stakes": "high",
+        "reversibility": 0.3,
+        "info_asym": -0.6,
+        "time_pressure": "high",
+        "horizon": "single",
+        "actors": 2,
+        "third_party": true,
+        "resource_slack": "medium",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "medium"
+      },
+      "situation": "秦穆公得杞子内应，潜师袭郑。行至滑地，遇郑商人弦高，而郑人全不知情。",
+      "decision_point": "秦：郑已知情则袭郑无望，是撤还是顺取近处的滑？郑：如何在毫无准备时传递信号？",
+      "action": "弦高矫君命以乘韦先牛犒秦师，一面遣人急告郑；郑穆公使皇武子辞杞子，杞子奔齐。秦知郑有备，遂灭滑而还。",
+      "outcome": "秦袭郑失败，回师灭滑；归途于殽被晋军邀击，全军覆没，孟明视等被俘。",
+      "lesson": "两个教训同时成立。弦高侧：非正式渠道往往比正式渠道更快，且其模糊性本身就是保护——他没说「郑已知」，只「犒师」，让秦自己推出结论。秦侧：「顺手牵羊」偷偷替换了此行的目标定义，胜利被重定义为「至少得了滑」，结果把军队带进了殽之战的死亡陷阱。主目标落空时人极易抓一个易得的小目标来证明此行不虚，而小目标常带着新的暴露面。",
+      "counterfactual": "秦若闻郑有备即全师而退、不贪灭滑，或可绕过殽山，不致全军覆没。",
+      "failure_if": "目标替换的自欺。当主要目标已不可能达成时，把资源转向次要目标几乎总是亏的，因为撤退的最优性恰恰在于「不暴露」。",
+      "stratagem": [
+        "S12",
+        "S22"
+      ],
+      "sources": [
+        {
+          "book": "左传",
+          "juan": "僖公三十二年、三十三年",
+          "canonical": false,
+          "category": "经部史书"
+        }
+      ]
+    },
+    {
+      "id": "C007",
+      "title": "鸿门宴·刘邦脱身",
+      "era": "汉元年（前206）",
+      "protagonist": "刘邦 — 项羽、范增、项伯",
+      "source": "《史记·项羽本纪》《高祖本纪》",
+      "tier": "T1",
+      "archetype": "STACKELBERG",
+      "sv_tags": {
+        "power_ratio": "very_weak",
+        "stakes": "existential",
+        "reversibility": 0.05,
+        "info_asym": -0.3,
+        "time_pressure": "high",
+        "horizon": "single",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "low",
+        "opponent_rationality": "rational",
+        "moral_constraint": "high"
+      },
+      "situation": "项羽兵四十万号百万，刘邦十万。项伯夜告张良，事机已泄。",
+      "decision_point": "赴宴等于把自己送进对手收益最大化的位置；不赴宴则立刻开战且师出无名。",
+      "action": "刘邦赴宴，先行低姿态谢罪认错，并当场拿下关键第三方项伯（约为婚姻）；席间借如厕召樊哙等步走，使张良留谢献璧。",
+      "outcome": "刘邦全身而退，项羽失去消灭对手的最佳且最后一个窗口。四百年汉祚由此启。",
+      "lesson": "三个可迁移点。其一，在必输的单次博弈里，最优策略是离开这张牌桌而不是在桌上求最优——保留继续博弈的资格大于本轮收益。其二，第三方介入的方式值得注意：刘邦拉住项伯用的不是利诱而是约为婚姻，把一次性贿赂改写成长期关系。其三，撤退不等于失败，但它需要配套的执行礼节（留礼物、托人辞），因为面子和体谅在长期博弈里仍有利息。",
+      "counterfactual": "若拒宴而出兵：以十万对四十万且不占名义，几无胜算。若赴宴而无项伯：必死于项庄之剑。",
+      "failure_if": "撤退延误（给对方留出回过神来追击的窗口），或第三方不可拉拢。此计的成败几乎完全押在项伯这一个变量上，属高危路径。",
+      "stratagem": [
+        "S36",
+        "S30"
+      ],
+      "sources": [
+        {
+          "book": "史记",
+          "juan": "项羽本纪",
+          "canonical": true,
+          "category": "正史"
+        }
+      ]
+    },
+    {
+      "id": "C008",
+      "title": "还定三秦·出陈仓",
+      "era": "汉元年（前206）八月",
+      "protagonist": "刘邦、韩信 — 章邯、司马欣、董翳",
+      "source": "《史记·高祖本纪》《淮阴侯列传》；《汉书·高帝纪》",
+      "tier": "T1",
+      "note": "重要辨析：「明修栈道，暗度陈仓」八字，正史仅载「从故道出」「出陈仓」，并无明修栈道之事；此语源出后世话本与元曲，属 T3 层敷衍。可确信的是：刘邦用韩信计，出其不意自故道出陈仓。",
+      "archetype": "STACKELBERG",
+      "sv_tags": {
+        "power_ratio": "weak",
+        "stakes": "existential",
+        "reversibility": 0.2,
+        "info_asym": 0.5,
+        "time_pressure": "medium",
+        "horizon": "single",
+        "actors": 2,
+        "third_party": true,
+        "resource_slack": "medium",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "medium"
+      },
+      "situation": "刘邦就国汉中，烧绝栈道以示无东归之意；三秦王守关中待之。",
+      "decision_point": "如何把对方的麻痹变成实际的兵力投送？",
+      "action": "维持烧栈道后的静态态势，主力暗自故道出陈仓，袭雍；塞王、翟王相继降。",
+      "outcome": "月余而定三秦，刘邦由此出关东向争天下。",
+      "lesson": "暗度之所以成功，是因为对手把我方的示弱信号（烧栈道）纳入了它的模型并据此收缩了巡逻范围。先前那次烧栈道本身是一次战略性自缚——用真实成本换取对方信念的修正，是 Stackelberg 的典型动作。可迁移的真教训是：与其事后去骗，不如先做一件让对方无法不相信的事。",
+      "counterfactual": "若走已知的栈道：须逐关争夺，三秦有备，汉军难出。",
+      "failure_if": "对方在等关键通道上的判断一旦被一次试探性行动推翻，失去的是整个信念基础而不只是一条路。此计不可重复使用于同一对手。",
+      "stratagem": [
+        "S08"
+      ],
+      "sources": [
+        {
+          "book": "史记",
+          "juan": "高祖本纪",
+          "canonical": true,
+          "category": "正史"
+        },
+        {
+          "book": "汉书",
+          "juan": "高帝纪",
+          "canonical": true,
+          "category": "正史"
+        }
+      ]
+    },
+    {
+      "id": "C009",
+      "title": "韩信破魏·临晋设疑、夏阳偷渡",
+      "era": "汉二年（前205）",
+      "protagonist": "韩信 — 魏豹",
+      "source": "《史记·淮阴侯列传》",
+      "tier": "T1",
+      "archetype": "SIGNALING",
+      "sv_tags": {
+        "power_ratio": "even",
+        "stakes": "high",
+        "reversibility": 0.3,
+        "info_asym": 0.5,
+        "time_pressure": "medium",
+        "horizon": "single",
+        "actors": 2,
+        "third_party": false,
+        "resource_slack": "medium",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "medium"
+      },
+      "situation": "魏豹叛汉，陈兵蒲坂，塞临晋。黄河渡口有限，强渡代价极高。",
+      "decision_point": "如何在对方以逸待劳的渡口争夺中，制造出一个不设防的渡口？",
+      "action": "韩信益为疑兵，陈船欲渡临晋；而伏兵从夏阳以木罂缻渡军，袭安邑。",
+      "outcome": "魏王豹惊而迎战，兵败被擒，魏地三十六城悉定。",
+      "lesson": "声东击西在物理层面的落法是：把敌人的注意力约束到它必须防守的点上（临晋渡口），然后在它无法防守的那个点（夏阳）投送力量。关键不是欺骗，而是分配对方的防守兵力——它的兵力有限，任何一个点加强，必有另一个点变弱。选择性都是成本：让对手在多个点顾虑，等于在每一点都削弱它。",
+      "counterfactual": "若强行强渡临晋：仰攻坚垒，伤亡重大而胜负不定。",
+      "failure_if": "对手资源充裕到可以守住所有渡口，或其判断依据是我方兵力总数而非局部信号。",
+      "stratagem": [
+        "S06"
+      ],
+      "sources": [
+        {
+          "book": "史记",
+          "juan": "淮阴侯列传",
+          "canonical": true,
+          "category": "正史"
+        }
+      ]
+    },
+    {
+      "id": "C010",
+      "title": "井陉之战·背水一战",
+      "era": "汉三年（前204）",
+      "protagonist": "韩信 — 陈馀（赵）",
+      "source": "《史记·淮阴侯列传》",
+      "tier": "T1",
+      "archetype": "CHICKEN",
+      "sv_tags": {
+        "power_ratio": "very_weak",
+        "stakes": "existential",
+        "reversibility": 0.05,
+        "info_asym": 0.2,
+        "time_pressure": "high",
+        "horizon": "single",
+        "actors": 2,
+        "third_party": false,
+        "resource_slack": "low",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "medium"
+      },
+      "situation": "韩信率数万新募之卒击赵，赵军二十万据井陉口筑垒。兵力悬殊、地利在彼。",
+      "decision_point": "以缺乏训练的弱旅临强敌，如何让它战斗到底而不溃散？",
+      "action": "夜遣轻骑二千持赤帜伏赵营侧；主力万人背水列阵；晨出井陉口，赵军开壁击之，大战良久，信诈弃鼓旗走水上军，赵军空壁争利逐之，水上军皆殊死战不可败；伏兵入赵壁尽拔赵帜立汉赤帜。",
+      "outcome": "赵军欲还壁而见壁皆汉赤帜，大惊以为汉已破赵王将，遂乱遁走。斩陈馀，擒赵王歇。",
+      "lesson": "此战常被误读为激励士气的鸡汤，其数学实质是斗鸡博弈中的自我承诺：韩信没有试图让新兵变勇敢，他改变的是他们的可选行动集——把「逃」这个选项从策略空间里物理删除。当最优解只剩「战」，非精锐部队也能产出精锐的输出。这是承诺策略最干净的一次演示，也与本模型 L2 层「自缚承诺可锁定远高于同时行动的收益」完全同构。",
+      "counterfactual": "若按常规列阵：新兵见赵军二十万先自溃，不会有良久大战，纵有伏兵也无用。",
+      "failure_if": "对手同样烧了退路且更不怕输；或对手不全线出击（不开壁），则伏兵无处可入，背水之阵反成死地。此计成立高度依赖赵军必贪利而出这一前提。",
+      "stratagem": [
+        "S13",
+        "S15"
+      ],
+      "sources": [
+        {
+          "book": "史记",
+          "juan": "淮阴侯列传",
+          "canonical": true,
+          "category": "正史"
+        }
+      ]
+    },
+    {
+      "id": "C011",
+      "title": "垓下之战·四面楚歌",
+      "era": "汉五年（前202）",
+      "protagonist": "韩信、刘邦 — 项羽",
+      "source": "《史记·项羽本纪》《高祖本纪》",
+      "tier": "T1",
+      "note": "「十面埋伏」为后世评话敷演，属 T3。正史确载的是：诸军合围垓下，夜闻汉军四面皆楚歌。",
+      "archetype": "SIGNALING",
+      "sv_tags": {
+        "power_ratio": "strong",
+        "stakes": "existential",
+        "reversibility": 0.1,
+        "info_asym": 0.6,
+        "time_pressure": "low",
+        "horizon": "single",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "high",
+        "opponent_rationality": "rational",
+        "moral_constraint": "medium"
+      },
+      "situation": "楚军虽困仍能战，项羽本人突围能力极强；汉方虽占优，但联军内部的协同风险并未消除。",
+      "decision_point": "对一支仍有战斗力的孤军，是继续硬攻，还是摧毁其战斗意志？",
+      "action": "联军合围；夜，汉军四面唱楚歌。项羽夜起饮帐中，以为汉已尽得楚地。",
+      "outcome": "项羽率八百骑夜溃围南出，至乌江自刎。楚汉之争终结。",
+      "lesson": "四面楚歌是一次零成本而极高精度的信号：它不攻击楚军的战斗力，只攻击楚军对「我们是否还有归处」的信念。当一支军队的共同知识变成「家乡已失」，继续战斗的收益期望即趋零——这是通过改变信念而非改变兵力来结束战争。它的成本几乎为零，因为只需要会唱楚歌的人。",
+      "counterfactual": "若按常规强攻：楚军作困兽之斗，汉联军各自为战的协同风险上升，很可能付出惨重代价仍让项羽突围。",
+      "failure_if": "对方军队的士气来源不是乡土或后方（如雇佣军、流寇），或其统帅意志不受部下情绪传导。此计完全依赖对方的心理结构，而非我方实力。",
+      "stratagem": [
+        "S22",
+        "S18"
+      ],
+      "sources": [
+        {
+          "book": "史记",
+          "juan": "项羽本纪",
+          "canonical": true,
+          "category": "正史"
+        }
+      ]
+    },
+    {
+      "id": "C012",
+      "title": "白登之围·脱困与和亲转向",
+      "era": "汉七年（前200）冬",
+      "protagonist": "刘邦 — 冒顿单于（匈奴）",
+      "source": "《史记·匈奴列传》《陈丞相世家》；《汉书·匈奴传》",
+      "tier": "T1",
+      "note": "正史对所谓秘计的具体内容讳而不书，《史记》明言「其计秘，世莫得闻」。后世流传的贿阏氏、献美人图之说出自纬书与小说系统，属 T3，不可当作可复用的决策方法。真正可考的教训在结构与结果侧。",
+      "archetype": "STAG_HUNT",
+      "sv_tags": {
+        "power_ratio": "weak",
+        "stakes": "existential",
+        "reversibility": 0.1,
+        "info_asym": -0.8,
+        "time_pressure": "high",
+        "horizon": "single",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "low",
+        "opponent_rationality": "rational",
+        "moral_constraint": "high"
+      },
+      "situation": "高祖先至平城，步兵未集；冒顿纵精兵三十余万骑围帝于白登七日，汉兵中外不得相救饷。先前连遣十余辈使匈奴，皆言可击。",
+      "decision_point": "被困七日、粮绝外无援兵，如何脱身？脱困之后又该如何处理与匈奴的关系？",
+      "action": "用陈平秘计（具体内容不书），围解得开一角而出；其后定和亲之策，休养生息数十年。",
+      "outcome": "高祖得脱，与大军会合。汉以和亲买时间，至武帝时方转为攻势。",
+      "lesson": "可考的教训有三。其一，情报断层的代价：此前十余批使者都说可以打，唯刘敬说不可，高祖不听反囚之。当所有输入信息的利益同向时，输出的「共识」只是共同偏误。其二，脱困后的战略忍耐：承认实力不足，用和亲把报复推迟到国力足以支撑为止——这不是屈辱，而是把单次博弈改写为有未来阴影的重复博弈。其三，正面对话失效时，找到一条通向对方的旁路往往是唯一出路。",
+      "counterfactual": "若当初给予了刘敬式逆耳之言以权重，此役或可免。脱困后若急于报复，汉初国力不足以支撑，可能重演秦末崩局。",
+      "failure_if": "把和亲买时间当成终点而非手段——若无随后的国力积累，拖延只是把死亡推迟。汉之所以正确，是因为这五十年确实攒出了卫青与霍去病。",
+      "stratagem": [
+        "S36",
+        "S03"
+      ],
+      "sources": [
+        {
+          "book": "史记",
+          "juan": "匈奴列传",
+          "canonical": true,
+          "category": "正史"
+        },
+        {
+          "book": "汉书",
+          "juan": "匈奴传",
+          "canonical": true,
+          "category": "正史"
+        }
+      ]
+    },
+    {
+      "id": "C013",
+      "title": "娄敬说高祖定都关中",
+      "era": "汉五年—六年（前202—前201）",
+      "protagonist": "娄敬（后赐姓刘） — 刘邦；张良",
+      "source": "《史记·刘敬叔孙通列传》《留侯世家》",
+      "tier": "T1",
+      "archetype": "STACKELBERG",
+      "sv_tags": {
+        "power_ratio": "even",
+        "stakes": "existential",
+        "reversibility": 0.1,
+        "info_asym": 0.2,
+        "time_pressure": "low",
+        "horizon": "repeated",
+        "actors": 2,
+        "third_party": false,
+        "resource_slack": "medium",
+        "opponent_rationality": "rational",
+        "moral_constraint": "medium"
+      },
+      "situation": "高祖既定天下。群臣多山东人，争言周都洛邑数百年、秦都关中二世而亡，主张都洛阳。定都属不可逆的长期决策。",
+      "decision_point": "选址是听多数人的经验归纳，还是看结构性的必要条件？",
+      "action": "戍卒娄敬脱挽辂见高祖，以「秦地被山带河，四塞以为固，卒然有急，百万之众可具也」主张都关中；张良复言关中阻三面而守、独以一面东制诸侯。即日车驾西都关中。",
+      "outcome": "汉都长安，为汉四百年基业奠定地理与财政基础。",
+      "lesson": "本模型最推崇的逆向建议通道案例：提出正确方案的是一个戍卒，而错误方案来自全体功臣——因为功臣们的利益与地理无关而与乡土有关。任何决策的输入结构里，若所有人的利益同向，那么输出的「共识」只是共同偏误。此外，娄敬的论证方式值得逐字复制：他不做价值评判（关中更好），他做条件推演（东方有事时此地能否支撑），把争论从哪里更体面移到哪种条件下哪边不成立。",
+      "counterfactual": "若都洛阳：无险可守而诸侯易制肘，汉初异姓王之乱恐难以平定，可能重演东周。",
+      "failure_if": "此类决策可逆性接近零，一旦选定则所谓再议的成本无法承受。因此真正的风险是决策窗口关闭得太快而信息尚不充分——本案在一天之内定议，事后证明正确，但这属于结果与结构正确性的重合，不宜当作快速决策的范例来模仿。",
+      "stratagem": [
+        "S36"
+      ],
+      "sources": [
+        {
+          "book": "史记",
+          "juan": "刘敬叔孙通列传",
+          "canonical": true,
+          "category": "正史"
+        }
+      ]
+    },
+    {
+      "id": "C014",
+      "title": "周亚夫平七国之乱·绝吴楚粮道",
+      "era": "汉景帝三年（前154）",
+      "protagonist": "周亚夫（汉） — 吴王濞、楚王戊",
+      "source": "《史记·绛侯周勃世家》《吴王濞列传》",
+      "tier": "T1",
+      "archetype": "STACKELBERG",
+      "sv_tags": {
+        "power_ratio": "even",
+        "stakes": "existential",
+        "reversibility": 0.2,
+        "info_asym": 0.3,
+        "time_pressure": "medium",
+        "horizon": "single",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "medium",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "medium"
+      },
+      "situation": "吴楚联军西向，梁国首当其冲而急求援；叛军兵锋正锐，正面会战不利。",
+      "decision_point": "是救梁（道义与朝命所在），还是不救梁而走蓝田出武关、据荥阳断敌粮道（战略最优但政治风险极高）？",
+      "action": "周亚夫不赴梁，走蓝田、出武关、抵雒阳，据荥阳后坚壁昌邑不战，遣轻骑绝吴楚兵后食道；梁屡求救不许，乃至天子下诏令救，亚夫便宜不奉诏。",
+      "outcome": "吴楚兵乏粮，士卒饥，数挑战而亚夫终不出，终至溃败。吴王濞走死东越。凡三月而七国之乱平。",
+      "lesson": "教科书级的战略自主与命令撕裂案例。周亚夫做对两件事：不跟随对手选定的战场（梁），拒绝来自最高层但基于局部信息的干预诏。当你在对抗中已经产生了「必须在别人选定的时间和地点打赢」这一约束时，胜负已输掉一半。另外他对第三方梁国的处理是冷酷的：把它当消耗品，用它拖住吴楚主力。这是联盟博弈里「盟友作为成本项」的真实计算。",
+      "counterfactual": "若奉诏救梁：与吴楚锐师战于梁地，胜负未可知；纵胜亦自损。",
+      "failure_if": "抗命的政治成本极高——周亚夫战后遭疑忌，终下廷尉呕血而死。战略最优不等于个人最优，这是每个执行此策略者必须预先计提的成本。可与 C028 哥舒翰对读：同一类冲突，不奉诏者胜而身死，奉诏者国破。",
+      "stratagem": [
+        "S19",
+        "S04"
+      ],
+      "sources": [
+        {
+          "book": "史记",
+          "juan": "绛侯周勃世家",
+          "canonical": true,
+          "category": "正史"
+        }
+      ]
+    },
+    {
+      "id": "C015",
+      "title": "轮台诏·武帝悔过与政策转向",
+      "era": "汉武帝征和四年（前89）",
+      "protagonist": "汉武帝",
+      "source": "《汉书·西域传》《资治通鉴·汉纪十四》",
+      "tier": "T1",
+      "archetype": "REPEATED",
+      "sv_tags": {
+        "power_ratio": "strong",
+        "stakes": "existential",
+        "reversibility": 0.4,
+        "info_asym": -0.4,
+        "time_pressure": "low",
+        "horizon": "repeated",
+        "actors": 2,
+        "third_party": false,
+        "resource_slack": "low",
+        "opponent_rationality": "rational",
+        "moral_constraint": "high"
+      },
+      "situation": "武帝连年用兵，晚年海内虚耗、户口减半，关东流民二百万；巫蛊之祸后太子死，继承悬而未决。",
+      "decision_point": "在位五十年、路线已投入巨量沉没成本的决策者，是否公开承认既定国策有误？",
+      "action": "下轮台之诏，深陈既往之悔，罢轮台屯田之请，明言当务在禁苛暴、止擅赋、力本农；封丞相田千秋为富民侯以明休息之意。",
+      "outcome": "西汉由攻转守，休养生息。昭宣中兴由此而启，汉祚得以延续而非暴崩。",
+      "lesson": "人类史上罕见的最高决策者公开证伪自己的案例，价值在三点。其一，沉没成本不参与未来决策：已投入的三十年征伐不构成继续投入的理由，只看剩余边际收益。其二，认错必须绑定具体的制度动作（罢屯田、力本农、封富民侯），否则只是修辞。司马光评曰：人主不可不悔过，然悔而不改，则过益深矣。其三，方向转弯需要一个信号级事件，诏书与封号正是这样的信号。",
+      "counterfactual": "若无此诏而继续征伐：以户口减半、流民二百万的状态，极可能在武帝身后爆发大规模崩盘，而非平稳过渡至昭宣。",
+      "failure_if": "认错停留在文件而资源分配不变——这是绝大多数组织「我已反思」的真实形态，其效果为零。检验标准只有一个：钱和人在下一轮是否真的换了方向。",
+      "stratagem": [
+        "S36"
+      ],
+      "sources": [
+        {
+          "book": "汉书",
+          "juan": "西域传",
+          "canonical": true,
+          "category": "正史"
+        },
+        {
+          "book": "资治通鉴",
+          "juan": "汉纪十四",
+          "canonical": false,
+          "category": "编年"
+        }
+      ]
+    },
+    {
+      "id": "C016",
+      "title": "李广上郡遭遇战·解鞍示疑",
+      "era": "西汉·文帝至景帝时（具体年份史未确载）",
+      "protagonist": "李广 — 匈奴数千骑",
+      "source": "《史记·李将军列传》",
+      "tier": "T1",
+      "archetype": "SIGNALING",
+      "sv_tags": {
+        "power_ratio": "very_weak",
+        "stakes": "existential",
+        "reversibility": 0.3,
+        "info_asym": -0.5,
+        "time_pressure": "high",
+        "horizon": "single",
+        "actors": 2,
+        "third_party": false,
+        "resource_slack": "low",
+        "opponent_rationality": "rational",
+        "moral_constraint": "medium"
+      },
+      "situation": "李广率百骑遇匈奴数千骑，相距二里。若走，匈奴必追而射之，顷刻尽没。",
+      "decision_point": "兵力一比三十且已暴露，逃跑是否还是选项？",
+      "action": "令其骑向前至匈奴阵二里所止，皆下马解鞍；匈奴有白马将出护其兵，李广上马率十余骑奔射杀之，复还解鞍，令士皆纵马卧。",
+      "outcome": "匈奴以为汉有伏兵，夜半引兵而去。平明，李广乃归其大军。",
+      "lesson": "空城计的正史原型，也是唯一真正站得住的实例。它的成立条件是纯粹的数学：逃跑的收益为负（必被追杀），而对峙的收益取决于对方对「有伏兵」的后验概率。李广用解鞍纵卧把己方行为解释为一个理性选择，于是唯一说得通的解释只能是「我们有伏兵」。信号博弈的精髓在此：信号的价值在于它只有一种合理的成因。他没有选择看起来更强，而是选择了不可能被解释成害怕的样子。",
+      "counterfactual": "若率百骑走：匈奴纵骑追击，必全军覆没。若仅止步而不解鞍：匈奴仍可解释为迟疑，未必退。",
+      "failure_if": "对方愿意仗兵力优势强行试探（一次小规模冲阵即可戳穿），或其先验中「汉军绝不会以百骑对峙数千」根本不成立。此计完全依赖对方的先验信念，一旦先验被更新，此计不可再用。",
+      "stratagem": [
+        "S32"
+      ],
+      "sources": [
+        {
+          "book": "史记",
+          "juan": "李将军列传",
+          "canonical": true,
+          "category": "正史"
+        }
+      ]
+    },
+    {
+      "id": "C017",
+      "title": "昆阳之战·以三千破四十二万",
+      "era": "新莽地皇四年（23）",
+      "protagonist": "刘秀 — 王寻、王邑（新莽）",
+      "source": "《后汉书·光武帝纪》《汉书·王莽传》",
+      "tier": "T1",
+      "archetype": "STACKELBERG",
+      "sv_tags": {
+        "power_ratio": "very_weak",
+        "stakes": "existential",
+        "reversibility": 0.1,
+        "info_asym": -0.3,
+        "time_pressure": "high",
+        "horizon": "single",
+        "actors": 2,
+        "third_party": false,
+        "resource_slack": "low",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "medium"
+      },
+      "situation": "莽军四十二万围昆阳，城内汉兵仅八九千。诸将欲散归诸城，人心已崩。",
+      "decision_point": "守、走，还是潜出调兵再决战？围城之中哪一件事是真正稀缺的？",
+      "action": "刘秀先说服诸将固守，然后率十三骑夜出南门调集援兵；既至，自将步骑千余为前锋；复率敢死者三千人从城西水上冲其中坚，斩王寻。",
+      "outcome": "莽军大乱，诸将并进；会大雷风，雨下如注，溺死者以万数，四十二万瓦解。新莽自此覆亡。",
+      "lesson": "三个层面。决策层：在所有人都主张散伙时，刘秀算的不是兵力比而是「散则必被各个击破，守则至少留有一线」——他选择的是保留选择权。执行层：他亲率十三骑出城调兵，说明围城中最稀缺的资源是出入口与信息通道，而非兵力。打击层：他直取中坚、斩主将，这是一支集中式指挥军队唯一的脆弱点——一旦中枢被摘，四十二万人的身体就失去了大脑。",
+      "counterfactual": "若听诸将分散归城：昆阳陷，各部被逐次歼灭。若死守不出：城中粮尽亦亡。",
+      "failure_if": "对手为分布式指挥体系（斩其主将不会导致全军崩溃），或外部援兵通道本不存在。此计对外援的可得性有硬性依赖。",
+      "stratagem": [
+        "S18",
+        "S36"
+      ],
+      "sources": [
+        {
+          "book": "后汉书",
+          "juan": "光武帝纪",
+          "canonical": true,
+          "category": "正史"
+        },
+        {
+          "book": "汉书",
+          "juan": "王莽传",
+          "canonical": true,
+          "category": "正史"
+        }
+      ]
+    },
+    {
+      "id": "C018",
+      "title": "官渡之战·乌巢烧粮",
+      "era": "东汉建安五年（200）",
+      "protagonist": "曹操 — 袁绍",
+      "source": "《三国志·魏书·武帝纪》；《资治通鉴·汉纪五十五》",
+      "tier": "T1",
+      "archetype": "STACKELBERG",
+      "sv_tags": {
+        "power_ratio": "weak",
+        "stakes": "existential",
+        "reversibility": 0.1,
+        "info_asym": 0.4,
+        "time_pressure": "high",
+        "horizon": "single",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "low",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "medium"
+      },
+      "situation": "曹袁相持官渡，曹兵不满万、粮将尽、士卒疲乏，几欲退还许都；袁绍拥众十万，粮草屯于乌巢。",
+      "decision_point": "在弹尽粮绝、盟友观望之际，是退保许都（账面上的保守最优），还是孤注一掷烧掉对手的粮？",
+      "action": "许攸来奔，言袁军辎重万余乘在乌巢而守备不严。曹操亲将步骑五千，用袁军旗号，衔枚缚马口夜袭，尽燔其粮谷宝货。",
+      "outcome": "袁军将士多惶惧而降，袁绍仅与八百骑渡河。北方遂定。",
+      "lesson": "釜底抽薪的数学表述：当己方在兵力、粮草、时间三个维度都劣于对手时，不要在这三个维度上竞争，而去切断把三者联系起来的那条链（粮道）。袁绍十万人的战斗力是粮草的函数，把粮草置零，十万即归零。另一层：胜利往往来自对手营垒的信息泄露（许攸来奔），而不是自己的算无遗策——因此「对手内部的信息是否会外流」应作为一项独立的处境变量来评估。",
+      "counterfactual": "若退保许都：失去黄河防线，许都人心动摇，袁绍可从容追击，胜负之势倒转。",
+      "failure_if": "若对手意识到粮道是唯一弱点并重兵布防，此计不仅不成，还会因主力远离大营而被反包围。曹操成功的前提是袁绍根本不知道自己的要害在哪里。",
+      "stratagem": [
+        "S19"
+      ],
+      "sources": [
+        {
+          "book": "三国志",
+          "juan": "魏书·武帝纪",
+          "canonical": true,
+          "category": "正史"
+        },
+        {
+          "book": "资治通鉴",
+          "juan": "汉纪五十五",
+          "canonical": false,
+          "category": "编年"
+        }
+      ]
+    },
+    {
+      "id": "C019",
+      "title": "袁绍不用田丰沮授之谋（反面基准）",
+      "era": "东汉建安四年—五年（199—200）",
+      "protagonist": "袁绍 — 田丰、沮授",
+      "source": "《三国志·魏书·袁绍传》及裴注；《资治通鉴·汉纪》",
+      "tier": "T1",
+      "archetype": "REPEATED",
+      "sv_tags": {
+        "power_ratio": "strong",
+        "stakes": "existential",
+        "reversibility": 0.2,
+        "info_asym": -0.2,
+        "time_pressure": "medium",
+        "horizon": "single",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "high",
+        "opponent_rationality": "rational",
+        "moral_constraint": "medium"
+      },
+      "situation": "袁绍四世三公，地广兵强，是明显的资源优势方。田丰建议以持久袭扰疲曹，沮授建议勿决机于一战。",
+      "decision_point": "手握绝对资源优势的一方，应该用资源消耗对手，还是追求一场会战的速胜？",
+      "action": "袁绍不用二人之谋，执意当面决战；田丰强谏，绍以为沮众，械系之。",
+      "outcome": "官渡大败。后有人谓田丰曰君必见重，丰曰：若胜而喜必能赦我，今战败而内忌，吾死矣。绍果杀田丰。",
+      "lesson": "本模型的反面基准案例，断裂点有三。其一，优势方的正确策略是消耗而非决战——占有进行时优势才应该选慢局，一步到位是劣势方的偏好。其二，把提出正确建议的人处理掉，等于销毁负反馈机制：田丰之死使袁绍阵营此后不再有真实信息上达，决策系统的信息熵迅速升高。其三，田丰对自己的结局算得分毫不差，这说明「坏消息的报送者承担后果」在他的组织里已是制度化事实。任何组织一旦把这一点制度化，就丧失了纠错能力。",
+      "counterfactual": "若用田丰持久之策：以十倍物力分化袭扰，曹操粮尽自溃，代价最小而胜。",
+      "failure_if": "优势方误判了时间站在谁一边。若对手的资源恢复速率快于自己，拖延反而是自杀。因此采用消耗策略前必须先验算双方的补给弹性，不能默认优势方就该拖。",
+      "stratagem": [
+        "S36"
+      ],
+      "sources": [
+        {
+          "book": "三国志",
+          "juan": "魏书·袁绍传",
+          "canonical": true,
+          "category": "正史"
+        },
+        {
+          "book": "资治通鉴",
+          "juan": "汉纪",
+          "canonical": false,
+          "category": "编年"
+        }
+      ]
+    },
+    {
+      "id": "C020",
+      "title": "白衣渡江·吕蒙陆逊示弱骄敌取荆州",
+      "era": "东汉建安二十四年（219）",
+      "protagonist": "吕蒙、陆逊（吴） — 关羽",
+      "source": "《三国志·吴书·吕蒙传》《陆逊传》",
+      "tier": "T1",
+      "archetype": "SIGNALING",
+      "sv_tags": {
+        "power_ratio": "even",
+        "stakes": "existential",
+        "reversibility": 0.2,
+        "info_asym": 0.6,
+        "time_pressure": "medium",
+        "horizon": "repeated",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "medium",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "low"
+      },
+      "situation": "关羽水淹七军、威震华夏，荆州留守本严，正面进攻无从下手。",
+      "decision_point": "盟友势力膨胀到不可控，如何处理？如何让关羽自己把后方守兵调走？",
+      "action": "吕蒙称病还建业；陆逊代至陆口，为书与羽，谦下自托，辞意甚敬。羽意大安，稍撤后备以赴樊城。吕蒙遂至浔阳，尽伏精兵于舟中，使白衣摇橹作商贾服，昼夜兼行，袭取江陵、公安。",
+      "outcome": "荆州尽失，关羽父子被擒杀，孙刘联盟破裂。吴得长江中游全势。",
+      "lesson": "信号的两次递进：吕蒙称病是第一次信号，意在退出关羽的注意力；陆逊辞谦是第二次、更强的信号，且换了一个人发出，从而绕开关羽对吕蒙已有的敌意先验。两次信号的共同点是都利用了关羽既有的自我认知。最强的说服永远是让对方觉得那是他自己的判断。但必须同时记下第三点：此举以牺牲孙刘联盟换取地理全势，随即招来夷陵之战——典型的局部最优、全局次优，本模型在裁决层必须显式标出这条代价。",
+      "counterfactual": "若正面强攻荆州：羽虽北上而江陵守备完好，吴方强攻坚垒，难以得手且消耗巨大。",
+      "failure_if": "对手生性谨慎保守、不受恭维影响（曹操即属此类）；或有一方能及时识破此因果链。此外，为战略利益而摧毁联盟信誉，会使后续任何联盟提议都不再可信，这是长期重复博弈中的重大信用损失。",
+      "stratagem": [
+        "S10",
+        "S08"
+      ],
+      "sources": [
+        {
+          "book": "三国志",
+          "juan": "吴书·吕蒙传",
+          "canonical": true,
+          "category": "正史"
+        }
+      ]
+    },
+    {
+      "id": "C021",
+      "title": "刘备入蜀·庞统三策与反客为主",
+      "era": "东汉建安十六年—十九年（211—214）",
+      "protagonist": "刘备、庞统 — 刘璋",
+      "source": "《三国志·蜀书·先主传》《庞统传》《刘璋传》",
+      "tier": "T1",
+      "archetype": "STACKELBERG",
+      "sv_tags": {
+        "power_ratio": "weak",
+        "stakes": "existential",
+        "reversibility": 0.2,
+        "info_asym": 0.4,
+        "time_pressure": "medium",
+        "horizon": "single",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "low",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "high"
+      },
+      "situation": "刘璋惧张鲁，遣法正请刘备入蜀助守；刘备兵不满万，客居他人地盘，名义是客而处境近虏。",
+      "decision_point": "作为受邀者，何时把借方身份转换为股权所有者？以什么名义转换？",
+      "action": "庞统献上中下三策：阴选精兵昼夜兼道径袭成都为上；先擒杨怀高沛并其兵向成都为中；退还白帝引荆州为援为下。刘备取中策，斩杨怀高沛，进军成都。",
+      "outcome": "成都降，刘备领益州牧，据有荆益，三国鼎立之形成。庞统中流矢卒于雒城。",
+      "lesson": "反客为主的完整结构是：以对方的邀请获得入场券，以共同威胁证明驻留的必要，以对方内部矛盾获得动手的道义正当性，最后才是接管。刘备链式而进，每一步都有名义。值得注意的是他拒上策而取中策：径袭成都虽快，却会把「客入人之国」的定性做实。这是对长期统治成本优先于短期军事效率的清醒取舍。",
+      "counterfactual": "若取上策径袭成都：可能速胜，但益州士族将长期不附，后来的蜀汉会面临更深的内部不稳。",
+      "failure_if": "此计的前提是主方敢邀请却无力约束来客。只要主人把兵权、粮权握在手中并设定明确的退出时间表，客就永远只是客。",
+      "stratagem": [
+        "S30",
+        "S24"
+      ],
+      "sources": [
+        {
+          "book": "三国志",
+          "juan": "蜀书·先主传",
+          "canonical": true,
+          "category": "正史"
+        }
+      ]
+    },
+    {
+      "id": "C022",
+      "title": "刘琦上楼去梯问计",
+      "era": "东汉建安十三年（208）之前",
+      "protagonist": "刘琦 — 诸葛亮",
+      "source": "《三国志·蜀书·诸葛亮传》",
+      "tier": "T1",
+      "archetype": "COALITION",
+      "sv_tags": {
+        "power_ratio": "weak",
+        "stakes": "existential",
+        "reversibility": 0.2,
+        "info_asym": 0.3,
+        "time_pressure": "medium",
+        "horizon": "single",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "low",
+        "opponent_rationality": "rational",
+        "moral_constraint": "medium"
+      },
+      "situation": "刘表受后妻之言而爱少子琮，不悦于琦。琦不自安，屡欲与亮谋自安之术，亮辄拒而不答以避嫌。",
+      "decision_point": "如何迫使一个知道答案但不愿开口的人必须开口？",
+      "action": "琦将亮游观后园，共上高楼，饮宴之间令人去梯，谓亮曰：今日上不至天，下不至地，言出子口，入于吾耳，可以言未。亮答以申生在内而危、重耳在外而安。琦感悟，求出为江夏太守。",
+      "outcome": "刘琦出镇江夏，避开了后来襄阳的祸局；赤壁战时其兵亦为一助。",
+      "lesson": "注意此案与兵书原意的差异：三十六计的上屋抽梯本义是对敌，诱敌深入后断其归路；此处却是刘琦对自己与诸葛亮之间的信息通道抽梯。真正可迁移的结构是：当对方的顾虑不是不知道答案而是说了有风险时，正确的动作是消除他的风险敞口（梯已去，言不可能外传），而不是加大请求力度或施恩。这在组织内获取真实意见时极其有用。",
+      "counterfactual": "若琦不强为此局：诸葛亮因避嫌始终不言，琦坐困襄阳，很可能随刘琮降曹。",
+      "failure_if": "若对方的风险不是来自信息外泄而是来自路线取舍本身（怕站错队），那么封闭场所也解除不了他的顾虑。",
+      "stratagem": [
+        "S28"
+      ],
+      "sources": [
+        {
+          "book": "三国志",
+          "juan": "蜀书·诸葛亮传",
+          "canonical": true,
+          "category": "正史"
+        }
+      ]
+    },
+    {
+      "id": "C023",
+      "title": "司马懿装病·高平陵之变",
+      "era": "魏正始八年—嘉平元年（247—249）",
+      "protagonist": "司马懿 — 曹爽",
+      "source": "《三国志·魏书·曹真传》附《曹爽传》；《晋书·宣帝纪》",
+      "tier": "T1",
+      "archetype": "SIGNALING",
+      "sv_tags": {
+        "power_ratio": "weak",
+        "stakes": "existential",
+        "reversibility": 0.1,
+        "info_asym": 0.8,
+        "time_pressure": "low",
+        "horizon": "repeated",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "medium",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "medium"
+      },
+      "situation": "曹爽用事而排挤司马懿；懿名为太傅而实无权，双方在漫长的相持中消耗。",
+      "decision_point": "当自身实力被压制而无法抗衡时，是继续争权（必输），还是暂时退场养其骄？",
+      "action": "懿称风痹不豫政事。爽使李胜往候，懿令两婢侍，衣落，指口言渴，婢进粥而粥皆流出沾胸；胜言当忝荆州，懿谬应并州近胡。胜退告爽曰：司马公尸居余气，形神已离，不足虑矣。爽遂不复设备。嘉平元年正月，爽兄弟从帝谒高平陵，懿即日勒兵据武库、闭诸城门、据其营。",
+      "outcome": "曹爽弃抵抗而投刀于地，旋以谋反罪伏诛、夷三族。司马氏自此掌魏政，终成晋业。",
+      "lesson": "假痴不癫的极致，有三点可迁移。其一，退到对手认为你已出局的位置，对手就会停止对你分配注意力预算，这是资源上的极度节省：他用数年时间换取了对方防备的彻底解除。其二，示弱信号必须支付真实成本或表现得不可长期维持，廉价的示弱会被识破。其三，关键资源的获取窗口必须预判：他一举抢的是武库和城门，而不是与对方正面交锋。当对手把成功定义为「他已无关紧要」时，他的注意力就不再覆盖最致命的位置。",
+      "counterfactual": "若曹爽不放松警备，或听从桓范之谋奉帝幸许昌而召外兵，历史可能改写。此计的收益高度依赖对手轻信，不是一条可以独立复用的稳定策略。",
+      "failure_if": "对手生性多疑（曹操型）或不受表面行为说服；此外，长时间装死有巨大风险——衰老与盟友离心会真的到来，此计的时间窗口有限。",
+      "stratagem": [
+        "S27"
+      ],
+      "sources": [
+        {
+          "book": "三国志",
+          "juan": "魏书·曹真传",
+          "canonical": true,
+          "category": "正史"
+        },
+        {
+          "book": "晋书",
+          "juan": "宣帝纪",
+          "canonical": true,
+          "category": "正史"
+        }
+      ]
+    },
+    {
+      "id": "C024",
+      "title": "夷陵之战·刘备执意伐吴（反面基准）",
+      "era": "蜀汉章武元年—二年（221—222）",
+      "protagonist": "刘备 — 陆逊（吴）",
+      "source": "《三国志·蜀书·先主传》《吴书·陆逊传》",
+      "tier": "T1",
+      "archetype": "CHICKEN",
+      "sv_tags": {
+        "power_ratio": "strong",
+        "stakes": "existential",
+        "reversibility": 0.1,
+        "info_asym": -0.4,
+        "time_pressure": "medium",
+        "horizon": "single",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "medium",
+        "opponent_rationality": "rational",
+        "moral_constraint": "medium"
+      },
+      "situation": "荆州失、关羽亡。刘备欲报其耻并复荆州，赵云谏「国贼是曹操非孙权，先灭魏则吴自服」，秦宓陈天时不利，皆不听。",
+      "decision_point": "当复仇情绪、联盟道义、国家利益三者冲突时，采用哪一种准则？",
+      "action": "刘备悉众东下，连营七百里。陆逊坚壁不出，相持半年，至夏暑蜀军疲惫、舟师舍船就步之机，以火攻破之。",
+      "outcome": "蜀军大败，死者万数，仅以身免入白帝城；次年崩。蜀汉元气大伤，诸葛亮此后数年方才重整国力。",
+      "lesson": "情绪主导决策的标准反例，断裂点有三。其一，目标替换：把兴复汉室这个国家目标替换为为关羽复仇这个私人伦理目标，而后者作为前者的手段并不成立，赵云一语道破。其二，忽视了第三方的收益：蜀吴相攻之时，魏是净受益者。其三，陆逊的应对恰是本案的正面对称——既然对手执意要在不利地形会战，那就坚决不给他会战，用时间把对方的优势熬掉。当你发现对手在某个问题上无法退让时，最好的应对往往是什么都不做，等他自己消耗。",
+      "counterfactual": "若从赵云之策先图魏：蜀汉国力可保全，荆州之失或可通过后续外交与压力部分收回。",
+      "failure_if": "情绪决策的失效不在于算力不足，而在于无法被论证撼动——当一个人用荣誉、道义、私人账本而非收益表来决策时，任何理性劝阻都会被解释为背叛。此类局面外部劝谏几乎无效，只能等待现实感本身去修正他。",
+      "stratagem": [
+        "S36"
+      ],
+      "sources": [
+        {
+          "book": "三国志",
+          "juan": "蜀书·先主传",
+          "canonical": true,
+          "category": "正史"
+        }
+      ]
+    },
+    {
+      "id": "C025",
+      "title": "诸葛亮违众拔谡·失街亭",
+      "era": "蜀汉建兴六年（228）",
+      "protagonist": "诸葛亮 — 马谡 vs 张郃（魏）",
+      "source": "《三国志·蜀书·诸葛亮传》《马良传》附《马谡传》；《资治通鉴·魏纪三》",
+      "tier": "T1",
+      "archetype": "SIGNALING",
+      "sv_tags": {
+        "power_ratio": "strong",
+        "stakes": "high",
+        "reversibility": 0.3,
+        "info_asym": 0.1,
+        "time_pressure": "medium",
+        "horizon": "repeated",
+        "actors": 2,
+        "third_party": false,
+        "resource_slack": "medium",
+        "opponent_rationality": "rational",
+        "moral_constraint": "high"
+      },
+      "situation": "初次北伐，南安天水安定叛魏应亮，形势大好；街亭为咽喉，人选关系全局。众议宜用魏延、吴壹等宿将，亮违众意拔谡统大众在前。",
+      "decision_point": "在关键节点上，是用众望所归的资深执行者，还是用自己看重的人才？",
+      "action": "亮用马谡。谡违亮节度，举动失宜，舍水上山而不下据城；张郃绝其汲道，大破之。",
+      "outcome": "街亭失守，进无所据，亮退还汉中，首次北伐功败垂成。上疏请自贬三等，斩马谡。",
+      "lesson": "此案有正反两层。负向：众议是集体处理过的信息，它凝结了「马谡没有独立统众的实战记录」这一事实；诸葛亮以个人判断覆盖它，本质是把自己的信息质量置于集体之上，而集体恰在这类履历事实上更准。此外为能力的不可迁移性付了学费——谈战略优秀不等于能率万人在复杂地形执行。正向：他自贬三等并斩谡，把事故转换为组织信任，这一点常被忽略。处理失败的方式，决定了组织下一次还肯不肯向你提供负面信息。",
+      "counterfactual": "若用魏延或吴壹：以当时蜀汉的整体态势，守住街亭的可能性明显更高，首次北伐或可得陇右。",
+      "failure_if": "关键岗位不是培养岗位。当你把重大且不可逆的结果押在「我相信他能行」上时，实际上是在用自己的信用替代对方的能力验证，一旦失败，被证伪的是你整个判断体系。",
+      "stratagem": [
+        "S36"
+      ],
+      "sources": [
+        {
+          "book": "三国志",
+          "juan": "蜀书·诸葛亮传",
+          "canonical": true,
+          "category": "正史"
+        },
+        {
+          "book": "资治通鉴",
+          "juan": "魏纪三",
+          "canonical": false,
+          "category": "编年"
+        }
+      ]
+    },
+    {
+      "id": "C026",
+      "title": "檀道济唱筹量沙·金蝉脱壳",
+      "era": "南朝宋元嘉八年（431）",
+      "protagonist": "檀道济 — 魏军",
+      "source": "《南史·檀道济传》；《资治通鉴·宋纪》",
+      "tier": "T1",
+      "archetype": "SIGNALING",
+      "sv_tags": {
+        "power_ratio": "weak",
+        "stakes": "existential",
+        "reversibility": 0.5,
+        "info_asym": 0.4,
+        "time_pressure": "high",
+        "horizon": "single",
+        "actors": 2,
+        "third_party": false,
+        "resource_slack": "low",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "medium"
+      },
+      "situation": "道济与魏三十余战多捷，至历城军中粮尽欲还；有降魏者具告之，魏人追之，众恟惧将溃。",
+      "decision_point": "粮绝、降者已泄底、追兵将至，如何把全军安全带回？",
+      "action": "道济夜命军士唱筹量沙，以所余少米覆其上。魏军见之，谓资粮有余，以降者为妄而斩之。",
+      "outcome": "魏不敢追，宋军全军而反。",
+      "lesson": "金蝉脱壳的关键不在伪装本身，而在利用对方已有的信息来验证你的伪装：降者是魏军自己的情报源，道济没有去反驳这个情报源，而是制造了一个与之矛盾的现场，让魏军亲手处决了自己的情报供应商。这是最高级的反间。可迁移结论是：当底牌已经泄露时，补救的方式不是堵住泄露口，而是让泄露出去的信息失效。",
+      "counterfactual": "若强行连夜溃退：魏骑追击，宋军全军覆没。",
+      "failure_if": "对方有能力低成本核验（如派自己的侦察兵而非依赖降者），或追击成本低到可以赌一把。此计对对手的信息依赖习惯有硬性要求。",
+      "stratagem": [
+        "S21",
+        "S33"
+      ],
+      "sources": [
+        {
+          "book": "南史",
+          "juan": "檀道济传",
+          "canonical": true,
+          "category": "正史"
+        },
+        {
+          "book": "资治通鉴",
+          "juan": "宋纪",
+          "canonical": false,
+          "category": "编年"
+        }
+      ]
+    },
+    {
+      "id": "C027",
+      "title": "淝水之战·苻坚的决策链崩塌（反面基准）",
+      "era": "东晋太元八年（383）",
+      "protagonist": "苻坚（前秦） — 谢安、谢玄（晋）",
+      "source": "《晋书·苻坚载记》《谢玄传》；《资治通鉴·晋纪二十七》",
+      "tier": "T1",
+      "archetype": "STAG_HUNT",
+      "sv_tags": {
+        "power_ratio": "very_strong",
+        "stakes": "existential",
+        "reversibility": 0.1,
+        "info_asym": -0.4,
+        "time_pressure": "medium",
+        "horizon": "single",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "high",
+        "opponent_rationality": "rational",
+        "moral_constraint": "medium"
+      },
+      "situation": "苻坚统一北方，拥众号百万（前线实约二十五万），国内鲜卑、羌、羯各族新附，族群忠诚未整合。晋兵八万。",
+      "decision_point": "在内部尚未整合（后方各族未服）的情况下，是否发动总体战？",
+      "action": "苻坚拒群臣之谏而悉发州郡兵南下。两军夹淝水而阵，晋求渡水决战，苻坚许之欲半渡而击，下令稍退；退不可止，朱序在阵后呼秦兵败矣，军遂大溃。",
+      "outcome": "前秦瓦解。鲜卑慕容垂建后燕、羌姚苌建后秦并擒杀苻坚，北方重陷分裂。",
+      "lesson": "教科书级地把联盟信任误判为实力的案例。苻坚的算术没有问题（他确实人更多），错的是把一支多民族刚归附的军队当成了一支单一意志的军队。这类军队在顺境时像军队，在逆境时像一堆积木。另有两点：决策前提比决策本身重要，「众」这个前提失效后，所有基于它的推导（必胜）都不成立；让军队后撤以制造决战空间，只有在各部分服从同一套指挥逻辑时才成立。任何组织在并购与整合尚未完成时就遂行高风险动作，都在重演淝水。",
+      "counterfactual": "若纳群臣之谏先整合北方、分时段消化各族，前秦或可持续，不必孤注于淝水一役。",
+      "failure_if": "把人数当作战斗力。真正的前锋虽众，但族属与指挥链不同，其可用战斗力远低于八万单一意志的晋军。评估实力必须乘以内部一致性系数。",
+      "stratagem": [
+        "S13",
+        "S33"
+      ],
+      "sources": [
+        {
+          "book": "晋书",
+          "juan": "苻坚载记",
+          "canonical": true,
+          "category": "正史"
+        },
+        {
+          "book": "资治通鉴",
+          "juan": "晋纪二十七",
+          "canonical": false,
+          "category": "编年"
+        }
+      ]
+    },
+    {
+      "id": "C028",
+      "title": "哥舒翰出关·潼关失守（与 C014 对读）",
+      "era": "唐天宝十五载（756）",
+      "protagonist": "哥舒翰 — 安禄山；哥舒翰 vs 杨国忠、玄宗",
+      "source": "《旧唐书·哥舒翰传》《资治通鉴·唐纪三十四》",
+      "tier": "T1",
+      "archetype": "STACKELBERG",
+      "sv_tags": {
+        "power_ratio": "even",
+        "stakes": "existential",
+        "reversibility": 0.1,
+        "info_asym": -0.3,
+        "time_pressure": "high",
+        "horizon": "single",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "medium",
+        "opponent_rationality": "rational",
+        "moral_constraint": "medium"
+      },
+      "situation": "哥舒翰以二十万军坚守潼关，敌人不能前；形势本已好转（郭子仪、李光弼在河北连捷）。",
+      "decision_point": "当正确的军事判断（坚守）与最高的政治命令（出战）冲突时，怎么办？",
+      "action": "杨国忠疑翰图己，言于上，连续遣中使促战，项背相望。翰恸哭出关，与敌战于灵宝，大败。",
+      "outcome": "潼关失守，翰被擒。玄宗弃长安奔蜀，马嵬之变起，杨国忠被杀。唐由盛转衰。",
+      "lesson": "与 C014 周亚夫构成完美对照：同一类冲突（正确战略 vs 最高命令），周亚夫不奉诏而胜，哥舒翰奉诏而亡。差别在哪里？真正的关键变量是抗命的政治后果与服从的军事后果哪一个可承受。周亚夫抗诏时后患尚远，哥舒翰抗命的可能性为零，因为玄宗已对他起了疑心。这提示本模型在输出决策时必须显式计算执行受阻这一风险维度，而不是只算对手。此外他没有在朝中的替代性支持者，无人替他缓冲。",
+      "counterfactual": "若按翰之本策坚壁待变、俟郭李破范阳：安禄山军心可能先行崩溃，安史之乱或可缩短数年。",
+      "failure_if": "当组织内部的权力威胁（同僚构陷、上级猜忌）大于外部威胁时，最优的军事决策往往无法执行。此时真正需要处理的不是敌人，而是自己的后方安全——这一优先级认定比任何战术选择都重要。",
+      "stratagem": [
+        "S36"
+      ],
+      "sources": [
+        {
+          "book": "旧唐书",
+          "juan": "哥舒翰传",
+          "canonical": true,
+          "category": "正史"
+        },
+        {
+          "book": "资治通鉴",
+          "juan": "唐纪三十四",
+          "canonical": false,
+          "category": "编年"
+        }
+      ]
+    },
+    {
+      "id": "C029",
+      "title": "虎牢关之战·李世民擒窦建德",
+      "era": "唐武德四年（621）",
+      "protagonist": "李世民（唐） — 窦建德、王世充",
+      "source": "《旧唐书·太宗本纪》《资治通鉴·唐纪五》",
+      "tier": "T1",
+      "archetype": "STACKELBERG",
+      "sv_tags": {
+        "power_ratio": "weak",
+        "stakes": "existential",
+        "reversibility": 0.2,
+        "info_asym": 0.5,
+        "time_pressure": "medium",
+        "horizon": "single",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "medium",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "medium"
+      },
+      "situation": "唐军围洛阳王世充，窦建德率十余万来救；唐军腹背受敌、兵力居劣，诸将多请退。",
+      "decision_point": "两线作战且兵力劣势，是撤围避其锋，还是继续围城而分兵拒援？",
+      "action": "李世民决计不退，留兵继续围洛阳，自领骁勇三千五百东据虎牢；相持累月，待建德军士卒疲怠、列阵待战之际，亲率轻骑直冲其阵、出其阵后而张唐旗帜。",
+      "outcome": "窦军见唐旗于阵后，遂大溃；窦建德被擒于牛口渚。王世充绝望出降。唐一战而定华北。",
+      "lesson": "三个可迁移结构。其一，机变待时：他等了累月，等的是对方士气与队形的松弛，用时间换状态而不是换援兵。其二，打识别点：他找的不是对方阵中最强处，而是最脆的共同信念——冲至阵后张唐旗帜，成本极低，效果却是让整支军队相信自己已被包围。这与昆阳斩主将、李广解鞍同属一类：改变信念比消耗兵力便宜几个数量级。其三，对两个对手使用同一个分兵假象：围洛阳之兵不动，使窦建德误判了唐军的可用兵力。",
+      "counterfactual": "若从诸将之议撤围：让窦王会师，唐失中原，逐鹿之势未定。",
+      "failure_if": "此计依赖对方军队的内部凝聚力不足以承受「可能被包围」的传闻。若对手部队训练有素、通信通畅且能在混乱中重建判断，阵后张旗这种低成本信号就会被核实为假，反而暴露己方兵少。",
+      "stratagem": [
+        "S15",
+        "S18"
+      ],
+      "sources": [
+        {
+          "book": "旧唐书",
+          "juan": "太宗本纪",
+          "canonical": true,
+          "category": "正史"
+        },
+        {
+          "book": "资治通鉴",
+          "juan": "唐纪五",
+          "canonical": false,
+          "category": "编年"
+        }
+      ]
+    },
+    {
+      "id": "C030",
+      "title": "郭子仪单骑退回纥·诚信号的极限使用",
+      "era": "唐永泰元年（765）",
+      "protagonist": "郭子仪 — 回纥、吐蕃",
+      "source": "《旧唐书·郭子仪传》《资治通鉴·唐纪三十九》",
+      "tier": "T1",
+      "archetype": "STAG_HUNT",
+      "sv_tags": {
+        "power_ratio": "very_weak",
+        "stakes": "existential",
+        "reversibility": 0.2,
+        "info_asym": -0.5,
+        "time_pressure": "high",
+        "horizon": "repeated",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "low",
+        "opponent_rationality": "rational",
+        "moral_constraint": "high"
+      },
+      "situation": "吐蕃回纥连兵入寇，郭子仪以孤军守泾阳，兵才万人而虏众数十万；回纥与吐蕃本为同盟而内部不和。",
+      "decision_point": "无可战之力亦无可逃之地，唯一的机会是拆掉对手的联盟——如何做到？",
+      "action": "子仪自率数骑免胄而出，传呼曰令公来。回纥大惊，皆下马罗拜。子仪因数让之，说以共击吐蕃之利，回纥许诺。",
+      "outcome": "回纥转与唐合兵大破吐蕃，吐蕃退走。唐室再安。",
+      "lesson": "信号博弈的反向用法：所有虚的信号都要支付可信度成本，而唯一零成本且不可伪造的信号，是把自己送到对方完全控制的范围内。数骑赴会、免胄这一事实本身排除了「有伏兵」的解释，因为没有人会用自己的性命做赌注。当一个信号把发出者置于不可挽回的境地，它就不可伪造。这同时也是联盟博弈：他看准了对手联盟内部不稳，直接针对联盟的成本结构下手而非针对其兵力。",
+      "counterfactual": "若闭城待援或弃城走：泾阳陷，长安再失，唐室可能就此终结。",
+      "failure_if": "此计失效的代价等于全损，一旦对方不买账便毫无缓冲，因此只在无可战之力时才被允许使用，作为常规手段是致命误用。此外它依赖过去积累的对手认知（回纥熟悉郭子仪的信用记录），信用无法临敌制造。",
+      "stratagem": [
+        "S17",
+        "S23"
+      ],
+      "sources": [
+        {
+          "book": "旧唐书",
+          "juan": "郭子仪传",
+          "canonical": true,
+          "category": "正史"
+        },
+        {
+          "book": "资治通鉴",
+          "juan": "唐纪三十九",
+          "canonical": false,
+          "category": "编年"
+        }
+      ]
+    },
+    {
+      "id": "C031",
+      "title": "于谦北京保卫战·主战不迁都",
+      "era": "明正统十四年（1449）",
+      "protagonist": "于谦 — 也先（瓦剌）；vs 徐有贞（倡议南迁）",
+      "source": "《明史·于谦传》《英宗前纪》",
+      "tier": "T1",
+      "archetype": "CHICKEN",
+      "sv_tags": {
+        "power_ratio": "weak",
+        "stakes": "existential",
+        "reversibility": 0.05,
+        "info_asym": -0.3,
+        "time_pressure": "high",
+        "horizon": "single",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "low",
+        "opponent_rationality": "rational",
+        "moral_constraint": "high"
+      },
+      "situation": "土木堡之变，皇帝被俘、京营主力尽丧，也先挟英宗直抵北京城下。朝议迁都南京，徐有贞倡言南迁。",
+      "decision_point": "皇帝被俘、主力被歼、敌抵城下，是弃城南迁还是坚决固守？",
+      "action": "于谦厉声曰：言南迁者可斩也，京师天下根本，一动则大势去矣，独不见宋南渡之事乎。遂定议固守；立郕王为帝以绝敌之要挟；整饬军备、列阵九门外，下令临阵将不顾军先退者后队斩前队。",
+      "outcome": "京师九门大战数日，也先不能克而退去。明室得以延续二百年。",
+      "lesson": "决策结构性举措的范例，于谦做对了三件彼此呼应的事。其一，否决南迁类比：用宋代南渡这个具体反例，把一个看似安全的方案钉死在历史上，使争论从怕不怕变成要不要重演靖康。其二，消除被要挟的结构：拥立新帝，使英宗这个人质失去勒索价值——表面是政治动作，实质是解除博弈结构中最致命的约束。其三，改变自己的可选集：斩退者令与背水列阵同源，先剥夺自己的退路再要求胜利。三者合起来说明：在极端劣势下，决策者真正的任务是重构博弈结构，而不是在既有选项里挑一个最不坏的。",
+      "counterfactual": "若迁都南京：北方半壁不战而弃，黄河防线失守，明或成南宋之续。",
+      "failure_if": "决策者的个人命运：英宗复辟后于谦被杀。这再次印证 C014 与 C028 的结论——战略最优与决策者个人最优常常背离，执行者必须预先把这笔支出计提在内。",
+      "stratagem": [
+        "S13",
+        "S30"
+      ],
+      "sources": [
+        {
+          "book": "明史",
+          "juan": "于谦传",
+          "canonical": true,
+          "category": "正史"
+        }
+      ]
+    },
+    {
+      "id": "C032",
+      "title": "司马穰苴斩庄贾",
+      "era": "春秋·齐景公时（约前531年前后）",
+      "protagonist": "司马穰苴 — 庄贾（齐景公宠臣）",
+      "source": "《史记·司马穰苴列传》",
+      "tier": "T1",
+      "archetype": "REPEATED",
+      "sv_tags": {
+        "power_ratio": "weak",
+        "stakes": "high",
+        "reversibility": 0.6,
+        "info_asym": 0.2,
+        "time_pressure": "high",
+        "horizon": "repeated",
+        "actors": 2,
+        "third_party": true,
+        "resource_slack": "medium",
+        "opponent_rationality": "rational",
+        "moral_constraint": "medium"
+      },
+      "situation": "晋燕侵齐而齐师败绩；穰苴以庶孽之身受任为将，人微权轻，士卒未附，百姓不信。",
+      "decision_point": "新上任者如何在极短时间内建立指挥权威？",
+      "action": "请贵戚庄贾为监军，立表下漏以待；贾素骄贵，夕时乃至；穰苴遂斩贾以徇三军，三军之士皆振栗。继而亲拊循士卒，悉取将军之资粮享士，身与士卒平分粮食。",
+      "outcome": "晋师闻之罢去，燕师解而退。穰苴尽取所亡封内故境而归。",
+      "lesson": "指桑骂槐的真正机制不是立威，而是建立规则的可信性：一支部队服从命令的前提是相信命令会被执行，而这一点只靠一次公开、成本高昂的演示才能确立。值得注意的是他做了相互配套的两件事——先斩贾确立边界，再与士卒同甘苦确立利益一致。只有前一半是暴政，只有后一半是收买。这个惩罚示范加利益共享的配对，是所有新管理者建立权威的最小可行结构。另外他没有随机选个士兵下手，而是精确选了一个有后台的人，从而最大化信号的传播率。",
+      "counterfactual": "若不斩贾：令不行、禁不止，卒不可用，敌至必溃。",
+      "failure_if": "没有第二个动作配合则只有恐惧没有战意；此外若被杀者真有不可撼动的后台，执行者本人反会被反噬。此计需先确认自己在组织中的存续安全。",
+      "stratagem": [
+        "S26"
+      ],
+      "sources": [
+        {
+          "book": "史记",
+          "juan": "司马穰苴列传",
+          "canonical": true,
+          "category": "正史"
+        }
+      ]
+    },
+    {
+      "id": "C033",
+      "title": "孙武演兵斩宠姬",
+      "era": "春秋末期（约前512年）",
+      "protagonist": "孙武 — 吴王阖庐及其二宠姬",
+      "source": "《史记·孙子吴起列传》",
+      "tier": "T1",
+      "archetype": "REPEATED",
+      "sv_tags": {
+        "power_ratio": "even",
+        "stakes": "medium",
+        "reversibility": 0.7,
+        "info_asym": 0.3,
+        "time_pressure": "low",
+        "horizon": "single",
+        "actors": 2,
+        "third_party": true,
+        "resource_slack": "medium",
+        "opponent_rationality": "rational",
+        "moral_constraint": "medium"
+      },
+      "situation": "孙武以兵法十三篇见吴王，吴王试之以妇人：出宫中美人百八十人，使孙武教战。",
+      "decision_point": "这是一次面试。杀掉王的女人意味着工作没了，留下来规则的尊严意味着职位没了——选哪个？",
+      "action": "三令五申而妇人大笑，孙武斩左右二队长（吴王宠姬）；吴王使人救之不及。复鼓之，妇人左右前后跪起皆中规矩绳墨，无敢出声。",
+      "outcome": "孙武曰王徒好其言、不能用其实。阖庐卒以为将，西破强楚入郢，北威齐晋。",
+      "lesson": "深层结构是：在一个尚未建立规则的系统中，第一次规则执行必须付出超额成本，否则整套规则永不成立。孙武赌的是吴王要的是破楚而不是一个宠妾——他准确判定了对方的目标函数。这提示一个可用性条件：惩罚信号的合理性必须由接受者的最高目标来支撑，而不是由执行者的原则来支撑。孙武没有说「我应当如此」，他让吴王自己得出「我要的是能打胜仗的将军」，从而接受了这笔成本。",
+      "counterfactual": "若妇人笑而纵之：十三篇便只是一份文档，不会有后来的破楚之功。",
+      "failure_if": "若错判了对方的真实目标——吴王若真是个只重私宠的昏君，孙武当场被杀，兵法不传。这是极高风险的正确决策，其成功带有相当的结果运气，本模型不推荐将其作为常规操作。",
+      "stratagem": [
+        "S26"
+      ],
+      "sources": [
+        {
+          "book": "史记",
+          "juan": "孙子吴起列传",
+          "canonical": true,
+          "category": "正史"
+        }
+      ]
+    },
+    {
+      "id": "C034",
+      "title": "范雎说秦昭王·远交近攻",
+      "era": "战国·秦昭王三十九年（前268）前后",
+      "protagonist": "范雎 — 秦昭王；旧策为魏冉",
+      "source": "《史记·范雎蔡泽列传》；《资治通鉴·周纪五》",
+      "tier": "T1",
+      "archetype": "COALITION",
+      "sv_tags": {
+        "power_ratio": "strong",
+        "stakes": "existential",
+        "reversibility": 0.4,
+        "info_asym": 0.4,
+        "time_pressure": "low",
+        "horizon": "repeated",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "high",
+        "opponent_rationality": "rational",
+        "moral_constraint": "low"
+      },
+      "situation": "秦强而六国皆弱。魏冉主张越韩魏而攻远地（如齐），虽得地而不能守。",
+      "decision_point": "在实力已足以逐个击破时，按什么顺序扩张？",
+      "action": "范雎曰：王不如远交而近攻，得寸则王之寸也，得尺亦王之尺也；今夫韩魏，中国之处而天下之枢也。建议交好齐楚而先取韩魏。",
+      "outcome": "秦以近地为疆逐步东进；至始皇时沿用同一框架而得天下。远交近攻成为秦统一的总方针。",
+      "lesson": "这是资源分配的边际算术：同一份军力，用于近地则每一单位收益都可被消化（治理半径、补给线都在射程内），用于远地则收益被运输损耗与反击概率吃掉。范雎的贡献在于把「打谁」从一个道义或恩怨问题，改写成一个运输成本与消化能力的问题。此外，远交不是善意而是计时：它的作用是分时隔离，确保每一个时间切片上只有一个对手。把多对手博弈降维成一系列连续的单对手博弈，是从劣势到优势全阶段通用的最强降损方法。",
+      "counterfactual": "若继续魏冉之策越国攻远：得地不能守，每胜一次都在稀释自身，秦难以形成滚雪球效应。",
+      "failure_if": "对手看清分时隔离的本质并联手。此计的命门在于「远」方能否始终相信自己事不关己——一旦远方意识到自己是最后一个，框架立刻失效。",
+      "stratagem": [
+        "S23"
+      ],
+      "sources": [
+        {
+          "book": "史记",
+          "juan": "范雎蔡泽列传",
+          "canonical": true,
+          "category": "正史"
+        },
+        {
+          "book": "资治通鉴",
+          "juan": "周纪五",
+          "canonical": false,
+          "category": "编年"
+        }
+      ]
+    },
+    {
+      "id": "C035",
+      "title": "陈平行反间·范增去楚",
+      "era": "汉三年—四年（前204—前203）",
+      "protagonist": "陈平 — 项羽、范增",
+      "source": "《史记·陈丞相世家》《项羽本纪》",
+      "tier": "T1",
+      "note": "可与此对照的是 T3 层：蒋干盗书故事属小说虚构，正史载蒋干见周瑜而还，未行反间，两者不可混同。",
+      "archetype": "SIGNALING",
+      "sv_tags": {
+        "power_ratio": "even",
+        "stakes": "existential",
+        "reversibility": 0.4,
+        "info_asym": 0.3,
+        "time_pressure": "medium",
+        "horizon": "single",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "medium",
+        "opponent_rationality": "rational",
+        "moral_constraint": "low"
+      },
+      "situation": "楚汉相持荥阳，楚军力强而汉军困；项羽麾下唯范增善谋且深得信任。",
+      "decision_point": "正面无法取胜时，攻击对手的哪一个环节最省力？",
+      "action": "刘邦予陈平黄金四万斤使行反间。宣言钟离眜等诸将功多而终不得裂地，欲与汉灭楚而分其地；项羽果疑不信。汉王为太牢具以示楚使，佯惊曰吾以为亚父使，乃项王使，遂以恶草具进。",
+      "outcome": "项羽疑范增。范增请归，未至彭城，疽发背而死。楚军失去唯一稳定的战略判断源。",
+      "lesson": "反间之所以低成本而高效，是因为它攻击的不是对手的力量而是对手的信息与信任结构。两条基本操作：其一，反间信息必须与对方已有的疑虑方向一致（项王本就多疑、本就吝于封赏），此即先验激活；其二，给格格不入的解释留一个自洽的出口——那份被降级的太牢具让使者自己得出「亚父与汉有私」的结论，汉方没有指控任何人。让对方自己完成推理链，是反间与所有重信号共通的技术核心。",
+      "counterfactual": "若无此计而纯以力战：荥阳相持下汉军疲困，胜负难定。",
+      "failure_if": "对手的信任结构本身足够稳固（如刘备与诸葛亮），或对方察觉「有人在挑拨」这一层元事实。反间只能在已有裂缝的地方生效，它不能创造裂缝。",
+      "stratagem": [
+        "S33"
+      ],
+      "sources": [
+        {
+          "book": "史记",
+          "juan": "陈丞相世家",
+          "canonical": true,
+          "category": "正史"
+        }
+      ]
+    },
+    {
+      "id": "C036",
+      "title": "张仪诈楚·商於六百里",
+      "era": "战国·楚怀王十六年（前313）",
+      "protagonist": "张仪（秦） — 楚怀王",
+      "source": "《史记·张仪列传》《楚世家》；《资治通鉴·周纪三》",
+      "tier": "T1",
+      "archetype": "SIGNALING",
+      "sv_tags": {
+        "power_ratio": "strong",
+        "stakes": "high",
+        "reversibility": 0.2,
+        "info_asym": 0.7,
+        "time_pressure": "medium",
+        "horizon": "single",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "high",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "low"
+      },
+      "situation": "齐楚合纵而秦患之。秦欲伐齐，须先拆散齐楚联盟。",
+      "decision_point": "如何以最小代价拆掉两个对手之间的联盟？",
+      "action": "张仪使楚，说怀王曰：大王诚能闭关绝约于齐，秦愿献商於之地六百里。怀王悦而许之，遂绝齐。秦齐交合之后，张仪称病不出，后对楚使曰：臣有奉邑六里，愿以献大王左右。",
+      "outcome": "楚怀王怒而兴师伐秦，丹阳、蓝田两战皆大败，失汉中。楚由盛转衰。",
+      "lesson": "无中生有的完整结构。两点值得记住。对施计方：此计的威力来自目标的贪婪被写成了契约——一旦对方为这笔利益先采取了不可逆行动（绝齐），他就成了自己承诺的人质，此后即便识破也难以回头。这是把对手的可逆犹豫变成不可逆沉没的经典手法。对受害者：楚怀王犯了两个错——未先验证承诺就先履行了自己的部分，且把不可逆动作做在了收益兑现之前。凡是「你先动、我后给」的约定，都应被视为高风险结构。",
+      "counterfactual": "若楚坚持先得地而后绝齐，或至少要求第三方见证与分期交割：秦难以空手套白狼，齐楚联盟仍可存续。",
+      "failure_if": "受害者要求对价先行交割或要求可验证的担保。此计的命门始终是时间差——它要求对方在自己的利益兑现之前先付出不可逆成本。",
+      "stratagem": [
+        "S07"
+      ],
+      "sources": [
+        {
+          "book": "史记",
+          "juan": "张仪列传",
+          "canonical": true,
+          "category": "正史"
+        },
+        {
+          "book": "资治通鉴",
+          "juan": "周纪三",
+          "canonical": false,
+          "category": "编年"
+        }
+      ]
+    },
+    {
+      "id": "C037",
+      "title": "澶渊之盟·寇准促真宗亲征",
+      "era": "北宋·景德元年（1004）",
+      "protagonist": "寇准 — 宋真宗；王钦若、陈尧叟（主张迁都）",
+      "source": "《宋史·寇准传》",
+      "tier": "T1",
+      "sources": [
+        {
+          "book": "宋史",
+          "juan": "寇准传",
+          "canonical": true,
+          "category": "正史"
+        }
+      ],
+      "quote": "准曰：陛下不过河，则人心益危，敌气未慑，非所以取威决胜也……机不可失，宜趣驾。……准召利用至幄，语曰：虽有敕，汝所许毋过三十万，过三十万，吾斩汝矣。",
+      "archetype": "CHICKEN",
+      "sv_tags": {
+        "power_ratio": "even",
+        "stakes": "existential",
+        "reversibility": 0.2,
+        "info_asym": -0.3,
+        "time_pressure": "high",
+        "horizon": "repeated",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "medium",
+        "opponent_rationality": "rational",
+        "moral_constraint": "medium"
+      },
+      "situation": "契丹大举南下，急书一夕五至；参知政事王钦若请幸金陵、陈尧叟请幸成都——朝堂主流意见是迁都避敌，皇帝本人动摇。",
+      "decision_point": "南迁避难（保住朝廷但弃河北），还是皇帝亲赴澶州（风险极高但能稳住军心）？",
+      "action": "寇准压住军报不发作以稳众心，力排迁都之议，迫使真宗渡河至澶州北城；御盖既现，宋军士气大振。后又私令谈判使者曹利用：岁币许诺不得超过三十万。",
+      "outcome": "契丹统军挞览中弩而死，遂请盟；宋以岁币三十万成约，河北罢兵。此后百余年宋辽大体无事。",
+      "lesson": "三层结构。其一，亲征是不可逆承诺：皇帝渡河之后退路即断，全军知道没有退路才会拼命——与背水一战同源。其二，同时给谈判设定硬边界（三十万，违者斩）：公开立场的坚定与私下约束的精确必须同时存在，缺一不可。其三，真正的代价在战后：王钦若以「城下之盟，春秋耻之」「陛下，寇准之孤注也」两句重述同一件事，寇准随即罢相。同一成果可以被叙述为功，也可以被叙述为耻，取决于谁掌握叙事权——这是所有高调取胜者必须预先计提的成本。",
+      "counterfactual": "若从迁都之议：河北不战而弃，中原门户洞开，契丹可从容南下，宋室处境远劣于澶州对峙。",
+      "failure_if": "亲征之所以有效，前提是「皇帝亲临」真的能改变双方信念。若军队本已无战意，或对手不因皇帝亲临而动摇，那么亲征只是一次高风险的自我暴露。",
+      "stratagem": [
+        "S13",
+        "S36"
+      ]
+    },
+    {
+      "id": "C038",
+      "title": "孝文帝迁都洛阳·外名南伐，其实迁也",
+      "era": "北魏·太和十七年（493）",
+      "protagonist": "孝文帝拓跋宏 — 鲜卑旧贵族、李冲、任城王澄",
+      "source": "《魏书·李冲传》（卷53）；《魏书·高祖纪下》；《资治通鉴·齐纪四》",
+      "tier": "T1",
+      "sources": [
+        {
+          "book": "魏书",
+          "juan": "李冲传（卷53）",
+          "canonical": true,
+          "category": "正史"
+        },
+        {
+          "book": "资治通鉴",
+          "juan": "齐纪四（卷138）",
+          "canonical": false,
+          "category": "编年"
+        }
+      ],
+      "quote": "高祖初谋南迁，恐众心恋旧，乃示为大举，因以胁定群情，外名南伐，其实迁也。旧人怀土，多所不愿，内惮南征，无敢言者，于是定都洛阳。",
+      "archetype": "STACKELBERG",
+      "sv_tags": {
+        "power_ratio": "strong",
+        "stakes": "existential",
+        "reversibility": 0.15,
+        "info_asym": 0.6,
+        "time_pressure": "medium",
+        "horizon": "repeated",
+        "actors": 2,
+        "third_party": false,
+        "resource_slack": "high",
+        "opponent_rationality": "rational",
+        "moral_constraint": "medium"
+      },
+      "situation": "孝文帝欲迁都洛阳推进汉化，但鲜卑旧贵族安土重迁，若公开提议必遭集体抵制——他名义上是最高决策者，实则在迁都一事上受制于集团意志。",
+      "decision_point": "当你的正确主张会被多数人否决时，是说服他们，还是改变他们面对的选择集？",
+      "action": "不以迁都为名，而以「南伐」为名率大军南下。行至洛阳，秋雨连绵，人马困弊。此时他戎服执鞭策马欲出，群臣稽颡于马前请停南伐——他于是就坡下驴：不南伐可以，那就迁都于此。群臣在「继续南征」与「迁都洛阳」之间只能选后者。",
+      "outcome": "定都洛阳。此后推行改汉姓、禁胡语、通婚姻等汉化改革，北魏重心南移，深度融入中原。",
+      "lesson": "这是全套案例库中最精彩的议程设置案例。孝文帝没有去说服反对者（那几乎不可能），他重新构造了反对者面对的选项：原本的选项集是「迁都／不迁都」，他把整个国家先搬到洛阳、置于困境中，于是选项集变成「南征／迁都」，迁都从不可接受变成两害相权取其轻。可迁移的内核是：当议题本身无法通过时，不要加大说服力度，而要让对方的替代选项变得更糟。注意这与欺骗不同——他确实把军队带到了那个处境里，前置成本是真实付出的。",
+      "counterfactual": "若公开下诏迁都：鲜卑贵族集体抵制，或引发平城集团的政治反弹，改革可能胎死腹中。",
+      "failure_if": "此法要求决策者能真实承担「把队伍带到那个处境」的成本（大军远征、秋雨行军）。若无法支付这个前置成本，就只会得到一次失败的冒险。另需注明：学界对「连哄带骗」的戏剧性叙述存在争议（武汉大学何德章等认为此事经过缜密安排、内含军权争夺，并非临场诡计），本条的迁移价值在结构层面而非情节层面。",
+      "stratagem": [
+        "S08",
+        "S25",
+        "S30"
+      ]
+    },
+    {
+      "id": "C039",
+      "title": "梁武帝纳侯景·引狼入室（反面基准）",
+      "era": "南朝梁·太清元年至三年（547—549）",
+      "protagonist": "梁武帝萧衍 — 侯景；谢举等朝臣",
+      "source": "《梁书·侯景传》；《资治通鉴·梁纪十六》（卷160）",
+      "tier": "T1",
+      "sources": [
+        {
+          "book": "梁书",
+          "juan": "侯景传",
+          "canonical": true,
+          "category": "正史"
+        },
+        {
+          "book": "资治通鉴",
+          "juan": "梁纪十六（卷160）",
+          "canonical": false,
+          "category": "编年"
+        }
+      ],
+      "quote": "上召群臣廷议。尚书仆射谢举等皆曰：顷岁与魏通和，边境无事，今纳其叛臣，窃谓非宜。上曰：虽然，得景则塞北可清；机会难得，岂宜胶柱！",
+      "archetype": "COALITION",
+      "sv_tags": {
+        "power_ratio": "strong",
+        "stakes": "existential",
+        "reversibility": 0.2,
+        "info_asym": -0.4,
+        "time_pressure": "medium",
+        "horizon": "single",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "high",
+        "opponent_rationality": "vindictive",
+        "moral_constraint": "medium"
+      },
+      "situation": "东魏高欢新死，侯景与高澄不和，据河南叛，请以十三州内附。梁与东魏本已通和、边境无事。梁武帝此前梦见中原牧守来降，视此为吉兆。",
+      "decision_point": "接纳一个反复无常的叛将，是捡便宜还是引祸水？",
+      "action": "朝臣谢举等明确反对「今纳其叛臣，窃谓非宜」，梁武帝以「机会难得，岂宜胶柱」压之，纳侯景并北伐。北伐败，萧渊明被俘。随后东魏提出议和、要求交出侯景；侯景假冒高澄写信试探，梁武帝竟回信同意交换。",
+      "outcome": "侯景怒而举兵，太清二年起兵寿阳，得内应萧正德接应渡江，围台城。太清三年台城陷，梁武帝被困而死。江南千里绝烟、白骨成聚，南朝自此一蹶不振。",
+      "lesson": "三条断裂。其一，用「机会难得」压倒专业判断：谢举的建议基于现状，梁武帝的反驳基于幻想，而后者赢了——因为它更好听。凡是「机会难得，岂宜胶柱」式的论证，都应被要求补上「最坏情况」那一半。其二，决策依据来自梦境与征兆：当一个人用征兆替代情报，他不是在决策。其三，在已经接下不可信的人之后，又主动把自己要卖他的证据交到他手里（同意以侯景交换萧渊明）——这是对已被激怒且反复无常者的最大刺激。与 C004 虞公同类：看不清自己在对方收益表里的位置。",
+      "counterfactual": "若从谢举之议不纳侯景：梁维持与东魏的和局，南朝元气可保，江南不至于遭此浩劫。",
+      "failure_if": "引狼入室的失效不在接纳那一刻，而在随后的每一次「以为还能控制」的绥靖。侯景屡次索求钱财武器、多人报告其谋反，梁武帝一概姑息——一旦开始对不可信者让步，让步就会加速。",
+      "stratagem": [
+        "S24",
+        "S03"
+      ]
+    },
+    {
+      "id": "C040",
+      "title": "岳飞郾城大捷与十二金牌（与 C031 对读）",
+      "era": "南宋·绍兴十年（1140）",
+      "protagonist": "岳飞 — 宋高宗赵构、秦桧",
+      "source": "《宋史·岳飞传》",
+      "tier": "T1",
+      "sources": [
+        {
+          "book": "宋史",
+          "juan": "岳飞传",
+          "canonical": true,
+          "category": "正史"
+        }
+      ],
+      "quote": "言飞孤军不可久留，乞令班师，一日奉十二金字牌。……飞愤惋泣下，东向再拜曰：十年之力，废于一旦！",
+      "archetype": "STACKELBERG",
+      "sv_tags": {
+        "power_ratio": "strong",
+        "stakes": "existential",
+        "reversibility": 0.1,
+        "info_asym": 0.2,
+        "time_pressure": "high",
+        "horizon": "repeated",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "low",
+        "opponent_rationality": "rational",
+        "moral_constraint": "high"
+      },
+      "situation": "郾城、颍昌大捷，进军朱仙镇，距汴京四十五里；金帅完颜宗弼已准备撤离汴京，军事态势局部占优。但南宋财政「国用十分，几八分养兵」，朝廷长期奉行崇文抑武。",
+      "decision_point": "乘胜北进直捣黄龙，还是见好就收、班师议和？",
+      "action": "高宗与秦桧先令张俊、杨沂中回撤使岳家军成为孤军，再以「兵微将少，民困国乏」为由一日连发十二道金字牌强令班师。岳飞奉诏南归。",
+      "outcome": "收复的颍昌、蔡州等地相继沦陷；次年岳飞被解除兵权，以「莫须有」死于风波亭。宋金转入长期对峙。",
+      "lesson": "本条的价值在于把「奸臣误国」的通俗叙事还原成结构冲突：高宗又怕胜又怕败——胜则武将权重、功高震主（宋室自杯酒释兵权以来的核心恐惧），败则政权倾覆；加上财政已到极限。于是从皇帝的目标函数看，班师是理性的，尽管从国家目标看是灾难。这与哥舒翰（C028）、于谦（C031）构成三角对照：三人的正确主张都被一个更高的内部逻辑压倒，而那个内部逻辑对掌握权力者而言是理性的。此外注意秦桧的手法：先调走友军使其成孤军，再以孤军为由令其班师——先制造出你要指责的那个条件。",
+      "counterfactual": "若朝廷全力增援而不急于议和：以当时金军士气沮丧、豪杰向风的态势，收复汴京并非不可能；但财政与武将坐大的风险也确实存在，这是真实的取舍而非单纯的昏聩。",
+      "failure_if": "当下级的目标函数与上级不一致时，下级的战场胜利反而会加速自己的覆灭——因为胜利本身会放大上级的恐惧。功高震主不是道德问题，是结构问题。",
+      "stratagem": [
+        "S19",
+        "S36"
+      ]
+    },
+    {
+      "id": "C041",
+      "title": "北齐杀斛律光·自毁长城（反面基准）",
+      "era": "北齐·武平三年（572）",
+      "protagonist": "齐后主高纬、祖珽 — 斛律光；北周韦孝宽（施反间）",
+      "source": "《北齐书·斛律光传》",
+      "tier": "T1",
+      "sources": [
+        {
+          "book": "北齐书",
+          "juan": "斛律光传",
+          "canonical": true,
+          "category": "正史"
+        }
+      ],
+      "quote": "周武帝闻光死，大赦境内，后灭齐入邺，下诏追封斛律光，指诏书谓众人曰：此人若在，朕岂能至邺！",
+      "archetype": "SIGNALING",
+      "sv_tags": {
+        "power_ratio": "strong",
+        "stakes": "existential",
+        "reversibility": 0.1,
+        "info_asym": -0.6,
+        "time_pressure": "medium",
+        "horizon": "repeated",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "high",
+        "opponent_rationality": "vindictive",
+        "moral_constraint": "low"
+      },
+      "situation": "斛律光为北齐柱石，历事数朝，战功卓著，治军严明、门无私谒。北周名将韦孝宽屡不能胜，遂行反间。",
+      "decision_point": "面对敌国散布的谋反谣言，是核实还是采信？",
+      "action": "韦孝宽编造童谣「百升飞上天，明月照长安」（百升为一斛，「明月」是斛律光的字），令人传入邺城。权臣祖珽顺势添油加醋。后主高纬本已猜忌，遂以赐马为名诱斛律光入宫，遣力士刘桃枝自后袭杀之，族诛。",
+      "outcome": "斛律光死时五十八岁。抄家所得仅弓五十张、宴射箭一百、贝刀七口、枣树枝二十根，抄家者邢祖信仰天长叹：栋梁断了，这个国家快完了。五年后北周灭齐，周武帝追封斛律光并言「此人若在，朕岂能至邺」。",
+      "lesson": "本条是反间计（S33）的受害者视角，与陈平行反间（C035）正好构成攻防两端。三点：其一，反间只在已有裂缝处生效——高纬本就猜忌，谣言只是给了他一个动手的名义。其二，敌国最希望发生的事，往往正由你自己完成：周武帝闻讯大赦，说明你的内部清洗就是对手的战略收益。本条可与袁绍杀田丰（C019）并读，两者都是处理掉自己最有用的那个人。其三，核验成本极低而错误成本极高：抄家清单本身就能证伪贪腐指控，但没有人去看。",
+      "counterfactual": "若稍加核验（只需查抄家所得即可证伪）：斛律光不死，北周难以东进，北齐不致五年而亡。",
+      "failure_if": "凡是敌国传来的、针对我最得力之人的消息，默认应按假信息处理，直到有独立证据。这条规则的成本很低，而违反它的代价可能是亡国。",
+      "stratagem": [
+        "S33",
+        "S19"
+      ]
+    },
+    {
+      "id": "C042",
+      "title": "李存勖得天下与失天下·忧劳兴国，逸豫亡身",
+      "era": "后唐·同光元年至四年（923—926）",
+      "protagonist": "李存勖（后唐庄宗）",
+      "source": "《新五代史·伶官传序》（欧阳修）",
+      "tier": "T1",
+      "sources": [
+        {
+          "book": "新五代史",
+          "juan": "伶官传序",
+          "canonical": true,
+          "category": "正史"
+        }
+      ],
+      "quote": "《书》曰：满招损，谦得益。忧劳可以兴国，逸豫可以亡身，自然之理也。故方其盛也，举天下之豪杰莫能与之争；及其衰也，数十伶人困之，而身死国灭，为天下笑。夫祸患常积于忽微，而智勇多困于所溺。",
+      "archetype": "REPEATED",
+      "sv_tags": {
+        "power_ratio": "very_strong",
+        "stakes": "existential",
+        "reversibility": 0.3,
+        "info_asym": -0.3,
+        "time_pressure": "low",
+        "horizon": "repeated",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "high",
+        "opponent_rationality": "vindictive",
+        "moral_constraint": "low"
+      },
+      "situation": "李存勖继李克用遗志，受三矢之命，平桀燕、败契丹、灭后梁，用十五年建后唐，达到权力顶点。",
+      "decision_point": "成功之后，如何处置那些陪你打天下的人，与那些陪你享乐的人？",
+      "action": "称帝后沉湎声乐、重用伶人与宦官，疏远有功之士，对百姓横征暴敛。终死于兴教门之变。",
+      "outcome": "身死国灭。死后十年后唐分崩离析。欧阳修评曰：其兴也勃焉，其亡也忽焉。",
+      "lesson": "本库唯一一条专门讲成功之后的案例——前面四十余条几乎都在讲如何取胜，这一条讲取胜之后会发生什么。三层：其一，成功会改变你的输入结构：打天下时围在你身边的是能人，坐天下时围在你身边的是让你舒服的人，而后者取代前者是自然发生的，不需要任何人策划。其二，祸患积于忽微：衰败不是某一天发生的，是每一天微小的「算了」累积的。其三，智勇多困于所溺：越是能力强的人，越容易在自己偏爱的事物上失去判断力——这与袁绍（C019）、苻坚（C027）不同，那两人是判断失误，李存勖是偏好偏移。",
+      "counterfactual": "若保持用人标准与勤政惯性：以当时后唐的军力，统一进程或不至于中断。",
+      "failure_if": "成功的反噬几乎无法从内部察觉，因为成功本身会消灭所有告诉你「你变了」的人。因此守成期的负反馈必须靠制度而非靠自觉：定期的外部评估、保留敢言之人的位置、不让同一个人既是决策者又是评价者。",
+      "stratagem": [
+        "S36"
+      ]
+    },
+    {
+      "id": "C043",
+      "title": "魏征谏诤与唐太宗纳谏（正面基准：反对意见如何制度化）",
+      "era": "唐·贞观年间（627—649）",
+      "protagonist": "魏征 — 唐太宗李世民",
+      "source": "《新唐书·魏徵传》；《旧唐书·魏徵传》",
+      "tier": "T1",
+      "sources": [
+        {
+          "book": "新唐书",
+          "juan": "魏徵传",
+          "canonical": true,
+          "category": "正史"
+        },
+        {
+          "book": "旧唐书",
+          "juan": "魏徵传",
+          "canonical": true,
+          "category": "正史"
+        }
+      ],
+      "quote": "以铜为镜，可以正衣冠；以古为镜，可以知兴替；以人为镜，可以明得失。……（魏征卒）朕亡一镜矣。",
+      "archetype": "REPEATED",
+      "sv_tags": {
+        "power_ratio": "very_strong",
+        "stakes": "high",
+        "reversibility": 0.8,
+        "info_asym": 0.3,
+        "time_pressure": "low",
+        "horizon": "repeated",
+        "actors": 2,
+        "third_party": false,
+        "resource_slack": "high",
+        "opponent_rationality": "rational",
+        "moral_constraint": "high"
+      },
+      "situation": "太宗为开创之主，权力稳固、功业正盛——正是最不需要听劝、也最容易停止听劝的时刻。魏征曾为太子李建成旧属，身份敏感。",
+      "decision_point": "一个已经成功、且没有外部压力的人，为什么还要主动保留一个专门顶撞他的人？",
+      "action": "魏征前后谏言二百余事，屡犯颜直谏；太宗虽数次怒欲杀之，终能采纳，并在魏征死后自谓「亡一镜矣」。",
+      "outcome": "贞观之治成为传统政治的治理标杆；魏征以谏诤名垂青史。",
+      "lesson": "本库此前「不听劝」的反面案例已有四条（袁绍杀田丰 C019、梁武帝压谢举 C039、北齐杀斛律光 C041、苻坚拒群谏 C027），若只有反面就没有榜样。这一条补的是**反面缺失的那一半**：纳谏之所以有效，不在于君主修养好，而在于它把「反对意见」从一次性的冒犯变成了常设的机制。三点可迁移：其一，**反对意见必须来自一个利益不与你完全重合的人**（魏征是前太子旧属，这反而使他没有必要讨好）。其二，**反对者的安全必须由最高层公开担保**——太宗不止一次想杀魏征，但终究没有，这件事本身被所有人看在眼里，于是其他人也敢说话。其三，**成本极低而收益极长**：纳谏的每一次代价都很小，而拒谏的代价（C019、C039、C041）都是亡国级的。",
+      "counterfactual": "若太宗从怒而杀之：此后无人敢言，贞观之治不可能出现。这正是 C019 袁绍的路径。",
+      "failure_if": "纳谏之所以在贞观有效，是因为它服务于一个明确的上位目标（治天下）。若反对意见只被用来制衡而无人负责最终决策，就会退化为空谈与党争。**听劝必须有决策出口，否则只是把责任稀释。**",
+      "stratagem": [
+        "S26",
+        "S13"
+      ]
+    },
+    {
+      "id": "C044",
+      "title": "石敬瑭割燕云·儿皇帝（反面基准）",
+      "era": "后晋·天福元年至三年（936—938）",
+      "protagonist": "石敬瑭 — 辽太宗耶律德光；后唐末帝",
+      "source": "《旧五代史·晋高祖纪》；《辽史·太宗纪》",
+      "tier": "T1",
+      "sources": [
+        {
+          "book": "旧五代史",
+          "juan": "晋高祖纪",
+          "canonical": true,
+          "category": "正史"
+        },
+        {
+          "book": "辽史",
+          "juan": "太宗纪",
+          "canonical": true,
+          "category": "正史"
+        }
+      ],
+      "quote": "（《旧五代史》记其约为父子之国、割幽云诸州；《辽史·太宗纪》载册石敬瑭为大晋皇帝。）",
+      "archetype": "COALITION",
+      "sv_tags": {
+        "power_ratio": "weak",
+        "stakes": "existential",
+        "reversibility": 0.05,
+        "info_asym": -0.3,
+        "time_pressure": "high",
+        "horizon": "repeated",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "low",
+        "opponent_rationality": "rational",
+        "moral_constraint": "low"
+      },
+      "situation": "石敬瑭为后唐河东节度使，受末帝猜忌、被讨伐，形势危急，自身兵力不足以自保。",
+      "decision_point": "在生死存亡之际，向强邻借兵的价码可以开到多高？",
+      "action": "向契丹称臣、称儿，约为父子之国，许割幽云十六州，岁输帛三十万匹，换取契丹出兵。契丹南下，助其灭后唐，立为后晋皇帝。",
+      "outcome": "后晋建立，但燕云十六州自此脱离中原王朝控制约四百余年，北方门户洞开，此后中原长期暴露于骑兵威胁之下。后晋本身亦不过十余年而亡。",
+      "lesson": "**本条是「用不可逆资产换即时援助」的极端样本。**燕云十六州不是一笔钱，而是地形屏障——它一旦让出，就无法用后续的财富或努力买回，且代价由此后数百年、无数不相干的人承担。三点：其一，**区分「可再生的资源」与「不可再生的结构」**：钱粮可以再攒，地形与信誉不能。其二，**危急时借力要算清的是终身成本，不是眼前价码**——石敬瑭拿到的是皇位，付出的是身后四百年的地缘格局。其三，**借来的力量会反过来定价你**：称儿之约一旦成立，此后每一次交涉都在这个框架内进行。与 S03 借刀杀人对照：借力本身正当，问题在于抵押品是什么。",
+      "counterfactual": "若只许岁币、割地有限或以他种条件交换：仍可能借到兵，但北方屏障不至于整体失去。",
+      "failure_if": "凡是「现在就要、以后再说」的抵押，都要先问一句：这个东西以后真的还能买回来吗？如果答案是不能，那么这笔交易的价格其实是无限。",
+      "stratagem": [
+        "S03",
+        "S24"
+      ]
+    },
+    {
+      "id": "C045",
+      "title": "隋炀帝三征高句丽（反面基准：沉没成本升级）",
+      "era": "隋·大业八年至十年（612—614）",
+      "protagonist": "隋炀帝杨广 — 高句丽",
+      "source": "《隋书·炀帝纪》",
+      "tier": "T1",
+      "sources": [
+        {
+          "book": "隋书",
+          "juan": "炀帝纪",
+          "canonical": true,
+          "category": "正史"
+        }
+      ],
+      "quote": "（《隋书·炀帝纪》记大业八年正月诏：黄帝二十五子，其得姓者十四人为十二姓……誓以吊民伐罪，告于天地。总集平壤，凡一百一十三万三千八百人。）",
+      "archetype": "CHICKEN",
+      "sv_tags": {
+        "power_ratio": "very_strong",
+        "stakes": "existential",
+        "reversibility": 0.3,
+        "info_asym": -0.5,
+        "time_pressure": "low",
+        "horizon": "single",
+        "actors": 2,
+        "third_party": true,
+        "resource_slack": "high",
+        "opponent_rationality": "rational",
+        "moral_constraint": "low"
+      },
+      "situation": "隋承开皇之富，国力达到顶点；炀帝欲完成统一、臣服高句丽。第一次征发一百一十三万余人，规模空前。",
+      "decision_point": "第一次远征已失败之后，是止损，还是加大投入再打第二次、第三次？",
+      "action": "大业八年一征败于萨水；九年再征，因杨玄感起兵而回师；十年三征，高句丽请降而罢。三征之间，国内已民怨沸腾。",
+      "outcome": "三次远征耗尽国力，天下骚动，起义蜂起。大业十四年炀帝被弑于江都，隋亡。从开皇之治到覆灭不过十余年。",
+      "lesson": "**这是「沉没成本升级」最昂贵的一次演示。**第一次失败的损失是有限的，但「已经投入这么多、不能白费」的心理把国家拖进了第二、第三次。三点：其一，**失败的账面损失远小于继续追加的边际损失**——炀帝输的不是第一仗，是不肯认下第一仗。其二，**规模不产生安全**：一百一十三万人这个数字本身就是负担，补给线拉长、指挥层级增多，规模越大越脆弱。其三，**内部威胁与外部远征不能同时进行**：远征抽走兵力与民力的同时，国内的反抗成本降到最低——这与淝水（C027）同构，**兵力数字与可支配战斗力是两回事**。",
+      "counterfactual": "若一征失败即止：隋的国力仍足以维持，开皇之治的成果不至于在十余年内耗尽。",
+      "failure_if": "区分「坚持」与「追加」：坚持是在原计划内继续推进，追加是把已经失败的项目用更多资源去救。判断标准只有一个——新投入的边际收益是否为正，与已投入多少无关。",
+      "stratagem": [
+        "S36"
+      ]
+    },
+    {
+      "id": "C046",
+      "title": "完颜阿骨打起兵反辽·以弱抗强",
+      "era": "辽天庆四年至金收国元年（1114—1115）",
+      "protagonist": "完颜阿骨打（金太祖） — 辽天祚帝",
+      "source": "《金史·太祖纪》",
+      "tier": "T1",
+      "sources": [
+        {
+          "book": "金史",
+          "juan": "太祖纪",
+          "canonical": true,
+          "category": "正史"
+        }
+      ],
+      "quote": "（《金史·太祖纪》记其以二千五百人誓师反辽，出河店之战大破辽军；次年称帝，国号大金。）",
+      "archetype": "COALITION",
+      "sv_tags": {
+        "power_ratio": "very_weak",
+        "stakes": "existential",
+        "reversibility": 0.1,
+        "info_asym": 0.4,
+        "time_pressure": "high",
+        "horizon": "single",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "low",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "medium"
+      },
+      "situation": "女真受辽长期压迫，阿骨打起兵时兵力不过数千，而辽为东亚霸主，拥兵数十万。悬殊到近乎必败。",
+      "decision_point": "在实力悬殊到荒谬时，还打不打？打的话靠什么赢？",
+      "action": "以辽之压迫为号召凝聚女真诸部，先统一内部，再以高度机动的骑兵集中打击辽军分散的据点；出河店等战连捷，次年建国号金。后与宋结「海上之盟」南北夹击。",
+      "outcome": "金于1125年灭辽，两年后灭北宋。一个起兵时数千人的部族，十余年间成为东亚最强政权。",
+      "lesson": "三点。其一，**敌人的体量不等于敌人的反应速度**：辽的庞大使其调度迟缓，阿骨打以极小兵力反复攻击其调度链条，把「大」变成了「慢」。这与釜底抽薪同源——不是比谁更强，是比谁能更快完成「判断—移动—打击」的循环。其二，**先统一内部再对外**：他在力量最小时先做的是整合女真诸部，而不是直接攻辽——**弱者的第一步永远是消除自己的内部消耗**。其三，**联盟要看清对方的分量**：海上之盟中宋的虚弱暴露无遗，盟友随即变成了下一个目标。",
+      "counterfactual": "若按实力对比判断「不可能」而隐忍：女真继续受辽压榨，不会有金朝，也不会有此后两百年的北方格局。",
+      "failure_if": "以弱抗强能成立，前提是强者真的像看上去那样笨重。若对手反应迅速且愿意为边境投入压倒性资源，弱者的每一次突袭都会变成自杀。起兵前必须验证的是对手的**调度意愿**，而非对手的兵力总数。",
+      "stratagem": [
+        "S18",
+        "S19",
+        "S23"
+      ]
+    },
+    {
+      "id": "C047",
+      "title": "忽必烈与阿里不哥争位·断漠北粮道",
+      "era": "元·中统元年至至元元年（1260—1264）",
+      "protagonist": "忽必烈 — 阿里不哥",
+      "source": "《元史·世祖本纪》",
+      "tier": "T1",
+      "sources": [
+        {
+          "book": "元史",
+          "juan": "世祖本纪",
+          "canonical": true,
+          "category": "正史"
+        }
+      ],
+      "quote": "（《元史·世祖本纪》记中统元年阿里不哥僭号于和林，世祖亲征；至元元年阿里不哥来降。其取胜关键在于断绝汉地粮运入漠北。）",
+      "archetype": "STACKELBERG",
+      "sv_tags": {
+        "power_ratio": "even",
+        "stakes": "existential",
+        "reversibility": 0.2,
+        "info_asym": 0.3,
+        "time_pressure": "low",
+        "horizon": "single",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "high",
+        "opponent_rationality": "rational",
+        "moral_constraint": "medium"
+      },
+      "situation": "蒙哥汗死后，忽必烈据开平、阿里不哥据和林。阿里不哥留守蒙古本土，受多数宗王贵族支持，在「正统性」上占优；忽必烈则被部分宗王视为偏离草原传统。",
+      "decision_point": "当对手在名分与本土支持上占优时，胜负由什么决定？",
+      "action": "忽必烈凭借对中原汉地的控制，切断粮食物资北运漠北的通道，使和林陷入供给困难；同时以汉地的人力财力持续支撑战争。",
+      "outcome": "阿里不哥势穷，至元元年归降。忽必烈确立汗位，后改国号大元，完成从草原汗国到中原王朝的转型。",
+      "lesson": "**这是釜底抽薪在经济层面的最干净案例。**阿里不哥握有首都、本土与多数贵族的支持——所有「看起来更重要」的东西都在他那边；但漠北的物资供给依赖汉地，忽必烈掐住的就是这一条。三点：其一，**正统性不能当饭吃**：合法性是重要的政治资产，但它必须能转化为持续的物资供给才有效。其二，**找到对手的「输入项」而非「体量」**：不要数他有多少兵，要问那些兵靠什么活着。其三，**这场胜利的成本也很高**——它意味着忽必烈必须永久地绑定汉地资源，此后元朝的统治重心与合法性构造都由此定型。取胜方式会塑造取胜之后的你。",
+      "counterfactual": "若漠北能自给自足（例如草原经济独立）：忽必烈的封锁无效，争位结果可能改写。",
+      "failure_if": "封锁生效的前提是对手确实依赖你控制的供给。若对手有替代来源或能就地补给，封锁只是消耗你自己。",
+      "stratagem": [
+        "S19",
+        "S23"
+      ]
+    },
+    {
+      "id": "C048",
+      "title": "沙苑之战·宇文泰以不满万破高欢十万",
+      "era": "西魏·大统三年（537）",
+      "protagonist": "宇文泰（西魏） — 高欢（东魏）",
+      "source": "《周书·文帝纪》",
+      "tier": "T1",
+      "sources": [
+        {
+          "book": "周书",
+          "juan": "文帝纪",
+          "canonical": true,
+          "category": "正史"
+        }
+      ],
+      "quote": "（《周书·文帝纪》记沙苑之战：时诸将皆以众寡不敌，请且待之；太祖（宇文泰）决意乘其未集击之，遂大破之。）",
+      "archetype": "STACKELBERG",
+      "sv_tags": {
+        "power_ratio": "very_weak",
+        "stakes": "existential",
+        "reversibility": 0.2,
+        "info_asym": 0.4,
+        "time_pressure": "high",
+        "horizon": "single",
+        "actors": 2,
+        "third_party": false,
+        "resource_slack": "low",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "medium"
+      },
+      "situation": "高欢率大军伐西魏，兵力悬殊；西魏诸将皆以众寡不敌，主张退守待机。关中正值饥馑，西魏亦无持久之资。",
+      "decision_point": "兵力悬殊且部下主张等待时，是退守还是主动出击？",
+      "action": "宇文泰判断敌军虽众而阵未集、且轻敌，遂率轻骑背水为阵、设伏于沙苑芦苇中，趁东魏军阵形未整时突击，截断其队形。",
+      "outcome": "东魏军大溃，丧甲士八万，弃铠仗十有八万。西魏由是站稳关中，奠定此后北周统一北方的基础。",
+      "lesson": "三点。其一，**「众寡不敌」是对静态兵力的判断，不是对交战时刻的判断**：军队在行进与列阵未成时，其数量优势尚未转化为战斗力——宇文泰买的正是这个时间差。这与长勺（C003）同构：**优势是状态，不是属性，需要时间才能兑现。**其二，**部下多数主张退守时，决策者要看的是他们的依据是否成立**（他们依据的是兵力总数），而不是看人数多少。其三，这与井陉（C010）一样用到「背水」——但此处是背水设伏而非背水列阵，说明同一结构可有多种落法。",
+      "counterfactual": "若从诸将之议退守待机：关中饥馑，西魏无持久之资，退守可能反而拖垮自己。",
+      "failure_if": "此计的命门是「敌军阵未集」。若对手行军有序、先头部队即能结阵自保，突击就会撞上硬墙，反而暴露己方兵力之少。",
+      "stratagem": [
+        "S13",
+        "S04",
+        "S18"
+      ]
+    },
+    {
+      "id": "C049",
+      "title": "隋灭陈·陈后主的预警失灵（反面基准）",
+      "era": "陈·祯明二年至三年（588—589）",
+      "protagonist": "陈后主陈叔宝 — 隋文帝杨坚、高颎",
+      "source": "《陈书·后主纪》；《隋书·高祖纪》",
+      "tier": "T1",
+      "sources": [
+        {
+          "book": "陈书",
+          "juan": "后主纪",
+          "canonical": true,
+          "category": "正史"
+        },
+        {
+          "book": "隋书",
+          "juan": "高祖纪",
+          "canonical": true,
+          "category": "正史"
+        }
+      ],
+      "quote": "（《陈书·后主纪》记其后主溺于宴游、信任佞幸；隋军既至，边将屡告急，皆不以闻。及隋军入建康，后主与张贵妃、孔贵嫔匿于井中。）",
+      "archetype": "SIGNALING",
+      "sv_tags": {
+        "power_ratio": "weak",
+        "stakes": "existential",
+        "reversibility": 0.1,
+        "info_asym": -0.8,
+        "time_pressure": "high",
+        "horizon": "single",
+        "actors": 2,
+        "third_party": true,
+        "resource_slack": "medium",
+        "opponent_rationality": "rational",
+        "moral_constraint": "low"
+      },
+      "situation": "隋已统一北方，国力强盛，陈偏安江南，凭借长江天险自守。隋军大举南下之势早已可察。",
+      "decision_point": "在强敌压境、天险尚在的局面下，先处理军备还是先处理享乐？",
+      "action": "陈后主沉溺宴游、宠幸张丽华等，务为游乐；沿边州郡屡有告警，都被压下不报。隋军渡江时，陈军江防竟无有效应对。",
+      "outcome": "隋军攻入建康，陈后主被俘于井中，陈亡。自东晋以来的南北分裂至此结束，中国复归一统。",
+      "lesson": "**这条是「信息通道被主动切断」的极端样本。**与白登（C012，听不到逆耳之言）不同，陈后主不是听不到——是**告警进来后被系统性地压下了**。三点：其一，**天险是资产，不是能力**——长江这道屏障需要有人去守、有人报告、有人决策才能生效，它本身不会抵抗。其二，**压制坏消息会让系统失去最后的时间窗**——边将告急被压下，等于主动放弃了本可用于布防的那些天。其三，放在全库看，陈后主、袁绍、梁武帝、北齐后主构成一组同构的失败：**他们都不是被对手打败的，是被自己信息通道的堵塞打败的**。这也正是本模型把「执行前三项自检」的第一条设为「我的反对意见通道在哪里」的原因。",
+      "counterfactual": "若边报得上达并据此布防：凭借长江天险，陈未必能胜，但至少不会在毫无准备的情况下被一举渡江。",
+      "failure_if": "凡是坏消息需要「向上传递」的环节，都要检查它是否真的在传。只要有一个环节会为了迎合而压下信息，上游的决策就建立在幻觉之上。",
+      "stratagem": [
+        "S13",
+        "S36"
+      ]
+    },
+    {
+      "id": "C050",
+      "title": "刘裕北伐后秦·得关中而复失（目标替换）",
+      "era": "东晋·义熙十二年至十四年（416—418）",
+      "protagonist": "刘裕 — 后秦；留守为刘义真、王镇恶",
+      "source": "《宋书·武帝纪》；《宋书·刘义真传》；《资治通鉴·晋纪》",
+      "tier": "T1",
+      "sources": [
+        {
+          "book": "宋书",
+          "juan": "武帝纪",
+          "canonical": true,
+          "category": "正史"
+        },
+        {
+          "book": "资治通鉴",
+          "juan": "晋纪",
+          "canonical": false,
+          "category": "编年"
+        }
+      ],
+      "quote": "（《宋书·武帝纪》记长安既平，会以刘穆之卒，根本无托，乃决意东还；留子义真为安西将军、领护西戎校尉、雍州刺史，镇关中。）",
+      "archetype": "STACKELBERG",
+      "sv_tags": {
+        "power_ratio": "strong",
+        "stakes": "high",
+        "reversibility": 0.4,
+        "info_asym": 0.2,
+        "time_pressure": "high",
+        "horizon": "single",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "medium",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "medium"
+      },
+      "situation": "刘裕北伐后秦，克长安、灭后秦，收复关中，声势达到顶点。但留守建康的心腹刘穆之猝然病逝，后方无托。",
+      "decision_point": "继续经营刚刚拿下的关中，还是立刻回师巩固自己的政治根基？",
+      "action": "刘裕决意东还，以年仅十二岁的儿子刘义真留守关中，配以王镇恶等将领。其后关中诸将内讧，王镇恶被杀，赫连勃勃的大夏军乘虚南下。",
+      "outcome": "关中得而复失，良将凋零，北伐成果在两年内化为乌有。但刘裕回师后顺利代晋建宋，完成了他真正的目标。",
+      "lesson": "**本条的关键在于看清「他到底在做什么」。**若以「北伐收复中原」为目标，刘裕是失败的；若以「代晋建宋」为目标，他是成功的——关中只是筹码。三条可迁移：其一，**评判一个决策前先确认目标函数**：刘裕的北伐从一开始就是为篡位积累威望，因此当两者冲突时他必然弃关中。外人以为他失误，其实是外人看错了他的目标。其二，**目标替换的代价由别人承担**：他完成了自己的目标，代价由留守的王镇恶、关中的军民与后来的南朝承担。其三，**这与秦师灭滑（C006）同构**——主目标与次目标的冲突中，人们会为了证明此行不虚而抓取次要成果，或因次要成果而偏离撤退路线。**明确写下「我真正的目标是什么」，是防止这类漂移的唯一办法。**",
+      "counterfactual": "若以稍长的时间坐镇关中、妥善处置将帅关系：关中或可稳固，南朝的北方防线将大为改观。",
+      "failure_if": "当一个人同时有两个目标时，较小但更紧迫的那个会在关键时刻胜出。**若你不能在事前承认「其实我更想要那个」，你就会在事后把放弃解释成失误，从而无法从中学习。**",
+      "stratagem": [
+        "S12",
+        "S36"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+{
+  "_comment": "示例一：乙方被甲方要求先交完整方案再谈价，怀疑对方拿方案换供应商。",
+  "power_ratio": "weak",
+  "stakes": "high",
+  "reversibility": 0.3,
+  "info_asym": -0.2,
+  "time_pressure": "high",
+  "horizon": "repeated",
+  "actors": 3,
+  "third_party": true,
+  "resource_slack": "low",
+  "opponent_rationality": "rational",
+  "moral_constraint": "high"
+}

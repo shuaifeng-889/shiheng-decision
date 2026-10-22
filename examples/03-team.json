@@ -1,0 +1,14 @@
+{
+  "_comment": "示例三：团队管理——空降管理者要不要立刻处理一个资历深但不服管的老员工。",
+  "power_ratio": "even",
+  "stakes": "medium",
+  "reversibility": 0.4,
+  "info_asym": -0.3,
+  "time_pressure": "medium",
+  "horizon": "repeated",
+  "actors": 3,
+  "third_party": true,
+  "resource_slack": "medium",
+  "opponent_rationality": "rational",
+  "moral_constraint": "high"
+}

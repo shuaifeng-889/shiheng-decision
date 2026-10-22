@@ -1,0 +1,63 @@
+# 许可
+
+本项目采用**代码与数据分离的双许可**。
+
+## 代码：MIT License
+
+适用范围：`scripts/`、`tests/` 目录下的全部 Python 源文件，以及 `bin/` 下的可执行包装脚本。
+
+```
+MIT License
+
+Copyright (c) 2026 shiheng-decision contributors
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+```
+
+## 数据与文档：CC BY 4.0
+
+适用范围：`data/`、`references/`、`tutorial/`、`SKILL.md`、`README.md`。
+
+包括案例库的**整理、史料分级（T1/T2/T3）、结构化标注、处境向量标签、迁移与失效条件分析**，
+以及三十六计的**原型归属、失效条件、红线、破法**等原创内容。
+
+你可以自由复制、分发、改编，包括商业用途，条件是**署名**。
+
+署名格式：
+
+```
+基于「史衡·五链决策模型」数据集
+https://github.com/<your-name>/shiheng-decision
+许可：CC BY 4.0
+```
+
+许可全文：https://creativecommons.org/licenses/by/4.0/legalcode
+
+## 关于史书原文
+
+`data/cases.json` 中引用的《史记》《汉书》等史书原文属**公有领域**，不受上述许可限制。
+本项目对其的整理、校勘、分级与结构化标注构成原创贡献。
+
+## 使用警告
+
+本项目是决策参考工具，**不构成法律、医疗、金融或任何专业建议**。
+博弈论模型建立在"对手理性"与"收益可量化"的假设上，现实决策往往不满足这些假设。
+输出结论必须由使用者自行判断。因使用本工具造成的任何后果，作者不承担责任。
+
+涉及违法、欺诈、人身伤害的方案，本项目一律不输出——这不是免责声明，是设计约束的一部分。

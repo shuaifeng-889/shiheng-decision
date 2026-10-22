@@ -1,0 +1,1264 @@
+{
+  "meta": {
+    "name": "史衡·三十六计结构化法典",
+    "version": "1.0",
+    "source_note": "三十六计原文的传统分组为六套：胜战计、敌战计、攻战计、混战计、并战计、败战计。本文件对每计补充：博弈原型归属、处境适配向量、史案引用、现代迁移、失效条件、红线与破法。",
+    "usage": "sv_profile 为该计最适配的处境向量，引擎用它计算用户处境与该计的距离；case_ids 引用 cases.json；failure_conditions 与 redline 为裁决层的强制输出项。"
+  },
+  "stratagems": [
+    {
+      "id": "S01",
+      "name": "瞒天过海",
+      "group": "胜战计",
+      "essence": "备周则意怠，常见则不疑。阴在阳之内，不在阳之对。把真实意图藏在对方习以为常的日常之中，而非藏在与之相反的地方。",
+      "sunzi_ref": "《计篇》「攻其无备，出其不意」；虚实从不在于有无，而在于密度分布不均。",
+      "archetype": "SIGNALING",
+      "sv_profile": {
+        "power_ratio": "even",
+        "stakes": "high",
+        "reversibility": 0.4,
+        "info_asym": 0.5,
+        "time_pressure": "medium",
+        "horizon": "single",
+        "actors": 2,
+        "third_party": false,
+        "resource_slack": "medium",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "medium"
+      },
+      "premise": "对方有稳定的日常节律可被依附；我方有能力重复多次同一动作而不露破绽；对方的警觉度随时间自然衰减。",
+      "case_ids": [
+        "C008",
+        "C009"
+      ],
+      "modern": "重大动作藏在对方已经麻木的流程里：常规周报、例行评审等习惯性的沟通渠道。真正的改变先以「和往常一样」的形态出现三轮，第四轮才是实招。",
+      "failure_conditions": [
+        "对方有独立的核验渠道，不依赖你提供的表象",
+        "重复动作本身成本高到无法多次执行",
+        "对方生性多疑或刚吃过同类亏（先验已被更新）"
+      ],
+      "redline": "对内属于正当的信息管理，对外若涉及投资人、监管、公众的信息隐瞒，则从策略升级为违法；不得用于掩盖已发生的事实性损失。",
+      "counter": "保持独立的第三方信源；对「一切正常」的信号本身保持折扣；定期轮换观察人员以避免注意力的自然衰减。"
+    },
+    {
+      "id": "S02",
+      "name": "围魏救赵",
+      "group": "胜战计",
+      "essence": "共敌不如分敌，敌阳不如敌阴。不赴力量对比最不利的战场，而去争夺对方无法承受失去的东西，迫使其自动回到我方设定的节奏。",
+      "sunzi_ref": "《虚实篇》「攻其所必救」；《九地篇》「夺其所爱则听矣」。",
+      "archetype": "STACKELBERG",
+      "sv_profile": {
+        "power_ratio": "weak",
+        "stakes": "high",
+        "reversibility": 0.4,
+        "info_asym": 0.3,
+        "time_pressure": "medium",
+        "horizon": "single",
+        "actors": 2,
+        "third_party": true,
+        "resource_slack": "medium",
+        "opponent_rationality": "rational",
+        "moral_constraint": "medium"
+      },
+      "premise": "我方无法正面压制；对方存在一处「失去即崩盘」的关键资产；该资产与我方当前受压迫的方向不同。",
+      "case_ids": [
+        "C001"
+      ],
+      "modern": "在被强势方压制时，不要在对方选定的议题上应战，而去动它利润最高、最不能停摆的那条线（核心客户、关键渠道、现金流命脉）。谈判桌上最难的位置，往往可以用战场外的动作解决。",
+      "failure_conditions": [
+        "对方有足够的纵深与后备，能承受核心受创而不回援",
+        "误判了什么是对方的「必救」——你打的东西他并不在乎",
+        "回援路线上的打击点难以成立（无险可据、无机可乘）"
+      ],
+      "redline": "攻击对象限于, 竞争性的商业利益，不得针对对方的生存底线与非战斗人员；不得以此要挟涉及公共安全的资产。",
+      "counter": "预先识别自己的「必救点」并为其配置独立冗余；评估打击发生时是否真的必须回援，有时坚持原目标是更优解。"
+    },
+    {
+      "id": "S03",
+      "name": "借刀杀人",
+      "group": "胜战计",
+      "essence": "敌已明，友未定，引友杀敌，不自出力。识别并利用第三方与对手之间已有的结构性矛盾，而非制造新的矛盾。",
+      "sunzi_ref": "《谋攻篇》「必以全争于天下」——自损最小的取胜是让别人替你完成。",
+      "archetype": "COALITION",
+      "sv_profile": {
+        "power_ratio": "weak",
+        "stakes": "high",
+        "reversibility": 0.3,
+        "info_asym": 0.4,
+        "time_pressure": "medium",
+        "horizon": "single",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "low",
+        "opponent_rationality": "rational",
+        "moral_constraint": "medium"
+      },
+      "premise": "第三方与对手之间存在尚未爆发但真实的利益冲突；我方与该第三方有可信的沟通渠道；第三方的行动动机可自我成立（不为帮我也在理）。",
+      "case_ids": [
+        "C009",
+        "C012",
+        "C039",
+        "C044"
+      ],
+      "modern": "让合规部门、行业监管、竞争对手、媒体的既有议程替你完成制衡——前提是你真的找到了现成的矛盾，而不是捏造。最省力的影响是「提醒」而非「怂恿」。",
+      "failure_conditions": [
+        "第三方识破你才是最大受益者，进而重算自己的得失",
+        "第三方与对手私下达成更优的和解，把你排除在外",
+        "第三方动手后失控，连带伤及我方"
+      ],
+      "redline": "严禁用于挑动人身攻击、网暴、举报报复等非正当手段；借刀的对象必须是制度性力量（规则、税负、合规），而非匿名攻击者。",
+      "counter": "当你意识到有人在推动你出手时，先算一遍：如果我动了，最终谁拿走最大份额。"
+    },
+    {
+      "id": "S04",
+      "name": "以逸待劳",
+      "group": "胜战计",
+      "essence": "困敌之势，不以战；损刚益柔。用时间与地形消耗对方的势能，把决战推迟到能量对比反转的那一刻。",
+      "sunzi_ref": "《军争篇》「以近待远，以佚待劳，以饱待饥，此治力者也」。",
+      "archetype": "STACKELBERG",
+      "sv_profile": {
+        "power_ratio": "weak",
+        "stakes": "high",
+        "reversibility": 0.5,
+        "info_asym": 0.2,
+        "time_pressure": "medium",
+        "horizon": "single",
+        "actors": 2,
+        "third_party": false,
+        "resource_slack": "medium",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "high"
+      },
+      "premise": "我方补给线更短或耐心更足；对方的能量随时间衰减得比我方快；我方能忍住不出战的舆论压力。",
+      "case_ids": [
+        "C003",
+        "C014",
+        "C029",
+        "C048"
+      ],
+      "modern": "在对方情绪高涨、声势最盛时不应战；把节奏权交给时间。适用于讨价还价（不急于还价）、竞争（不跟随对方的发布节奏）、人事冲突（等对方自曝其短）。",
+      "failure_conditions": [
+        "时间站在对方一边（对方资源恢复快于我方）",
+        "我方内部先消耗不起（团队士气、资金链不允许拖延）",
+        "第三方介入把僵局判定为双方皆输"
+      ],
+      "redline": "不得演变为消极不作为或逃避责任；拖延必须有明确的「能量反转触发点」，否则只是怯懦的别名。",
+      "counter": "当对手拒绝按你的节奏走时，主动改变议题或缩短对方的忍耐成本，制造其内部的拖延反对派。"
+    },
+    {
+      "id": "S05",
+      "name": "趁火打劫",
+      "group": "胜战计",
+      "essence": "敌之害大，就势取利，刚决柔也。在对方系统正忙于救火、注意力与资源被占满时，取其让出的空间。",
+      "sunzi_ref": "《计篇》「乱而取之」；《九地篇》「敌人开阖，必亟入之」。",
+      "archetype": "STACKELBERG",
+      "sv_profile": {
+        "power_ratio": "even",
+        "stakes": "high",
+        "reversibility": 0.3,
+        "info_asym": 0.3,
+        "time_pressure": "high",
+        "horizon": "single",
+        "actors": 2,
+        "third_party": true,
+        "resource_slack": "medium",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "medium"
+      },
+      "premise": "对方正陷于另一场危机而注意力和资源被抽走；我方有余力在窗口期内完成动作；窗口确实会关闭。",
+      "case_ids": [
+        "C023"
+      ],
+      "modern": "对手处理危机、舆情、人事动荡的窗口期，是推进我方议程成本最低的时刻。但须注意：抢的是市场与人才这类可流动的资源，而不是痛打落水狗。",
+      "failure_conditions": [
+        "对方危机反而触发了外部同情，使我方动作招致反弹",
+        "误判火势——对方的危机比看起来更浅，很快恢复",
+        "此时出击会确立我方的负面信誉锚点，影响后续定价能力"
+      ],
+      "redline": "不得趁对方遭遇不可抗力（灾害、重病、丧亲）时施压；落井下石会在重复博弈中被计息偿还。",
+      "counter": "危机期预设「临时授权」与标准应对，使外部无法读出你的注意力空档；对趁机出价者记档。"
+    },
+    {
+      "id": "S06",
+      "name": "声东击西",
+      "group": "胜战计",
+      "essence": "敌志乱萃，不虞，坤下兑上之象；利其不自主而取之。制造一个必须应付的方向，使另一方向的防守自然变薄。",
+      "sunzi_ref": "《虚实篇》「形人而我无形，则我专而敌分」——我专为一，敌分为十。",
+      "archetype": "SIGNALING",
+      "sv_profile": {
+        "power_ratio": "even",
+        "stakes": "high",
+        "reversibility": 0.4,
+        "info_asym": 0.5,
+        "time_pressure": "medium",
+        "horizon": "single",
+        "actors": 2,
+        "third_party": false,
+        "resource_slack": "medium",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "medium"
+      },
+      "premise": "对方的防御资源有限且必须覆盖多个点；存在一个它不得不守的方向；我方能在假方向上付出足够成本使其可信。",
+      "case_ids": [
+        "C009"
+      ],
+      "modern": "让对手在多处备防：释放出你可能在 A 市场发力、可能挖某人、可能起诉的信号，其资源就会被摊薄；真正的动作落在它刚刚空出来的地方。",
+      "failure_conditions": [
+        "对方的资源足以覆盖所有方向",
+        "假方向付出的成本高于真方向的收益",
+        "对方依据总量而非局部信号来判断我方意图"
+      ],
+      "redline": "商业竞争中的假动作属于正当策略；但向投资者、董事会、监管方作出虚假陈述则构成欺诈，绝不可越线。",
+      "counter": "按「对手可能做的最坏的事」而不是「对手正在做的事」分配防御；对每个薄弱点配置最低限度预案。"
+    },
+    {
+      "id": "S07",
+      "name": "无中生有",
+      "group": "敌战计",
+      "essence": "诳也，非诳也，实其所诳也。少阴、太阴、太阳。由虚入手而终于成实：先以一个不存在的承诺启动对方的行为，再用对方已经付出的不可逆成本把它坐实。",
+      "sunzi_ref": "《计篇》「兵者，诡道也」；形变的方向是让对手先动，而对手一旦先动便难以回头。",
+      "archetype": "SIGNALING",
+      "sv_profile": {
+        "power_ratio": "strong",
+        "stakes": "high",
+        "reversibility": 0.2,
+        "info_asym": 0.7,
+        "time_pressure": "medium",
+        "horizon": "single",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "high",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "low"
+      },
+      "premise": "对方有明显的贪念或急迫需求可被锚定；存在一个可让他「先履行、后兑现」的交换结构；对方缺乏第三方核验能力。",
+      "case_ids": [
+        "C036"
+      ],
+      "modern": "本计的当代可读价值主要在防御侧：凡是要求你「先做不可逆动作、收益随后兑现」的约定，都属于高风险结构。张仪之计的命门始终是时间差。",
+      "failure_conditions": [
+        "对方要求先验良货、分期交割或第三方担保",
+        "对方把索取的东西做成了不可逆的书面凭证",
+        "事后反噬：无中生有会永久摧毁你在该博弈中的可信度，后续所有承诺都需打折"
+      ],
+      "redline": "**高危计**。在绝大多数现代场景中直接构成欺诈、要约要约诱骗或违约。本模型仅在「识别他人使用此计」的防御意义上推荐掌握它。",
+      "counter": "把「你先动、我后给」一律重排为并行可执行；重大承诺要求可验证的阶段性交付物。"
+    },
+    {
+      "id": "S08",
+      "name": "暗度陈仓",
+      "group": "敌战计",
+      "essence": "示之以动，利其静而有主，益动而巽。明修一处为的是把对方的兵力或注意力钉在那里，真正的投送走另一条路。",
+      "sunzi_ref": "《虚实篇》「出其所不趋，趋其所不意」；《九地篇》「乘人之不及，由不虞之道」。",
+      "archetype": "STACKELBERG",
+      "sv_profile": {
+        "power_ratio": "weak",
+        "stakes": "existential",
+        "reversibility": 0.2,
+        "info_asym": 0.5,
+        "time_pressure": "medium",
+        "horizon": "single",
+        "actors": 2,
+        "third_party": true,
+        "resource_slack": "medium",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "medium"
+      },
+      "premise": "对方已对我方形成某种稳定预期；存在一条它判断为不可能的路径；我方有能力在该路径上秘密完成投送。",
+      "case_ids": [
+        "C008",
+        "C020",
+        "C038"
+      ],
+      "modern": "从一个被认为不可能的方向切入：一个不被看好的细分渠道、一条没人相信可行的技术路线、一个对手不认为你会去争取的盟友。其价值恰在于对手没有为它配置防御预算。",
+      "failure_conditions": [
+        "秘密路径的建设周期长于对手察觉所需的时间",
+        "对手保有覆盖全域的基础巡逻能力而非点防御",
+        "此计对同一对手不可二次使用"
+      ],
+      "redline": "不得用于规避审计、监管申报或合同中的明确告知义务。",
+      "counter": "为「对手理论上可行但看起来不理性」的路径保留最低限度的侦察；不要把所有判断建立在对手不会做傻事上。"
+    },
+    {
+      "id": "S09",
+      "name": "隔岸观火",
+      "group": "敌战计",
+      "essence": "阳乖序乱，阴以待逆。暴戾恣睢，其势自毙。顺以动豫，豫顺以动。当对方内部矛盾正在发展时，克制介入的冲动，等待其自行消耗。",
+      "sunzi_ref": "《军形篇》「先为不可胜，以待敌之可胜」——不可胜在己，可胜在敌。",
+      "archetype": "REPEATED",
+      "sv_profile": {
+        "power_ratio": "even",
+        "stakes": "high",
+        "reversibility": 0.6,
+        "info_asym": 0.2,
+        "time_pressure": "low",
+        "horizon": "single",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "high",
+        "opponent_rationality": "vindictive",
+        "moral_constraint": "medium"
+      },
+      "premise": "对方内部存在真实且会发展的利益矛盾；我方的介入反而会促成其内部结盟；我方有能力在外部按兵不动地等待而自身不损耗。",
+      "case_ids": [
+        "C014"
+      ],
+      "modern": "当对手组织内斗时不急于表态站队——外部压力往往会终止内部纷争并使他们团结起来。等待内部消耗到临界点，再以最低成本进入收拾局面。",
+      "failure_conditions": [
+        "矛盾双方中的一方胜出后变得更难对付",
+        "我方等待期间自身也在消耗，且速度更快",
+        "第三方抢先介入并拿走了局面"
+      ],
+      "redline": "不适用于涉及他人安危、劳动权益、违法行为的场景——此时沉默本身即需承担相应后果。",
+      "counter": "内部纷争一旦发觉被外部观望，应立即设立停火机制，宁可内部和解也不要被第三方渔利。"
+    },
+    {
+      "id": "S10",
+      "name": "笑里藏刀",
+      "group": "敌战计",
+      "essence": "信而安之，阴以图之；备而后动，勿使有变。刚中柔外也。用表面的信任与友善换取对方的戒备松弛，同时完成真实的准备。",
+      "sunzi_ref": "《计篇》「卑而骄之」「怒而挠之」；亲近本身就是一种势。",
+      "archetype": "SIGNALING",
+      "sv_profile": {
+        "power_ratio": "even",
+        "stakes": "existential",
+        "reversibility": 0.2,
+        "info_asym": 0.6,
+        "time_pressure": "medium",
+        "horizon": "repeated",
+        "actors": 2,
+        "third_party": true,
+        "resource_slack": "medium",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "low"
+      },
+      "premise": "对方的自负使其容易接受恭维；我方有能力在表面友好的同时完成实质准备；一次性收益值得消耗长期关系。",
+      "case_ids": [
+        "C020",
+        "C002"
+      ],
+      "modern": "示并采取低温回应，换取对方的放松：在并购、谈判、竞争出现前的窗口期保持正常甚至热络的业务往来。但须清醒计算——这等于把长期关系折现成一次收益。",
+      "failure_conditions": [
+        "对方警惕并且不会被表面行为说服（如曹操型）",
+        "第三方及时识破并提醒对方",
+        "一次性收益掩盖了长期信誉的损失，此后再无人愿意与你合作"
+      ],
+      "redline": "**高消耗计**。重复博弈环境下慎用。参考 C020：吴取荆州立即失去了联盟信誉并招来夷陵之战，属于典型的局部最优、全局次优。",
+      "counter": "把交易条款设防：无论关系多好，把关键的可逆性、分期验收与违约成本写进合同，而不是写进交情。"
+    },
+    {
+      "id": "S11",
+      "name": "李代桃僵",
+      "group": "敌战计",
+      "essence": "势必有损，损阴以益阳。承认局部必损，主动选择牺牲哪一部分，而不是让损失随机落在自己最痛的地方。",
+      "sunzi_ref": "《九地篇》「智者之虑，必杂于利害」；《作战篇》「不尽知用兵之害者，则不能尽知用兵之利」。",
+      "archetype": "STACKELBERG",
+      "sv_profile": {
+        "power_ratio": "weak",
+        "stakes": "high",
+        "reversibility": 0.5,
+        "info_asym": 0.3,
+        "time_pressure": "high",
+        "horizon": "single",
+        "actors": 2,
+        "third_party": true,
+        "resource_slack": "low",
+        "opponent_rationality": "rational",
+        "moral_constraint": "high"
+      },
+      "premise": "损失已经不可避免；我方在不同的损失选项之间有选择权；存在一个「丢得起且不致命」的部分。",
+      "case_ids": [
+        "C007"
+      ],
+      "modern": "资源不足时的配速取舍：主动砍掉一条产品线、放弃一个市场、让出一部分利益，以保全核心。关键是要在还清醒时选择牺牲对象，而不是被事态逼到随机承受。",
+      "failure_conditions": [
+        "自以为在弃子，实则丢的是未来赖以翻身的资产",
+        "牺牲的部分带有不可逆的组织创伤（裁员、砍掉核心能力）",
+        "对方看懂了你在丢卒保车，进而追击你保留的那一块"
+      ],
+      "redline": "严禁把他人（下属、合作方、家人）当作可牺牲的棋子来保全自己；本计的适用对象是自己的资源，不是替罪羊。",
+      "counter": "识别对方真正要保的是什么，有时接受他主动放弃的那部分反而避免了自己的消耗。"
+    },
+    {
+      "id": "S12",
+      "name": "顺手牵羊",
+      "group": "敌战计",
+      "essence": "微隙在所必乘，微利在所必得。少阴，少阳。抓战场上的溢出机会，以极低的边际成本附带取得。",
+      "sunzi_ref": "《作战篇》「取敌之利者，货也」；《军争篇》「掠乡分众，廓地分利」。",
+      "archetype": "STACKELBERG",
+      "sv_profile": {
+        "power_ratio": "strong",
+        "stakes": "low",
+        "reversibility": 0.7,
+        "info_asym": 0.2,
+        "time_pressure": "high",
+        "horizon": "single",
+        "actors": 2,
+        "third_party": true,
+        "resource_slack": "high",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "medium"
+      },
+      "premise": "机会是主行动的副产品，边际成本极低；不占用主目标的时间与资源；不改变原定的撤退路线。",
+      "case_ids": [
+        "C006",
+        "C050"
+      ],
+      "modern": "顺手牵羊的正确用法只限于：在完成既定动作的同时收集顺水相一致的机会（信息、人脉、边缘场景），且绝不因此改变原计划。",
+      "failure_conditions": [
+        "**目标替换**：主目标落空后，拿一个易得的小成果来证明此行不虚，从而偏离撤退路径并暴露于新风险（秦师灭滑即殽之败，见 C006）",
+        "小利带来的时间延误超过了它的价值",
+        "顺手取得的利益把你拖进了新的责任"
+      ],
+      "redline": "不得把公司的剩余资源、他人遗漏的功劳据为己有；「微利」也受职业伦理约束。",
+      "counter": "当对手在你身上主动放弃某个东西时，警惕那是引你偏离路线的诱饵。"
+    },
+    {
+      "id": "S13",
+      "name": "打草惊蛇",
+      "group": "攻战计",
+      "essence": "疑以叩实，察而后动；复者，阴之媒也。在情况不明时用低成本的试探替代高成本的冒进，让隐藏的结构自己暴露出来。",
+      "sunzi_ref": "《行军篇》「众树动者，来也；众草多障者，疑也」；《虚实篇》「策之而知得失之计，作之而知动静之理」。",
+      "archetype": "SIGNALING",
+      "sv_profile": {
+        "power_ratio": "even",
+        "stakes": "high",
+        "reversibility": 0.6,
+        "info_asym": -0.5,
+        "time_pressure": "medium",
+        "horizon": "single",
+        "actors": 2,
+        "third_party": true,
+        "resource_slack": "medium",
+        "opponent_rationality": "rational",
+        "moral_constraint": "high"
+      },
+      "premise": "我方对对方的真实状态存在重大未知；存在低成本的试探手段；试探的成本远低于贸然行动的损失。",
+      "case_ids": [
+        "C010",
+        "C027",
+        "C031",
+        "C037",
+        "C043",
+        "C048",
+        "C049"
+      ],
+      "modern": "重大投入前的 MVP、试点、小规模试单、先期访谈。宁可花 5% 的成本去确认，也不要花 100% 的成本去赌。此计的本质是**情报投资**，而不是攻击手段。",
+      "failure_conditions": [
+        "试探本身暴露了你的意图与方向（被反向读出）",
+        "试探让对手警觉从而改变了它原本的状态",
+        "把试探当作行动，反复打草而不决战"
+      ],
+      "redline": "试探不得采用虚假承诺、试用期压榨、骗取方案等手段获取信息；不得以此侵害他人隐私或商业秘密。",
+      "counter": "对反常的问询一律给出标准化答复；不要让自己的反应曲线暴露真实的成本结构。"
+    },
+    {
+      "id": "S14",
+      "name": "借尸还魂",
+      "group": "攻战计",
+      "essence": "有用者，不可借；不能用者，求借。借不能用者而用之，匪我求童蒙，童蒙求我。把自身的行动嫁接到一个已有的、具有正当性的名义或载体之上。",
+      "sunzi_ref": "《计篇》「道者，令民与上同意也」；名义本身就是势能。",
+      "archetype": "COALITION",
+      "sv_profile": {
+        "power_ratio": "weak",
+        "stakes": "high",
+        "reversibility": 0.4,
+        "info_asym": 0.2,
+        "time_pressure": "medium",
+        "horizon": "repeated",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "low",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "high"
+      },
+      "premise": "存在一个现成的、被普遍认可的名义或平台尚未被占用；我方自身缺少正当性但具备执行力；该名义的原持有方无法或不愿使用它。",
+      "case_ids": [
+        "C035",
+        "C013"
+      ],
+      "modern": "借既有品牌、成熟渠道、行业标准的框架推进自己的事；在组织内把新想法挂靠到已获批的战略议题下推进。核心是把说服成本转嫁给一个已被接受的载体。",
+      "failure_conditions": [
+        "所借之名与你的实质长期不一致，最终反噬为「挂羊头卖狗肉」",
+        "名义的原持有方日后主张权利",
+        "被识破后同时失去名义与实质的信任"
+      ],
+      "redline": "不得冒用他人名义、商标、资质；不得借公益、学术、宗教名义牟取私利。",
+      "counter": "检查任何新提议：它到底是在解决它宣称的问题，还是在借用某个正当旗号。"
+    },
+    {
+      "id": "S15",
+      "name": "调虎离山",
+      "group": "攻战计",
+      "essence": "待天以困之，用人以诱之，往蹇来连。设法使对方离开它所占据的优势位置——无论是地形、阵地，还是它的心理舒适区。",
+      "sunzi_ref": "《虚实篇》「故我欲战，敌虽高垒深沟，不得不与我战者，攻其所必救也」；《军争篇》「佯北勿从」。",
+      "archetype": "STACKELBERG",
+      "sv_profile": {
+        "power_ratio": "weak",
+        "stakes": "high",
+        "reversibility": 0.3,
+        "info_asym": 0.4,
+        "time_pressure": "medium",
+        "horizon": "single",
+        "actors": 2,
+        "third_party": true,
+        "resource_slack": "medium",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "medium"
+      },
+      "premise": "对方的优势依赖于特定位置或状态；存在一个它无法拒绝的移动理由；移动之后它将失去原有的优势。",
+      "case_ids": [
+        "C029",
+        "C001",
+        "C010"
+      ],
+      "modern": "把对手引出它的主场：在它不熟悉的技术栈、商业模式或议题上竞争；让对方离开它赖以定价的核心资产，去到一个对双方中性的竞技场。",
+      "failure_conditions": [
+        "对方拒绝移动（识破了你的用意或本就耐得住）",
+        "对方的优势不依赖位置而依赖能力本身",
+        "移动后新战场对我方同样不利甚至更差"
+      ],
+      "redline": "不得以造假、欺骗、 CEO 疲劳战等手段把对手拖入非正常竞价；商业竞争中的议题重设属于正当策略。",
+      "counter": "明确区分「我的主场」与「我的能力」：只要优势来自能力而非地形，被引开就不可怕。"
+    },
+    {
+      "id": "S16",
+      "name": "欲擒故纵",
+      "group": "攻战计",
+      "essence": "逼则反兵，走则减势。紧随勿迫，累其气力，消其斗志，散而后擒，兵不血刃。不急于收网，等对方把罪名做实、人心自去。",
+      "sunzi_ref": "《军争篇》「围师必阙，穷寇勿迫」——留出空间，避免对方的最后反抗。",
+      "archetype": "STACKELBERG",
+      "sv_profile": {
+        "power_ratio": "strong",
+        "stakes": "high",
+        "reversibility": 0.4,
+        "info_asym": 0.6,
+        "time_pressure": "low",
+        "horizon": "single",
+        "actors": 2,
+        "third_party": false,
+        "resource_slack": "high",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "medium"
+      },
+      "premise": "我方始终握有最终出手的能力与信息优势；过早出手会带来显著的名分成本；对方会在纵容中暴露并最终失去支持。",
+      "case_ids": [
+        "C005"
+      ],
+      "modern": "面对内部某个必然会失败的项目或某个必然会出错的人：不必抢先否决，给它足够时间把问题做实，让所有人亲眼看到。代价是你的耐心，收益是无需你背负反对者的名声。",
+      "failure_conditions": [
+        "纵容过程中失控——对方坐大超出我方反应能力（这是本计唯一的致命边界）",
+        "第三方介入改变了力量对比",
+        "名分成本其实低于你的估计，拖延只是白白受损"
+      ],
+      "redline": "**不得用于纵容会造成实际伤害的行为**（安全隐患、财务违规、欺凌）。纵的前提是「损害可控且终将被证明」。",
+      "counter": "察觉被纵容时，立刻把选择权外包：主动向上级或第三方呈现问题，把对手的「等你做实」变成「你自己承认」。"
+    },
+    {
+      "id": "S17",
+      "name": "抛砖引玉",
+      "group": "攻战计",
+      "essence": "类以诱之，击蒙也。先给出低价值但可以引发对方行动的东西，用它的反应换取真正有价值的信息或机会。",
+      "sunzi_ref": "《虚实篇》「善动敌者，形之，敌必从之；予之，敌必取之」。",
+      "archetype": "SIGNALING",
+      "sv_profile": {
+        "power_ratio": "even",
+        "stakes": "medium",
+        "reversibility": 0.6,
+        "info_asym": 0.4,
+        "time_pressure": "medium",
+        "horizon": "single",
+        "actors": 2,
+        "third_party": false,
+        "resource_slack": "medium",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "medium"
+      },
+      "premise": "对方的反应本身是比砖更值钱的信息；砖的成本可控；对方的反应不会被我方的砖所逆转。",
+      "case_ids": [
+        "C010",
+        "C030"
+      ],
+      "modern": "用低价的试用版探出客户的真实预算与决策链路；用一份草稿引出对方的真实意见。本质是：**用一个可控的饵去换对方的成本结构、底线与优先权信息**。",
+      "failure_conditions": [
+        "砖的代价不小于玉（给出的是真正的核心资源）",
+        "对方不是被引出而是被惊退",
+        "砖本身被对方反向利用"
+      ],
+      "redline": "不得以虚假样品、演示造假、虚构资质作为诱饵，那属于欺诈而非抛砖。",
+      "counter": "对明显低于成本价的提议保持警惕，先问：他真正想从我这里得到的，是我付出的价钱以外的什么东西。"
+    },
+    {
+      "id": "S18",
+      "name": "擒贼擒王",
+      "group": "攻战计",
+      "essence": "摧其坚，夺其魁，以解其体。龙战于野，其道穷也。寻找系统的那个节点——去掉它，其余部分的战斗力会自行消散。",
+      "sunzi_ref": "《谋攻篇》「毁人之国而非久也」；《九地篇》「先夺其所爱则听矣」。",
+      "archetype": "STACKELBERG",
+      "sv_profile": {
+        "power_ratio": "weak",
+        "stakes": "high",
+        "reversibility": 0.2,
+        "info_asym": 0.4,
+        "time_pressure": "medium",
+        "horizon": "single",
+        "actors": 2,
+        "third_party": false,
+        "resource_slack": "low",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "medium"
+      },
+      "premise": "对手系统是集中式结构，存在单点依赖；该节点可被识别且可被触及；去掉它之后其余部分会自行瓦解而非重组。",
+      "case_ids": [
+        "C017",
+        "C029",
+        "C011",
+        "C046",
+        "C048"
+      ],
+      "modern": "不要和问题本身缠斗，去找它的控制节点：一个关键的审批人、一条核心的资金流、一个被所有人默认的假设。打掉那个节点，整件事的性质就变了。",
+      "failure_conditions": [
+        "对方是分布式结构（去掉主脑仍能自行运转，反而更难对付）",
+        "去掉的节点会立刻被替代，且继任者更强硬",
+        "节点不可达，硬攻代价高于其余方案的收益"
+      ],
+      "redline": "严禁针对自然人本身（人身攻击、人格诋毁）作为所谓「擒王」手段；打击对象必须是制度性节点而非个人。",
+      "counter": "主动做去中心化：让关键决策权、客户关系、核心知识不必经由单一节点，降低被一击致命的风险。"
+    },
+    {
+      "id": "S19",
+      "name": "釜底抽薪",
+      "group": "混战计",
+      "essence": "不敌其力，而消其势，兑下乾上之象。不与对方的锋锐争力量的消耗，而去切断把三者联系起来的那条供给链。",
+      "sunzi_ref": "《虚实篇》「攻其所必救」的另一面；《作战篇》「军无辎重则亡，无粮食则亡」。",
+      "archetype": "STACKELBERG",
+      "sv_profile": {
+        "power_ratio": "weak",
+        "stakes": "existential",
+        "reversibility": 0.2,
+        "info_asym": 0.3,
+        "time_pressure": "medium",
+        "horizon": "single",
+        "actors": 2,
+        "third_party": true,
+        "resource_slack": "low",
+        "opponent_rationality": "rational",
+        "moral_constraint": "medium"
+      },
+      "premise": "对手的战斗力是某项输入的函数而非自体属性；该输入可被识别、可被触及；切断它的成本低于与之正面对抗。",
+      "case_ids": [
+        "C018",
+        "C014",
+        "C040",
+        "C041",
+        "C046",
+        "C047"
+      ],
+      "modern": "你的对手之所以强大，是因为有一条持续供给它的现金流、渠道、关键人才来源或数据入口。找到它并切断——比在它的强项上追赶便宜得多。",
+      "failure_conditions": [
+        "对手已有替代供给（多点备份或可变现储备）",
+        "该输入被切断后对手被迫孤注一掷，反而更危险",
+        "薪水链是我方的正确性判断错了——以为抽的是薪，其实抽的是不相关的东西"
+      ],
+      "redline": "不得以违法手段（挖角窃取商业秘密、断供危及公共安全、恶意拖欠）实施；商业竞争应限于自身可控制的资源。",
+      "counter": "定期盘点自己的单一供给点并做冗余；对手最容易攻击的地方，就是你自己没意识到自己在依赖的地方。"
+    },
+    {
+      "id": "S20",
+      "name": "浑水摸鱼",
+      "group": "混战计",
+      "essence": "乘其阴乱，利其弱而无主。随，以向晦入宴息。当局面混乱到没有公认规则时，趁势取得平定时不易取得的利益。",
+      "sunzi_ref": "《计篇》「乱而取之」；《九变篇》「屈诸侯者以害，役诸侯者以业」。",
+      "archetype": "COALITION",
+      "sv_profile": {
+        "power_ratio": "weak",
+        "stakes": "medium",
+        "reversibility": 0.5,
+        "info_asym": 0.1,
+        "time_pressure": "high",
+        "horizon": "single",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "low",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "low"
+      },
+      "premise": "局面确已失序且短期不会恢复秩序；我方行动速度快于其他参与者；所得之物在秩序恢复后不会被追索。",
+      "case_ids": [
+        "C027"
+      ],
+      "modern": "行业剧变、组织重组、政策切换的窗口期是资源重定价的时刻，此时获得的资源成本最低。但必须区分：**趁秩序真空快取得，与趁人危难抢过去，是两回事**。",
+      "failure_conditions": [
+        "误判为混乱，实则对方很快重建秩序并秋后算账",
+        "所有参与者都在摸鱼，你只是其中之一且不是最快的",
+        "所得之物在秩序恢复后被追索（合法性不足）"
+      ],
+      "redline": "**高危**。不得趁灾害、事故、对方丧失行为能力时占有其资产；不得在监管真空期做出日后会被定性为不合规的事。",
+      "counter": "混乱期第一原则是「先恢复秩序再谈分配」；哪怕对自己不公平，一个可预测的规则优于一次漂亮的摸鱼。"
+    },
+    {
+      "id": "S21",
+      "name": "金蝉脱壳",
+      "group": "混战计",
+      "essence": "存其形，完其势；友不疑，敌不动。巽而止蛊。保留一个仍然「在正常运作」的外壳，而实体已经安全转移。",
+      "sunzi_ref": "《军形篇》「形兵之极，至于无形」；《虚实篇》「形人而我无形」。",
+      "archetype": "SIGNALING",
+      "sv_profile": {
+        "power_ratio": "weak",
+        "stakes": "existential",
+        "reversibility": 0.5,
+        "info_asym": 0.4,
+        "time_pressure": "high",
+        "horizon": "single",
+        "actors": 2,
+        "third_party": false,
+        "resource_slack": "low",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "medium"
+      },
+      "premise": "局已不可为一个､退出是不可避免的；存在维持表象的手段且不贵；拖延出的时间足以完成实体转移。",
+      "case_ids": [
+        "C026",
+        "C007"
+      ],
+      "modern": "体面的退出]：在公开场合保留承诺与日常活动，实质上周密地撤出人、钱、注意力。关键是给外部一个连续的故事，避免引发挤兑式反应。",
+      "failure_conditions": [
+        "对方有能力低成本核验（独立侦察而不依赖表象）",
+        "壳的成本高于早退的成本，脱壳变成慢性消耗",
+        "维持表象期间被抓住实据，损失远大于直接退出"
+      ],
+      "redline": "不得以维持表象的方式骗取消费者、投资人的持续投入；撒谎延后真相披露在许多法域构成欺诈。",
+      "counter": "持续核验而非一次性核验：让表象需要不断被支撑，而不是一次通过。"
+    },
+    {
+      "id": "S22",
+      "name": "关门捉贼",
+      "group": "混战计",
+      "essence": "小敌困之。剥，不利有攸往。对弱小的敌人不要穷追，而要围困聚歼——把它放进一个它逃不出去的界定空间里处理。",
+      "sunzi_ref": "《谋攻篇》「十则围之，五则攻之」；《九地篇》「帅与之期，如登高而去其梯」。",
+      "archetype": "STACKELBERG",
+      "sv_profile": {
+        "power_ratio": "strong",
+        "stakes": "medium",
+        "reversibility": 0.4,
+        "info_asym": 0.3,
+        "time_pressure": "medium",
+        "horizon": "single",
+        "actors": 2,
+        "third_party": false,
+        "resource_slack": "high",
+        "opponent_rationality": "rational",
+        "moral_constraint": "medium"
+      },
+      "premise": "我方资源足以完全封闭对方的可选项；问题需要一次性解决而非反复追剿；有足够的耐心等待其力竭。",
+      "case_ids": [
+        "C011",
+        "C006"
+      ],
+      "modern": "对反复出现的小问题，不要一次一次处理，而是把它放进一个封闭的处理框架：一个明确的验收标准、一个固定时限、一个不可绕过的责任人。给它一个边界，让它在里面耗尽。",
+      "failure_conditions": [
+        "关门之后自己也出不去（资源被长期套牢）",
+        "对方本无害，围困反而激发了拼死反抗",
+        "围困成本高于放其离场的成本"
+      ],
+      "redline": "不得针对弱势个体施加与其行为不相称的围剿；不得利用优势地位进行排除竞争。",
+      "counter": "一旦发现自己被置于不可逆的封闭结构，立即考虑**付代价换出口**，成本随时间指数上升。"
+    },
+    {
+      "id": "S23",
+      "name": "远交近攻",
+      "group": "混战计",
+      "essence": "形禁势格，利从近取，害以远隔。按地理与可得性的顺序处理多个对手，每个时间切片上只对付一个。",
+      "sunzi_ref": "《谋攻篇》「上兵伐谋，其次伐交」；《九地篇》「敌人开阖，必亟入之」。",
+      "archetype": "COALITION",
+      "sv_profile": {
+        "power_ratio": "strong",
+        "stakes": "existential",
+        "reversibility": 0.4,
+        "info_asym": 0.4,
+        "time_pressure": "low",
+        "horizon": "repeated",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "high",
+        "opponent_rationality": "rational",
+        "moral_constraint": "low"
+      },
+      "premise": "资源足以逐个处理；对手之间存在地理或利益上的可隔离性；远处一方短期内不会意识到自己是下一个。",
+      "case_ids": [
+        "C034",
+        "C030",
+        "C046",
+        "C047"
+      ],
+      "modern": "面对多个问题时要有严格的时序：不要同时开战。先处理最容易消化且能被保留的那一个（近），同时对暂时无法处理的一方保持正常往来（远），避免它们形成合力。",
+      "failure_conditions": [
+        "远方识破了分时隔离的本质并联手",
+        "近处的攻击久拖不决，把问题变成了消耗战",
+        "第三方将被切割方团结起来而反过来联系 All"
+      ],
+      "redline": "远交不等于撒谎结盟：若签订了明确约定则须遵守；不得虚构共同利益诱导他方放弃抵抗。",
+      "counter": "当你发现力量最强的一方正在逐个处理他人时，即使你不是当前目标也应立即寻找盟友；被分时隔离的各方若能合并谈判筹码，即刻变强。"
+    },
+    {
+      "id": "S24",
+      "name": "假道伐虢",
+      "group": "混战计",
+      "essence": "两大之间，敌胁以从，我假以势。困，有言不信。以获得通行权为名介入，在过程中改变力量格局，最终连授予通行权的一方也一并吞下。",
+      "sunzi_ref": "《计篇》「攻其无备，出其不意」——取得入场券是手段，真正的目标是宿主本身。",
+      "archetype": "COALITION",
+      "sv_profile": {
+        "power_ratio": "strong",
+        "stakes": "existential",
+        "reversibility": 0.2,
+        "info_asym": 0.5,
+        "time_pressure": "low",
+        "horizon": "single",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "high",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "low"
+      },
+      "premise": "存在一个可以请求的名义（通道、合作、援助）；介入后我方力量足以覆盖原邀请方；对方之间的信任度低于我方与它们的距离。",
+      "case_ids": [
+        "C004",
+        "C021",
+        "C039",
+        "C044"
+      ],
+      "modern": "本计的当代价值同样主要在防御侧（见 C004 唇亡齿寒）：**当中介方、平台方、渠道方的地位依赖于它所服务的两方都存在时，任何一方的倒下都意味着它自己权重的下降。**",
+      "failure_conditions": [
+        "邀请方保有独立的监督与退出能力（箱中约定明确的退出时间表与兵力约束）",
+        "第三方及时提醒了邀请方",
+        "需要晋升的名誉大于一次获得的收益（重复博弈环境下信用会被追索）"
+      ],
+      "redline": "**高危**。以合作为名侵吞合作方资产在多数法域构成违约或侵权；在职场中利用他人求助之机篡夺其职责亦属背信。",
+      "counter": "任何他人提出进入你的业务核心的请求，都绑定三项东西：明确的范围、明确的期限、以及到期自动退出的默认条款。"
+    },
+    {
+      "id": "S25",
+      "name": "偷梁换柱",
+      "group": "并战计",
+      "essence": "频更其阵，抽其劲旅，待其自败，而后乘之。曳其轮也。在对方不察觉的情况下替换掉系统的承重部件，使其结构失效而不自知。",
+      "sunzi_ref": "《军形篇》「善战者，致人而不致于人」；《势篇》「奇正相生」。",
+      "archetype": "SIGNALING",
+      "sv_profile": {
+        "power_ratio": "strong",
+        "stakes": "high",
+        "reversibility": 0.2,
+        "info_asym": 0.6,
+        "time_pressure": "medium",
+        "horizon": "single",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "medium",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "low"
+      },
+      "premise": "我方有权限接触对方系统的关键部件；替换可以在不触发校验的情况下完成；替换后的状态对对方不可见或难以举证。",
+      "case_ids": [
+        "C020",
+        "C038"
+      ],
+      "modern": "本计的现代正当用法极少，主要价值在防御：为防止被偷梁换柱，任何关键岗位、关键代码、关键账目都必须有不可绕过的第二重复核与可追溯改动记录。",
+      "failure_conditions": [
+        "替换留下痕迹且可被举证（审计、日志、第三方见证）",
+        "被替换方的继任者比原强者更能解决问题",
+        "一次成功之后，所有人都知道你做得出这种事"
+      ],
+      "redline": "**高危，多数情形违法**：篡改合同与账目、替换产品成分以次充好、冒名顶替资质。本模型列此计是为识别而非为使用。",
+      "counter": "关键事项一律要求「改动可追溯 + 双人复核 + 定期外部审计」；不要让同一个人既是执行者又是记录者。"
+    },
+    {
+      "id": "S26",
+      "name": "指桑骂槐",
+      "group": "并战计",
+      "essence": "大凌小者，警以诱之。刚中而应，行险而顺。选择一个有代表性的对象执行一次规则，用它的高可见度说服所有人规则是真的。",
+      "sunzi_ref": "《行军篇》「令之以文，齐之以武，是谓必取」；《地形篇》「视卒如婴儿，故可与之赴深溪」。",
+      "archetype": "REPEATED",
+      "sv_profile": {
+        "power_ratio": "strong",
+        "stakes": "medium",
+        "reversibility": 0.6,
+        "info_asym": 0.2,
+        "time_pressure": "medium",
+        "horizon": "repeated",
+        "actors": 2,
+        "third_party": true,
+        "resource_slack": "medium",
+        "opponent_rationality": "rational",
+        "moral_constraint": "high"
+      },
+      "premise": "规则尚未被相信；存在一个违规明显且地位/可见度适当的对象；执行之后要配套利益一致的动作。",
+      "case_ids": [
+        "C032",
+        "C033",
+        "C043"
+      ],
+      "modern": "新规则出台后的第一次执行必须公开且成本高昂，否则整套规则形同虚设。选择对象时优先选**有可见度而非最弱势**的一方——信号的传播率决定它的价值。但必须与「同甘共苦」配套：只罚不赏是暴政，只赏不罚是收买。",
+      "failure_conditions": [
+        "只惩罚不共享利益 → 只有恐惧没有向心力",
+        "选择了不可动摇的对象 → 执行者本人被反噬",
+        "规则本身不合理 → 严格执行反而加速合法性流失"
+      ],
+      "redline": "严禁拿弱势者作临时的立威工具；不得借「杀鸡儆猴」之名行选择性执法或报复之实。",
+      "counter": "若被选中作为示范，第一时间把个案上升为规则议题：追问「此规则是否适用于所有人」，多数杀鸡儆猴会在这一步失效。"
+    },
+    {
+      "id": "S27",
+      "name": "假痴不癫",
+      "group": "并战计",
+      "essence": "宁伪作不知不为，不伪作假知妄为。静不露机，云雷屯也。主动放弃当前的存在感，换取对手注意力预算的彻底解除。",
+      "sunzi_ref": "《计篇》«卑而骄之»；《九变篇》「屈诸侯者以害，役诸侯者以业」。",
+      "archetype": "SIGNALING",
+      "sv_profile": {
+        "power_ratio": "weak",
+        "stakes": "existential",
+        "reversibility": 0.2,
+        "info_asym": 0.7,
+        "time_pressure": "low",
+        "horizon": "repeated",
+        "actors": 2,
+        "third_party": true,
+        "resource_slack": "medium",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "medium"
+      },
+      "premise": "当前无力正面争取；时间对我方有利；对手会因我方退场而放松戒备；存在可供将来兑现的资源未被消耗。",
+      "case_ids": [
+        "C023"
+      ],
+      "modern": "在实力不足时不要持续表达对某事的反对或在意——那只会让对方把防御资源对准你。淡出议题、把注意力转移到别处，等待对方的内部逻辑走向自己的反面。",
+      "failure_conditions": [
+        "对手生性多疑或不以外显行为作为判断依据",
+        "长时间示弱导致真正的资源与盟友流失（装死会变成真死）",
+        "错过了不可重来的介入窗口"
+      ],
+      "redline": "不得以假装无能力的方式规避本应承担的责任、债务或法定义务。",
+      "counter": "把注意力配置与对方的可见热度脱钩：即使对手已沉默，也保留对其命门的最低限度监控。"
+    },
+    {
+      "id": "S28",
+      "name": "上屋抽梯",
+      "group": "并战计",
+      "essence": "假之以便，唆之使前，断其援应，陷之死地。先给一个有利可图的台阶引其上行，再撤去其后路，使其不得不接受我方条件。",
+      "sunzi_ref": "《九地篇》「帅与之期，如登高而去其梯」；《虚实篇》「先处战地而待敌者佚」。",
+      "archetype": "STACKELBERG",
+      "sv_profile": {
+        "power_ratio": "strong",
+        "stakes": "high",
+        "reversibility": 0.2,
+        "info_asym": 0.5,
+        "time_pressure": "medium",
+        "horizon": "single",
+        "actors": 2,
+        "third_party": true,
+        "resource_slack": "high",
+        "opponent_rationality": "rational",
+        "moral_constraint": "medium"
+      },
+      "premise": "对方存在一个明显可图的位置可攀；我方控制着其上行的通道或退出条件；对方上去之后的选择集必然收窄。",
+      "case_ids": [
+        "C022",
+        "C036"
+      ],
+      "modern": "注意本计的双重语义：正史中的经典用法（见 C022 刘琦去梯）反而是**在信息获取场景下消除对方的顾虑**——把「说了会传出去」这个退路抽掉，真话才出来。这比军事义更具日常可用性。",
+      "failure_conditions": [
+        "对方在上去之前就要求了退出保障",
+        "抽梯的动作被第三方看见 → 声誉损失大于收益",
+        "对方选择宁死不下，把单次博弈变成两败俱伤"
+      ],
+      "redline": "**高危**：以「你已经投入这么多」为由诱导追加承诺（沉没成本要挟）在商业伦理与法律上都存疑；不得设置人身或财务陷阱。",
+      "counter": "任何要你「再投入一点就能回本」的建议，先按现在立刻止损来重新算一遍，不要接受对方设定的退出条件。"
+    },
+    {
+      "id": "S29",
+      "name": "树上开花",
+      "group": "并战计",
+      "essence": "借局布势，力小势大。鸿渐于陆，其羽可用为仪也。用现有的有限资源制造出远大于其实际体量的态势，使对方误判力量对比。",
+      "sunzi_ref": "《势篇》「势者，因利而制权也」；《虚实篇》「形人而我无形」。",
+      "archetype": "SIGNALING",
+      "sv_profile": {
+        "power_ratio": "very_weak",
+        "stakes": "high",
+        "reversibility": 0.5,
+        "info_asym": 0.3,
+        "time_pressure": "high",
+        "horizon": "single",
+        "actors": 2,
+        "third_party": true,
+        "resource_slack": "low",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "medium"
+      },
+      "premise": "我方资源确实有限但存在可强化的点；对方无法低成本核验；一次性的态势足以改变对方当下的判断。",
+      "case_ids": [
+        "C016",
+        "C017"
+      ],
+      "modern": "把注意力做成规模：一个精致的案例、一份完整的白皮书、一场体面的发布会，其效果可以显著超过真实体量。关键是**局部的高密度胜过全面的平庸**。",
+      "failure_conditions": [
+        "对方要求按真实容量交付（虚张声势无法兑现时即为致命）",
+        "同一对手重复使用此计（先验更新后不再有效）",
+        "开花的成本超过了它买来的时间价值"
+      ],
+      "redline": "不得虚构资质、客户名单、财务数据、团队规模；「势」可以营造，「实」不能造假。",
+      "counter": "要求可核验的实际履约能力证据（客户推荐、试运行、分期验收），而非宣传材料。"
+    },
+    {
+      "id": "S30",
+      "name": "反客为主",
+      "group": "并战计",
+      "essence": "乘隙插足，扼其主机，渐之进也。以受邀者的身份进入，逐步掌握关键职能，最终把名义上的所有权转化为实际的控制权。",
+      "sunzi_ref": "《虚实篇》「善战者，致人而不致于人」；《九地篇》「先夺其所爱则听矣」。",
+      "archetype": "STACKELBERG",
+      "sv_profile": {
+        "power_ratio": "weak",
+        "stakes": "existential",
+        "reversibility": 0.3,
+        "info_asym": 0.4,
+        "time_pressure": "low",
+        "horizon": "repeated",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "medium",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "high"
+      },
+      "premise": "存在正当的入场名义（邀请、合作、援助）；我方能力为对方所需；每一步转换都可找到正当理由；虽耗时但收益更稳。",
+      "case_ids": [
+        "C021",
+        "C022",
+        "C031",
+        "C007",
+        "C038"
+      ],
+      "modern": "本模型推荐把此计理解为**非零和的权力积累**：先是不可或缺，再是主导议程，最后才是名义上的位置。急于跳到最后一步（如庞统上策径袭成都）会丢掉所有正当性，代价远超收益。",
+      "failure_conditions": [
+        "主方始终把关键资源与退出条款握在自己手里（参见 S24 防御条款）",
+        "第三方警觉并提醒主方",
+        "急于摊牌，把渐进变成篡夺，失去道义与盟友"
+      ],
+      "redline": "不得利用合作方求助之机侵吞其业务、客户或知识产权；不得借此绕过竞业、保密与受托义务。",
+      "counter": "对外来协助者设定：明确范围、明确期限、关键密码与客户关系不外包、到期默认退出。"
+    },
+    {
+      "id": "S31",
+      "name": "美人计",
+      "group": "败战计",
+      "essence": "兵强者，攻其将；将智者，伐其情。将弱兵颓，其势自萎。利用关键人物的注意力与偏好弱点，使其判断系统性偏移而不自知。",
+      "sunzi_ref": "《计篇》「利而诱之，乱而取之」；《九变篇》「将有五危」——廉洁、爱民等品格本身即可被利用。",
+      "archetype": "SIGNALING",
+      "sv_profile": {
+        "power_ratio": "weak",
+        "stakes": "high",
+        "reversibility": 0.2,
+        "info_asym": 0.4,
+        "time_pressure": "low",
+        "horizon": "single",
+        "actors": 2,
+        "third_party": true,
+        "resource_slack": "low",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "low"
+      },
+      "premise": "对手存在明确且可被持续供给的偏好弱点；我方有能力低成本维持该供给；对方的判断会因之系统性偏移。",
+      "case_ids": [],
+      "evidence_warning": "史料可信度警告：本计流传最广的范例（献西施）在《史记》中并无记载，仅见于《吴越春秋》《越绝书》等汉代晚期文献，属 T2 至 T3 层；另一范例（貂蝉）在正史中全无其人，属《三国演义》虚构。因此本计缺少可靠的 T1 层史案支撑，本模型不为其提供 case_ids。",
+      "modern": "当代最常见且确凿的形态并非「美人」，而是针对性的投其所好：供应商对接采购、候选方对接决策者。可迁移的内核是——当一个人的偏好被对手掌握时，他的判断会系统性偏移，而他本人察觉不到。",
+      "failure_conditions": [
+        "对方察觉自己的偏好正被系统性供给并产生警觉",
+        "第三方（内控、审计、家属）构成有效制衡",
+        "一次性曝光带来的法律与声誉后果远超收益"
+      ],
+      "redline": "禁忌：利用他人情感或弱点谋取利益，在职场与商业中多构成利益冲突、商业贿赂甚至敲诈。本模型仅在「识别自己正被此计影响」的防御意义下列出。",
+      "counter": "建立回避制度：凡涉及对你有持续供给的一方，一律回避表决；并对异常优待自问一句「为什么是我」。"
+    },
+    {
+      "id": "S32",
+      "name": "空城计",
+      "group": "败战计",
+      "essence": "虚者虚之，疑中生疑。在确无防守能力时，做出一个只有「有恃无恐」才可解释的姿态，诱使对方按最坏情形解读。",
+      "sunzi_ref": "《虚实篇》「形兵之极，至于无形」；《计篇》「实则虚之，虚则实之」。",
+      "archetype": "SIGNALING",
+      "sv_profile": {
+        "power_ratio": "very_weak",
+        "stakes": "existential",
+        "reversibility": 0.3,
+        "info_asym": -0.5,
+        "time_pressure": "high",
+        "horizon": "single",
+        "actors": 2,
+        "third_party": false,
+        "resource_slack": "low",
+        "opponent_rationality": "rational",
+        "moral_constraint": "medium"
+      },
+      "premise": "逃跑的成本必为正且巨大；存在一个只有「有伏兵」才可解释的姿态；对方的先验中允许「伏兵」这一解释存在。",
+      "case_ids": [
+        "C016"
+      ],
+      "evidence_warning": "重要辨析：最广为人知的诸葛亮空城计为正史所无，出自《三国志》裴注引郭冲三事，而裴松之本人已辨其妄，属 T3 层虚构。本计真正的 T1 层史案是 C016 李广上郡遇匈奴，那才是可据以推演的实例。",
+      "modern": "现代内核是：当你的行为可以有多种解释时，选择那个把不确定性推给对方、且只有对你有利的情形成立的解释。李广没有装强，他选了一个不可能被解释成害怕的姿态。前提是对方必须首先相信你不会无端送死。",
+      "failure_conditions": [
+        "对方愿意用低成本去核验（一次小规模试探即可戳穿）",
+        "对方的先验中不含「伏兵」这一可能性",
+        "同一对手面前不可二次使用——先验一旦更新即永久失效"
+      ],
+      "redline": "用于竞争姿态属正当；用于掩盖真实的资不抵债、履约不能、财务造假则构成欺诈。",
+      "counter": "试探成本很低时一定要试探；不要让自己的谨慎变成对手的机会。"
+    },
+    {
+      "id": "S33",
+      "name": "反间计",
+      "group": "败战计",
+      "essence": "疑中之疑。在对方已存在的信任裂缝上施加信息，使其内部自行完成怀疑的推理链，而不由我方出面指控。",
+      "sunzi_ref": "《用间篇》「反间者，因其敌间而用之」——故三军之事，莫亲于间，赏莫厚于间。",
+      "archetype": "SIGNALING",
+      "sv_profile": {
+        "power_ratio": "even",
+        "stakes": "existential",
+        "reversibility": 0.4,
+        "info_asym": 0.3,
+        "time_pressure": "medium",
+        "horizon": "single",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "medium",
+        "opponent_rationality": "rational",
+        "moral_constraint": "low"
+      },
+      "premise": "对手存在真实的信任裂缝；所传信息与对方已有疑虑方向一致；信息经由第三方载体而非我方之口传递。",
+      "case_ids": [
+        "C035",
+        "C026",
+        "C027",
+        "C041"
+      ],
+      "modern": "反间的核心不是制造谣言，而是让对方用自己的信息源得到我方想要的结论（参见 C035 的太牢具：汉方从头到尾没有指控任何人）。防御侧更为重要：凡听闻关于自己人的负面信息，先看清是谁获益。",
+      "failure_conditions": [
+        "对手的信任结构本身稳固（如刘备与诸葛亮）",
+        "对方察觉到「有人在挑拨」这一层元事实",
+        "被识破后我方信誉彻底归零"
+      ],
+      "redline": "高危：造谣、诽谤、诬告均可能构成侵权或刑事犯罪，不得针对个人品行进行不实指控。",
+      "counter": "遇到关于核心人员的负面信息，一律先问三件事：谁提供的、谁受益、能否独立验证。把这三问制度化。"
+    },
+    {
+      "id": "S34",
+      "name": "苦肉计",
+      "group": "败战计",
+      "essence": "人不自害，受害必真。付出真实且可见的代价以建立可信度——因为人不会伤害自己，所以自伤不可伪造。",
+      "sunzi_ref": "《用间篇》「事莫密于间」；《九地篇》「投之亡地然后存」——自伤即承诺。",
+      "archetype": "CHICKEN",
+      "sv_profile": {
+        "power_ratio": "weak",
+        "stakes": "existential",
+        "reversibility": 0.1,
+        "info_asym": 0.4,
+        "time_pressure": "high",
+        "horizon": "single",
+        "actors": 2,
+        "third_party": true,
+        "resource_slack": "low",
+        "opponent_rationality": "rational",
+        "moral_constraint": "medium"
+      },
+      "premise": "任务收益远大于自伤代价；自伤必须真实且可被对方观察到；存在一次性、不可重复的使用窗口。",
+      "case_ids": [],
+      "evidence_warning": "史料可信度警告：流传最广的范例（周瑜打黄盖）细节出自《三国演义》，属 T3。正史可确证的是黄盖确实诈降并担任火攻前锋（《三国志·黄盖传》T1），但自受杖刑这一段并无正史依据。另一范例（要离断臂）出自《吴越春秋》，属 T2。因此本计缺少 T1 层史案，本模型不为其提供 case_ids。",
+      "modern": "真正可迁移的内核是「可信承诺的成本原则」：要让对方相信你不会退让，必须做一件若撒谎则自己受损的事。这与背水一战（C010）同源——两者都是通过改变自己的可选集来消除对方的怀疑。",
+      "failure_conditions": [
+        "自伤被识破为表演（对方察觉代价是假的）",
+        "代价真实而收益未兑现，净损失无法挽回",
+        "旁观者读到的是「此人连自己都肯伤害」，从而更不信任你"
+      ],
+      "redline": "禁忌：任何针对自己或他人的实际伤害都不应作为策略手段，不存在正当的自伤取信场景。",
+      "counter": "对过高成本的投名状保持警觉：愿意伤害自己来取信于你的人，同样可能为了别的东西伤害你。"
+    },
+    {
+      "id": "S35",
+      "name": "连环计",
+      "group": "败战计",
+      "essence": "将多兵众，不可以敌，使其自累，以杀其势。叠加多个相互制约的约束，使对方的优势因内部互相牵制而失效。",
+      "sunzi_ref": "《虚实篇》「我专而敌分」；《九变篇》「屈诸侯者以害，役诸侯者以业」。",
+      "archetype": "COALITION",
+      "sv_profile": {
+        "power_ratio": "weak",
+        "stakes": "existential",
+        "reversibility": 0.3,
+        "info_asym": 0.4,
+        "time_pressure": "medium",
+        "horizon": "single",
+        "actors": 3,
+        "third_party": true,
+        "resource_slack": "low",
+        "opponent_rationality": "myopic",
+        "moral_constraint": "medium"
+      },
+      "premise": "对方的强大来自多个部件的有效协同；这些部件之间存在可利用的相互制约；单策不足以撼动而需多策并行。",
+      "case_ids": [
+        "C011",
+        "C029"
+      ],
+      "modern": "面对体量远大于自己的对手，单一手段往往不够。真正有效的是把多条约束同时叠加：现金流、关键人、渠道依赖、外部压力并行施加，使其在多个方向上互相牵制。本质是把对手的优势转化为它的刚性。",
+      "failure_conditions": [
+        "任何一环先崩导致整体暴露",
+        "多线并行超出我方协调能力，自己先乱",
+        "对手通过主动舍弃其中一环化解整条链"
+      ],
+      "redline": "各环均须各自合规；不得以任何一环的违法性（恶意串通、操纵市场）来换取整体效果。",
+      "counter": "遇到多线压力时，优先找出链条里自己可以主动舍弃的那一环——主动断链往往好过被动崩盘。"
+    },
+    {
+      "id": "S36",
+      "name": "走为上",
+      "group": "败战计",
+      "essence": "全师避敌。在必输的单次博弈中，保存继续博弈的资格，其价值高于本轮的名义胜负。",
+      "sunzi_ref": "《谋攻篇》「少则能逃之，不若则能避之」；《军形篇》「先为不可胜，以待敌之可胜」——不合于利而止。",
+      "archetype": "STACKELBERG",
+      "sv_profile": {
+        "power_ratio": "very_weak",
+        "stakes": "existential",
+        "reversibility": 0.8,
+        "info_asym": -0.3,
+        "time_pressure": "high",
+        "horizon": "repeated",
+        "actors": 2,
+        "third_party": true,
+        "resource_slack": "low",
+        "opponent_rationality": "rational",
+        "moral_constraint": "high"
+      },
+      "premise": "本轮必输且损失不可逆；退出仍能保留核心能力与再起的条件；存在未来可再度参与博弈的窗口。",
+      "case_ids": [
+        "C007",
+        "C012",
+        "C015",
+        "C018",
+        "C031",
+        "C013",
+        "C017",
+        "C019",
+        "C024",
+        "C025",
+        "C028",
+        "C037",
+        "C040",
+        "C042",
+        "C045",
+        "C049",
+        "C050"
+      ],
+      "modern": "全套三十六计中最被低估、也最常被误认为怯懦的一计。它的数学表述很清楚：在折现因子足够大的重复博弈里，保留继续参与的权利，其价值高于本轮的最优收益。退出必须专业：留有余地、交割清楚、保住关系——怎么走决定了下一次还能不能回来。",
+      "failure_conditions": [
+        "退出时丢掉的是核心能力而非仅沉没成本（把该留的丢了）",
+        "退出方式恶劣，断了所有未来的路",
+        "把走当成习惯性逃避，在本该坚持的事上也退"
+      ],
+      "redline": "不适用于逃避应尽的法律义务、债务、抚养与受托责任——那不是走，是逃；两者区别在于是否履行了完整的交割责任。",
+      "counter": "对手若选择撤退，评估其是否带走了核心能力；有条不紊的撤退值得警惕，混乱的溃退才值得追击。"
+    }
+  ]
+}

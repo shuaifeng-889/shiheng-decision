@@ -1,0 +1,26 @@
+# 统一行尾，避免 Windows 上提交的 CRLF 破坏 Unix 脚本
+# 没有这一行，install.sh 在 Linux/macOS 上会报 "bad interpreter: ^M"
+
+* text=auto eol=lf
+
+# Shell 脚本必须是 LF，否则无法执行
+*.sh    text eol=lf
+
+# PowerShell 与批处理用 CRLF
+*.ps1   text eol=crlf
+*.bat   text eol=crlf
+*.cmd   text eol=crlf
+
+# 源码与数据统一 LF
+*.py    text eol=lf
+*.json  text eol=lf
+*.md    text eol=lf
+*.yml   text eol=lf
+*.yaml  text eol=lf
+
+# 二进制文件不做转换
+*.png   binary
+*.jpg   binary
+*.gif   binary
+*.ico   binary
+*.pdf   binary

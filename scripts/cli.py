@@ -295,6 +295,22 @@ def cmd_decide(args: argparse.Namespace) -> int:
                  "source": c.detail.get("source")}
                 for c in report["cases"]
             ],
+            "corpus_hits": [
+                {"id": h.id, "book": h.book, "juan": h.juan,
+                 "quote_type": h.quote_type, "quote": h.quote,
+                 "plain": h.plain, "use": h.use,
+                 "failure_if": h.failure_if, "score": h.score}
+                for h in report.get("corpus_hits", [])
+            ],
+            "model_hits": [
+                {"id": h.id, "name": h.name, "en": h.en,
+                 "archetype": h.archetype, "structure": h.structure,
+                 "matched_diagnosis": h.matched_diagnosis,
+                 "conclusion": h.conclusion, "failure": h.failure,
+                 "modern": h.modern, "counter": h.counter, "score": h.score}
+                for h in report.get("model_hits", [])
+            ],
+            "web_queries": report.get("web_queries", []),
             "stratagems": [
                 {"id": c.id, "name": c.name, "score": c.score,
                  "similarity": round(c.similarity, 4),

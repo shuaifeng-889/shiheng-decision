@@ -32,67 +32,16 @@ from typing import Any, Dict, List, Optional, Sequence, Tuple
 from nash_core import (ARCHETYPES, ARCHETYPE_STRATAGEMS, classify_2x2,
                        diagnose, infer_archetype_from_sv)
 
+# 共享的处境编码与距离，已抽到 engine_common（retriever.py 也依赖它）。
+# 这里重新导出以保持向后兼容（cli.py 仍 `from engine import ORDINAL, WEIGHTS`）。
+from engine_common import (MAX_DIST, NUMERIC_RANGE, ORDINAL, WEIGHTS,
+                           normalize_sv, sv_distance)  # noqa: F401
+
+from retriever import (CorpusHit, HybridRetriever, ModelHit,
+                       build_history_queries, build_web_queries)  # noqa: F401
+
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATA = os.path.join(HERE, "..", "data")
-
-
-# ---------------------------------------------------------------------------
-# L0 处境编码：枚举 -> 序数，便于距离计算
-# ---------------------------------------------------------------------------
-
-ORDINAL = {
-    "power_ratio": {"very_weak": -2, "weak": -1, "even": 0, "strong": 1, "very_strong": 2},
-    "stakes":      {"low": 0, "medium": 1, "high": 2, "existential": 3},
-    "time_pressure": {"low": 0, "medium": 1, "high": 2},
-    "resource_slack": {"low": 0, "medium": 1, "high": 2},
-    "moral_constraint": {"low": 0, "medium": 1, "high": 2},
-    "opponent_rationality": {"myopic": 0, "rational": 1, "vindictive": 2},
-    "horizon":    {"single": 0, "repeated": 1},
-}
-
-# 各维度的判别权重。取值理由写进注释，便于后续按场景重标定。
-WEIGHTS = {
-    "power_ratio": 3.0,           # 强弱对比决定攻守的基本取向
-    "stakes":      2.0,           # 赌注决定可接受的风险敞口
-    "reversibility": 2.5,         # 不可逆性决定能否用一次性激烈手段
-    "info_asym":   2.0,           # 信息差是所有信号的燃料
-    "time_pressure": 1.5,         # 时间压力压制谋略空间
-    "horizon":     2.5,           # 单次/重复决定信誉是否计息，影响最大
-    "actors":      2.0,           # 参与方数决定是否需要考虑第三方
-    "third_party": 1.5,
-    "resource_slack": 1.5,        # 冗余决定能否打持久消耗
-    "opponent_rationality": 2.0,  # 对手类型决定信号能否被解读
-    "moral_constraint": 2.0,      # 红线约束，直接参与风险折扣
-}
-
-NUMERIC_RANGE = {"reversibility": (0.0, 1.0), "info_asym": (-1.0, 1.0),
-                 "actors": (2.0, 3.0)}
-MAX_DIST = sum(WEIGHTS.values())  # 归一化上界（各维最大偏离时的加权和）
-
-
-def normalize_sv(sv: Dict[str, Any]) -> Dict[str, float]:
-    """把混合类型的 SV 统一映射到 [0,1] 区间的可比向量。"""
-    out: Dict[str, float] = {}
-    for dim, w in WEIGHTS.items():
-        v = sv.get(dim)
-        if dim in ORDINAL:
-            table = ORDINAL[dim]
-            lo = min(table.values())
-            hi = max(table.values())
-            out[dim] = (table[str(v)] - lo) / (hi - lo) if v in table else 0.5
-        elif dim == "third_party":
-            out[dim] = 1.0 if v else 0.0
-        else:
-            lo, hi = NUMERIC_RANGE[dim]
-            out[dim] = (float(v) - lo) / (hi - lo)
-    return out
-
-
-def sv_distance(a: Dict[str, Any], b: Dict[str, Any]) -> float:
-    """加权曼哈顿距离，返回 0..1 的相似度（1 表示完全契合）。"""
-    na, nb = normalize_sv(a), normalize_sv(b)
-    raw = sum(WEIGHTS[d] * abs(na[d] - nb[d]) for d in WEIGHTS)
-    return 1.0 - raw / MAX_DIST
 
 
 def encode_sv(answers: Dict[str, str]) -> Dict[str, Any]:
@@ -186,6 +135,8 @@ class ShihengEngine:
             self.stratagems = json.load(f)["stratagems"]
         self.case_by_id = {c["id"]: c for c in self.cases}
         self.strat_by_id = {s["id"]: s for s in self.stratagems}
+        # 三层检索器：激活 corpus_bing（兵书判据）与 game_models（博弈机制）
+        self.retriever = HybridRetriever(data_dir)
 
     # -- L1 检索 ------------------------------------------------------------
     def retrieve_cases(self, sv: Dict[str, Any], top_k: int = 5
@@ -325,17 +276,41 @@ class ShihengEngine:
                payoffs: Optional[Tuple[Sequence[Sequence[float]],
                                        Sequence[Sequence[float]]]] = None,
                delta: Optional[float] = None,
-               top_k: int = 5, moral_floor: str = "medium") -> Dict[str, Any]:
+               top_k: int = 5, moral_floor: str = "medium",
+               situation_text: str = "") -> Dict[str, Any]:
         cases = self.retrieve_cases(sv, top_k=top_k)
         stratagems = self.retrieve_stratagems(sv, top_k=top_k + 1)
         game = self.verify(payoffs, delta=delta)
         ranked = self.arbitrate(sv, cases, stratagems, game,
                                 moral_floor=moral_floor)
+
+        # ---- 三层检索（L1 扩展）：判据 + 史案 + 博弈机制 ----
+        sit_text = situation_text or self.retriever.situation_text(sv)
+        corpus_hits = self.retriever.retrieve_corpus(sv, sit_text, top_k=top_k)
+        model_hits = self.retriever.retrieve_models(sv, sit_text, top_k=top_k)
+        # 联网检索查询构造（由上层 Agent 执行 WebSearch，本地库作兜底与校验）
+        web_queries = build_web_queries(
+            sv, sit_text,
+            archetype=(game["archetype"]["key"] if game else ""))
+        # 正史原文检索式（历史部分主通道，优先于本地 64 条精简样本）
+        history_queries = build_history_queries(
+            sv, sit_text,
+            archetype=(game["archetype"]["key"] if game else ""))
+
         return {
             "sv": sv,
+            "situation_text": sit_text,
             "game": game,
             "cases": cases,
+            # 本地 cases 为精简样本，仅离线兜底，禁止当作权威史源优先引用
+            "cases_note": ("以下为**本地精简样本库（64 条，人工精选，非全史覆盖）**的兜底结果。"
+                           "历史部分应以正史原文检索（见「正史检索式」）为准；"
+                           "仅在无法联网检索时，这些样本才可作为旁证。"),
             "stratagems_ranked": ranked,
+            "corpus_hits": corpus_hits,
+            "model_hits": model_hits,
+            "web_queries": web_queries,
+            "history_queries": history_queries,
             "shadow": self.shadow_advisor(sv, ranked, game),
         }
 
@@ -387,7 +362,21 @@ def render(report: Dict[str, Any]) -> str:
                  "**可信度低于有矩阵的情形**")
         L.append("")
 
-    L.append("## 三、史案对标 (L1 RETRIEVE)\n")
+    # 正史检索式（历史部分主通道）—— 排在史案对标之前，表明优先级
+    hq = report.get("history_queries") or []
+    if hq:
+        L.append("## 二·五、正史检索式（历史部分主通道 · 优先执行）\n")
+        L.append("> 历史部分**优先检索《史记》《资治通鉴》与二十四史原文**，"
+                 "下列检索式由处境结构生成（按结构检索，不搜固定典故名）。\n")
+        for i, q in enumerate(hq, 1):
+            L.append("%d. **%s**：`%s`" % (i, q.get("scope", "正史原文"), q.get("query", "")))
+            if q.get("purpose"):
+                L.append("   - 用途：%s" % q["purpose"])
+        L.append("")
+
+    L.append("## 三、史案对标（本地精简样本 · 离线兜底）(L1 RETRIEVE)\n")
+    if report.get("cases_note"):
+        L.append("> %s\n" % report["cases_note"])
     for i, c in enumerate(report["cases"], 1):
         d = c.detail
         L.append("### %d. %s  （相似度 %.0f%%，%s）" %
@@ -399,6 +388,46 @@ def render(report: Dict[str, Any]) -> str:
         L.append("- **迁移**：%s" % d["lesson"])
         L.append("- **反事实**：%s" % d["counterfactual"])
         L.append("")
+
+    # 兵书判据（层1：corpus_bing）—— 回答「经典文本对这类结构说了什么判据」
+    corpus_hits = report.get("corpus_hits") or []
+    if corpus_hits:
+        L.append("## 三·五、兵书判据 (L1 文本层)\n")
+        L.append("> 这一层不给你「故事」，给你「可核验的判据」。"
+                 "判据必须能对照你当前处境里的事实来验证，不能照搬。\n")
+        for i, h in enumerate(corpus_hits, 1):
+            qtype = {"原文": "", "节引": "（节引）", "大意": "（大意）"}.get(h.quote_type, "")
+            L.append("### %d. 《%s·%s》%s\n" % (i, h.book, h.juan, qtype))
+            L.append("- **原文**：%s" % h.quote)
+            L.append("- **白话**：%s" % h.plain)
+            L.append("- **适用**：%s" % h.use)
+            L.append("- **失效**：%s" % h.failure_if)
+            L.append("")
+    else:
+        L.append("## 三·五、兵书判据 (L1 文本层)\n")
+        L.append("（本轮处境未在兵书判据库命中高置信条目，判据以博弈机制层为准。）\n")
+
+    # 博弈机制（层3：game_models）—— 回答「这个局靠哪条机制运行、什么条件下反转」
+    model_hits = report.get("model_hits") or []
+    if model_hits:
+        L.append("## 三·七、博弈机制 (L1 机制层)\n")
+        for i, m in enumerate(model_hits, 1):
+            strong = "强适用" if len(m.matched_diagnosis) >= 2 else "弱相关"
+            L.append("### %d. %s（%s，%s）\n" % (i, m.name, m.en, strong))
+            L.append("- **机制**：%s" % m.structure)
+            if m.matched_diagnosis:
+                L.append("- **命中判据**：%s" % "；".join(m.matched_diagnosis))
+            L.append("- **结论**：%s" % m.conclusion)
+            if m.failure:
+                L.append("- **失效**：%s" % "；".join(m.failure))
+            if m.modern:
+                L.append("- **现代映射**：%s" % "；".join(m.modern))
+            if m.counter:
+                L.append("- **对方反制**：%s" % m.counter)
+            L.append("")
+    else:
+        L.append("## 三·七、博弈机制 (L1 机制层)\n")
+        L.append("（本轮处境未命中博弈机制库条目。）\n")
 
     L.append("## 四、策略排序 (L4 ARBITER)\n")
     L.append("| 排名 | 计策 | 处境契合 | 博弈契合 | 风险折扣 | 综合 |")

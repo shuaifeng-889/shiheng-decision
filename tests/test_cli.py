@@ -109,6 +109,8 @@ def main() -> int:
         code, out, _ = run("decide", "-i", sv_path, "-f", "md")
         check("decide md 退出码", code, 0)
         check_true("md 含五层链标题", "L0 ENCODE" in out and "L1 RETRIEVE" in out)
+        check_true("md 含正史检索式（历史主通道）", "正史检索式" in out)
+        check_true("md 的本地样本已标注兜底", "本地精简样本" in out)
         check_true("md 含影子谏官", "影子谏官" in out)
         check_true("md 含执行前三项自检", "自检" in out)
 
@@ -126,8 +128,9 @@ def main() -> int:
         except json.JSONDecodeError:
             data, ok = {}, False
         check_true("json 可解析", ok)
-        check_true("json 含五个顶层键",
-                   set(data) == {"sv", "game", "cases", "stratagems", "shadow"})
+        check_true("json 含八个顶层键（含三层检索）",
+                   set(data) == {"sv", "game", "cases", "stratagems", "shadow",
+                                 "corpus_hits", "model_hits", "web_queries"})
         check_true("json 的 sv 回显一致", data.get("sv") == sv)
         check("json 返回 5 条史案", len(data.get("cases", [])), 5)
 
